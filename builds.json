@@ -1,6 +1,5 @@
 {
   "_leeme": "Los campos de texto aceptan un texto simple (se muestra igual en los tres idiomas) o un objeto {es, en, pt}. Si falta un idioma, cae al español.",
-
   "site": {
     "title": "dvy-jp builds",
     "tagline": {
@@ -11,7 +10,11 @@
     "github": "https://github.com/dvy-jp",
     "donate": {
       "enabled": true,
-      "label": { "es": "Invitame un café", "en": "Buy me a coffee", "pt": "Me paga um café" },
+      "label": {
+        "es": "Invitame un café",
+        "en": "Buy me a coffee",
+        "pt": "Me paga um café"
+      },
       "sublabel": {
         "es": "Si la build te sirvió y querés dar una mano",
         "en": "If the build worked for you and you'd like to help out",
@@ -20,7 +23,6 @@
       "url": "#"
     }
   },
-
   "devices": [
     {
       "codename": "eqe",
@@ -28,8 +30,33 @@
       "model": "XT2403-2",
       "soc": "Snapdragon 7 Gen 3 (SM7550-AB)",
       "active": true,
-
       "builds": [
+        {
+          "version": "12.11",
+          "android": "16",
+          "variant": "Vanilla",
+          "date": "2026-07-12",
+          "securityPatch": "2026-07-01",
+          "filename": "crDroidAndroid-16.0-20260712-eqe-v12.11.zip",
+          "size": "1.7 GB",
+          "md5": "",
+          "downloads": [
+            {
+              "label": {
+                "es": "Descargar",
+                "en": "Download",
+                "pt": "Baixar"
+              },
+              "url": "https://drive.google.com/uc?export=download&id=1Ml6utoB3KJ_V2VMbE2GIY36S4hX10Zxm",
+              "primary": true
+            }
+          ],
+          "changelog": [
+            "Carga inversa inalámbrica (Power Sharing): SOLUCIONADO, ya funciona (solución personalizada)."
+          ],
+          "notes": "",
+          "latest": true
+        },
         {
           "version": "12.11",
           "android": "16",
@@ -39,9 +66,16 @@
           "filename": "crDroidAndroid-16.0-20260708-eqe-v12.11.zip",
           "size": "",
           "md5": "",
-          "latest": true,
           "downloads": [
-            { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1p3C78l7xqCai2_W_VAWJLIABGd3NsjGz", "primary": true }
+            {
+              "label": {
+                "es": "Descargar",
+                "en": "Download",
+                "pt": "Baixar"
+              },
+              "url": "https://drive.google.com/uc?export=download&id=1p3C78l7xqCai2_W_VAWJLIABGd3NsjGz",
+              "primary": true
+            }
           ],
           "changelog": {
             "es": [
@@ -59,14 +93,12 @@
       ]
     }
   ],
-
   "flashing": {
     "warning": {
       "es": "Flashear una ROM implica riesgo. Requiere el bootloader desbloqueado, lo que anula la garantía y puede impedir el uso de algunas apps de banco. Hacé backup de tus datos antes de empezar. Yo pruebo cada build en mi propio equipo, pero no me hago responsable por daños en el tuyo.",
       "en": "Flashing a ROM carries risk. It requires an unlocked bootloader, which voids your warranty and may break some banking apps. Back up your data before you start. I test every build on my own device, but I take no responsibility for damage to yours.",
       "pt": "Flashear uma ROM envolve risco. Exige o bootloader desbloqueado, o que anula a garantia e pode impedir o uso de alguns apps de banco. Faça backup dos seus dados antes de começar. Eu testo cada build no meu próprio aparelho, mas não me responsabilizo por danos ao seu."
     },
-
     "requirements": {
       "es": [
         "Bootloader desbloqueado (Motorola, con el código oficial).",
@@ -90,7 +122,6 @@
         "O ZIP da build já baixado no PC."
       ]
     },
-
     "procedures": [
       {
         "id": "dirty",
@@ -181,7 +212,6 @@
         }
       }
     ],
-
     "troubleshooting": [
       {
         "problem": {
@@ -221,7 +251,6 @@
       }
     ]
   },
-
   "credits": [
     {
       "name": "crDroid",
