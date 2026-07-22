@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>dvy-jp builds</title>
-<meta name="description" content="Builds no oficiales de crDroid para Motorola Edge 50 Pro (eqe), compiladas y probadas por dvy-jp.">
+<meta name="description" id="meta-desc" content="Builds no oficiales de crDroid para Motorola Edge 50 Pro (eqe).">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
 <style>
 :root{
@@ -33,13 +33,28 @@ a:hover{text-decoration:underline}
 
 /* ---------- header ---------- */
 header{border-bottom:1px solid var(--line);background:var(--bg2)}
-.hbar{display:flex;align-items:center;gap:16px;padding:16px 0;flex-wrap:wrap}
+.hbar{display:flex;align-items:center;gap:16px;padding:14px 0;flex-wrap:wrap}
 .brand{font-weight:700;font-size:1.05rem;letter-spacing:-.2px}
 .brand span{color:var(--ac)}
-.hbar nav{margin-left:auto;display:flex;gap:18px;font-size:.9rem}
+.hbar nav{display:flex;gap:18px;font-size:.9rem}
 .hbar nav a{color:var(--tx2)}
 .hbar nav a:hover{color:var(--tx);text-decoration:none}
 
+/* ---------- selector de idioma ---------- */
+.lang{
+  margin-left:auto;display:inline-flex;align-items:center;
+  background:var(--bg3);border:1px solid var(--line2);
+  border-radius:999px;padding:3px;gap:2px;
+}
+.lang button{
+  font-family:inherit;font-size:.74rem;font-weight:600;letter-spacing:.4px;
+  background:transparent;border:0;color:var(--tx3);
+  padding:5px 11px;border-radius:999px;cursor:pointer;transition:.15s;
+}
+.lang button:hover{color:var(--tx)}
+.lang button[aria-pressed="true"]{background:var(--ac2);color:#fff}
+
+/* ---------- hero ---------- */
 .hero{padding:44px 0 40px;border-bottom:1px solid var(--line)}
 .hero h1{font-size:2rem;line-height:1.2;letter-spacing:-.7px;margin-bottom:12px}
 .hero p{color:var(--tx2);max-width:60ch}
@@ -53,7 +68,7 @@ header{border-bottom:1px solid var(--line);background:var(--bg2)}
 .donate:hover{background:#2f81f7;text-decoration:none}
 .donate small{display:block;font-weight:400;font-size:.78rem;opacity:.85;margin-top:1px}
 
-/* ---------- device tabs ---------- */
+/* ---------- dispositivos ---------- */
 .devbar{display:flex;gap:8px;padding:20px 0 0;flex-wrap:wrap}
 .devtab{
   background:var(--bg2);border:1px solid var(--line);color:var(--tx2);
@@ -63,7 +78,7 @@ header{border-bottom:1px solid var(--line);background:var(--bg2)}
 .devtab:hover{border-color:var(--line2);color:var(--tx)}
 .devtab[aria-selected="true"]{background:var(--ac2);border-color:var(--ac2);color:#fff}
 
-/* ---------- sections ---------- */
+/* ---------- secciones ---------- */
 section{padding:44px 0}
 section+section{border-top:1px solid var(--line)}
 h2{font-size:1.3rem;letter-spacing:-.3px;margin-bottom:6px}
@@ -75,23 +90,17 @@ h2{font-size:1.3rem;letter-spacing:-.3px;margin-bottom:6px}
 }
 .devmeta b{color:var(--tx2);font-weight:500}
 
-/* ---------- build cards ---------- */
+/* ---------- tarjetas de build ---------- */
 .build{
   background:var(--bg2);border:1px solid var(--line);
   border-radius:var(--r);margin-bottom:16px;overflow:hidden;
 }
 .build.is-latest{border-color:#2d4a6b}
-.bhead{
-  display:flex;align-items:flex-start;gap:14px;
-  padding:18px 20px;cursor:pointer;user-select:none;
-}
+.bhead{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;cursor:pointer;user-select:none}
 .bhead:hover{background:var(--bg3)}
 .btitle{flex:1;min-width:0}
 .btitle h3{font-size:1.05rem;font-weight:600;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.tag{
-  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
-  padding:2px 8px;border-radius:999px;
-}
+.tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:2px 8px;border-radius:999px}
 .tag.latest{background:rgba(63,185,80,.14);color:var(--ok);border:1px solid rgba(63,185,80,.3)}
 .tag.variant{background:var(--bg3);color:var(--tx2);border:1px solid var(--line2)}
 .bmeta{color:var(--tx3);font-size:.83rem;margin-top:5px}
@@ -100,15 +109,9 @@ h2{font-size:1.3rem;letter-spacing:-.3px;margin-bottom:6px}
 
 .bbody{display:none;padding:0 20px 20px;border-top:1px solid var(--line)}
 .build.open .bbody{display:block}
-.bbody h4{
-  font-size:.75rem;text-transform:uppercase;letter-spacing:.8px;
-  color:var(--tx3);margin:20px 0 10px;font-weight:600;
-}
+.bbody h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.8px;color:var(--tx3);margin:20px 0 10px;font-weight:600}
 .bbody ul{list-style:none}
-.bbody ul li{
-  position:relative;padding-left:20px;margin-bottom:7px;
-  font-size:.93rem;color:var(--tx2);
-}
+.bbody ul li{position:relative;padding-left:20px;margin-bottom:7px;font-size:.93rem;color:var(--tx2)}
 .bbody ul li::before{content:"";position:absolute;left:6px;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--tx3)}
 
 .files{display:flex;flex-direction:column;gap:6px;font-size:.85rem;color:var(--tx3)}
@@ -127,7 +130,7 @@ h2{font-size:1.3rem;letter-spacing:-.3px;margin-bottom:6px}
 .btn.primary:hover{background:#2f81f7}
 .btn.off{opacity:.45;pointer-events:none}
 
-/* ---------- flashing ---------- */
+/* ---------- instalación ---------- */
 .warn{
   background:var(--warnbg);border:1px solid rgba(210,153,34,.32);
   border-radius:var(--r);padding:15px 18px;margin-bottom:26px;
@@ -139,10 +142,7 @@ h2{font-size:1.3rem;letter-spacing:-.3px;margin-bottom:6px}
 .panel>h3{font-size:1rem;margin-bottom:4px}
 .panel>p.psub{color:var(--tx3);font-size:.86rem;margin-bottom:16px}
 ol.steps{list-style:none;counter-reset:s}
-ol.steps li{
-  counter-increment:s;position:relative;padding-left:34px;
-  margin-bottom:12px;font-size:.93rem;color:var(--tx2);
-}
+ol.steps li{counter-increment:s;position:relative;padding-left:34px;margin-bottom:12px;font-size:.93rem;color:var(--tx2)}
 ol.steps li::before{
   content:counter(s);position:absolute;left:0;top:1px;
   width:23px;height:23px;border-radius:50%;
@@ -151,10 +151,7 @@ ol.steps li::before{
   display:grid;place-items:center;
 }
 ol.steps li b{color:var(--tx)}
-.pnote{
-  margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
-  font-size:.85rem;color:var(--tx3);
-}
+.pnote{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:.85rem;color:var(--tx3)}
 .reqs{list-style:none}
 .reqs li{padding-left:22px;position:relative;font-size:.92rem;color:var(--tx2);margin-bottom:7px}
 .reqs li::before{content:"→";position:absolute;left:0;color:var(--tx3)}
@@ -164,10 +161,8 @@ ol.steps li b{color:var(--tx)}
 .tsp b{display:block;font-size:.92rem;margin-bottom:4px}
 .tsp p{font-size:.88rem;color:var(--tx2)}
 
-/* ---------- credits ---------- */
-.cred{
-  display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);
-}
+/* ---------- créditos ---------- */
+.cred{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
 .cred:last-child{border-bottom:0}
 .cred>div{flex:1}
 .cred b{font-size:.95rem}
@@ -184,7 +179,9 @@ footer p+p{margin-top:8px}
 
 @media (max-width:560px){
   .hero h1{font-size:1.6rem}
-  .hbar nav{width:100%;margin-left:0;gap:14px}
+  .hbar{gap:10px 14px}
+  .hbar nav{order:3;width:100%;gap:16px}
+  .lang{margin-left:auto}
   section{padding:34px 0}
 }
 </style>
@@ -194,138 +191,225 @@ footer p+p{margin-top:8px}
 <header>
   <div class="wrap hbar">
     <div class="brand" id="brand">dvy-jp<span>/</span>builds</div>
-    <nav>
-      <a href="#builds">Builds</a>
-      <a href="#flasheo">Instalación</a>
-      <a href="#creditos">Créditos</a>
-    </nav>
+    <div class="lang" id="lang" role="group" aria-label="Idioma / Language / Idioma">
+      <button data-l="es" type="button">ES</button>
+      <button data-l="en" type="button">EN</button>
+      <button data-l="pt" type="button">PT</button>
+    </div>
+    <nav id="nav"></nav>
   </div>
 </header>
 
 <main id="app">
-  <div class="wrap"><p style="padding:60px 0;color:var(--tx3)">Cargando…</p></div>
+  <div class="wrap"><p style="padding:60px 0;color:var(--tx3)">…</p></div>
 </main>
 
 <footer>
   <div class="wrap">
     <p id="foot-credit"></p>
-    <p>Proyecto personal y sin fines de lucro. No afiliado a crDroid, Motorola ni Google.</p>
+    <p id="foot-disclaimer"></p>
   </div>
 </footer>
 
 <script>
+/* ============================================================
+   Textos de la interfaz (fijos, ya traducidos).
+   El contenido que cambia mes a mes va en builds.json.
+   ============================================================ */
+const UI = {
+  es: {
+    navBuilds:"Builds", navFlash:"Instalación", navCredits:"Créditos",
+    buildsSub:"Tocá una build para ver su registro de cambios y descargarla.",
+    noBuilds:"Todavía no hay builds publicadas.",
+    codename:"Codename", model:"Modelo", soc:"SoC",
+    latest:"Última", changes:"Cambios", notes:"Notas", file:"Archivo",
+    patchOf:p=>`parche de ${p}`,
+    flashTitle:"Cómo instalarla", flashSub:"Leé todo antes de empezar.",
+    warnLead:"Antes que nada.",
+    reqTitle:"Lo que necesitás", reqSub:"Sin esto no arranques.",
+    tsTitle:"Si algo sale mal", tsSub:"Los tropiezos más comunes.",
+    credTitle:"Créditos", credSub:"Esto se apoya casi enteramente en trabajo ajeno.",
+    disclaimer:"Proyecto personal y sin fines de lucro. No afiliado a crDroid, Motorola ni Google.",
+    loadErr:"No se pudo cargar builds.json",
+    loadHint:"Si abriste el archivo con doble clic, el navegador bloquea la lectura del JSON. Levantá un servidor local con <code>python3 -m http.server</code> y entrá a <code>http://localhost:8000</code>."
+  },
+  en: {
+    navBuilds:"Builds", navFlash:"Install", navCredits:"Credits",
+    buildsSub:"Tap a build to see its changelog and download it.",
+    noBuilds:"No builds published yet.",
+    codename:"Codename", model:"Model", soc:"SoC",
+    latest:"Latest", changes:"Changes", notes:"Notes", file:"File",
+    patchOf:p=>`${p} security patch`,
+    flashTitle:"How to install", flashSub:"Read everything before you start.",
+    warnLead:"First things first.",
+    reqTitle:"What you need", reqSub:"Don't start without this.",
+    tsTitle:"If something goes wrong", tsSub:"The most common snags.",
+    credTitle:"Credits", credSub:"This rests almost entirely on other people's work.",
+    disclaimer:"Personal, non-commercial project. Not affiliated with crDroid, Motorola or Google.",
+    loadErr:"Could not load builds.json",
+    loadHint:"If you opened the file by double-clicking it, the browser blocks reading the JSON. Start a local server with <code>python3 -m http.server</code> and open <code>http://localhost:8000</code>."
+  },
+  pt: {
+    navBuilds:"Builds", navFlash:"Instalação", navCredits:"Créditos",
+    buildsSub:"Toque numa build para ver o changelog e baixá-la.",
+    noBuilds:"Ainda não há builds publicadas.",
+    codename:"Codename", model:"Modelo", soc:"SoC",
+    latest:"Mais recente", changes:"Mudanças", notes:"Notas", file:"Arquivo",
+    patchOf:p=>`patch de ${p}`,
+    flashTitle:"Como instalar", flashSub:"Leia tudo antes de começar.",
+    warnLead:"Antes de mais nada.",
+    reqTitle:"O que você precisa", reqSub:"Não comece sem isto.",
+    tsTitle:"Se algo der errado", tsSub:"Os tropeços mais comuns.",
+    credTitle:"Créditos", credSub:"Isto se apoia quase inteiramente no trabalho de outras pessoas.",
+    disclaimer:"Projeto pessoal e sem fins lucrativos. Não afiliado à crDroid, Motorola ou Google.",
+    loadErr:"Não foi possível carregar builds.json",
+    loadHint:"Se você abriu o arquivo com duplo clique, o navegador bloqueia a leitura do JSON. Suba um servidor local com <code>python3 -m http.server</code> e acesse <code>http://localhost:8000</code>."
+  }
+};
+const LOCALE = { es:"es-UY", en:"en-US", pt:"pt-BR" };
+const LANGS = ["es","en","pt"];
+
+/* ---------- idioma ---------- */
+function initialLang(){
+  try{ const s = localStorage.getItem("lang"); if(LANGS.includes(s)) return s; }catch(e){}
+  const n = (navigator.language || "es").slice(0,2).toLowerCase();
+  return LANGS.includes(n) ? n : "es";
+}
+let lang = initialLang();
+let DATA = null, current = 0;
+
+/* tr(): acepta un texto simple (se muestra igual en los tres idiomas)
+   o un objeto {es,en,pt}. Si falta un idioma, cae al español. */
+function tr(v){
+  if(v == null) return "";
+  if(typeof v === "string") return v;
+  return v[lang] ?? v.es ?? v[LANGS.find(l => v[l])] ?? "";
+}
+function trArr(v){
+  if(!v) return [];
+  if(Array.isArray(v)) return v.map(tr);
+  const a = v[lang] ?? v.es ?? [];
+  return Array.isArray(a) ? a : [];
+}
+
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-// Los campos de instrucciones admiten <b> y <code> a propósito (contenido propio, no de usuarios).
+/* Los pasos de instalación admiten <b> y <code> a propósito: es contenido propio. */
 const rich = s => String(s ?? "");
 
-const fmtDate = iso => {
+const parseISO = iso => {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
-  if (!m) return iso || "";
-  const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-  return `${+m[3]} de ${meses[+m[2]-1]} de ${m[1]}`;
+  return m ? new Date(+m[1], +m[2]-1, +m[3]) : null;
+};
+const fmtDate = iso => {
+  const d = parseISO(iso);
+  return d ? d.toLocaleDateString(LOCALE[lang], {day:"numeric", month:"long", year:"numeric"}) : (iso || "");
 };
 const fmtPatch = iso => {
   const m = /^(\d{4})-(\d{2})/.exec(iso || "");
-  if (!m) return iso || "";
-  const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-  return `${meses[+m[2]-1]} ${m[1]}`;
+  if(!m) return iso || "";
+  return new Date(+m[1], +m[2]-1, 1).toLocaleDateString(LOCALE[lang], {month:"long", year:"numeric"});
 };
 
-let DATA = null, current = 0;
-
-fetch("builds.json", { cache: "no-cache" })
-  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+/* ---------- carga ---------- */
+fetch("builds.json", { cache:"no-cache" })
+  .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
   .then(d => { DATA = d; render(); })
   .catch(e => {
+    const t = UI[lang];
     document.getElementById("app").innerHTML =
-      `<div class="wrap"><div class="err"><b>No se pudo cargar builds.json</b><br>${esc(e.message)}
-       <br><br>Si estás abriendo el archivo con doble clic, el navegador bloquea la lectura del JSON.
-       Levantá un servidor local desde la carpeta: <code>python3 -m http.server</code> y entrá a
-       <code>http://localhost:8000</code>.</div></div>`;
+      `<div class="wrap"><div class="err"><b>${t.loadErr}</b><br>${esc(e.message)}<br><br>${t.loadHint}</div></div>`;
   });
 
-function render() {
+document.getElementById("lang").addEventListener("click", ev => {
+  const b = ev.target.closest("button[data-l]");
+  if(!b) return;
+  lang = b.dataset.l;
+  try{ localStorage.setItem("lang", lang); }catch(e){}
+  if(DATA) render();
+});
+
+/* ---------- render ---------- */
+function render(){
+  const t = UI[lang];
   const s = DATA.site || {};
-  document.title = s.title || "builds";
-  document.getElementById("brand").innerHTML =
-    esc(s.title || "builds").replace("/", '<span>/</span>');
+
+  document.documentElement.lang = lang;
+  document.title = tr(s.title) || "builds";
+  document.getElementById("meta-desc").content = tr(s.tagline) || "";
+  document.getElementById("brand").innerHTML = esc(tr(s.title) || "builds").replace("/", '<span>/</span>');
+  document.getElementById("foot-disclaimer").textContent = t.disclaimer;
+
+  document.querySelectorAll("#lang button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.l === lang)));
+
+  document.getElementById("nav").innerHTML = `
+    <a href="#builds">${t.navBuilds}</a>
+    <a href="#flasheo">${t.navFlash}</a>
+    <a href="#creditos">${t.navCredits}</a>`;
 
   const devices = (DATA.devices || []).filter(d => d.active !== false);
+  if(current >= devices.length) current = 0;
   const d = devices[current];
 
   const don = s.donate || {};
   const donateBtn = don.enabled === false ? "" : `
     <a class="donate" href="${esc(don.url || "#")}" ${don.url && don.url !== "#" ? 'target="_blank" rel="noopener"' : ""}>
       <span>☕</span>
-      <span>${esc(don.label || "Invitame un café")}
-        ${don.sublabel ? `<small>${esc(don.sublabel)}</small>` : ""}
-      </span>
+      <span>${esc(tr(don.label))}${don.sublabel ? `<small>${esc(tr(don.sublabel))}</small>` : ""}</span>
     </a>`;
 
   const tabs = devices.length > 1 ? `
     <div class="wrap"><div class="devbar" role="tablist">
-      ${devices.map((dev, i) => `
-        <button class="devtab" role="tab" aria-selected="${i === current}" data-i="${i}">
-          ${esc(dev.name)}
-        </button>`).join("")}
+      ${devices.map((dev,i) => `<button class="devtab" role="tab" aria-selected="${i===current}" data-i="${i}">${esc(dev.name)}</button>`).join("")}
     </div></div>` : "";
 
   document.getElementById("app").innerHTML = `
     <div class="hero"><div class="wrap">
-      <h1>${esc(s.title || "builds")}</h1>
-      <p>${esc(s.tagline || "")}</p>
+      <h1>${esc(tr(s.title))}</h1>
+      <p>${esc(tr(s.tagline))}</p>
       ${donateBtn}
     </div></div>
-
     ${tabs}
-
     <section id="builds"><div class="wrap">
-      <h2>${esc(d ? d.name : "Builds")}</h2>
-      <p class="sub">Tocá una build para ver su registro de cambios y descargarla.</p>
+      <h2>${esc(d ? d.name : t.navBuilds)}</h2>
+      <p class="sub">${t.buildsSub}</p>
       ${d ? renderMeta(d) : ""}
-      ${d ? (d.builds || []).map(renderBuild).join("") : "<p class='sub'>Todavía no hay builds publicadas.</p>"}
+      ${d && (d.builds || []).length ? d.builds.map(renderBuild).join("") : `<p class="sub">${t.noBuilds}</p>`}
     </div></section>
-
     ${renderFlashing()}
-    ${renderCredits()}
-  `;
+    ${renderCredits()}`;
 
   document.querySelectorAll(".devtab").forEach(b =>
     b.onclick = () => { current = +b.dataset.i; render(); document.getElementById("builds").scrollIntoView(); });
-
   document.querySelectorAll(".bhead").forEach(h =>
     h.onclick = () => h.parentElement.classList.toggle("open"));
 
-  const me = (DATA.credits || []).find(c => /yo/i.test(c.name));
-  document.getElementById("foot-credit").textContent = me ? me.role : "";
+  const me = (DATA.credits || []).find(c => c.self);
+  document.getElementById("foot-credit").textContent = me ? tr(me.role) : "";
 }
 
-function renderMeta(d) {
+function renderMeta(d){
+  const t = UI[lang];
   const bits = [
-    d.codename && `<b>Codename</b> ${esc(d.codename)}`,
-    d.model && `<b>Modelo</b> ${esc(d.model)}`,
-    d.soc && `<b>SoC</b> ${esc(d.soc)}`
+    d.codename && `<b>${t.codename}</b> ${esc(d.codename)}`,
+    d.model && `<b>${t.model}</b> ${esc(d.model)}`,
+    d.soc && `<b>${t.soc}</b> ${esc(d.soc)}`
   ].filter(Boolean);
   return bits.length ? `<div class="devmeta">${bits.join("")}</div>` : "";
 }
 
-function renderBuild(b) {
-  const meta = [
-    fmtDate(b.date),
-    b.securityPatch && `parche de ${fmtPatch(b.securityPatch)}`,
-    b.size
-  ].filter(Boolean).join(" · ");
-
+function renderBuild(b){
+  const t = UI[lang];
+  const meta = [fmtDate(b.date), b.securityPatch && t.patchOf(fmtPatch(b.securityPatch)), b.size].filter(Boolean).join(" · ");
   const files = [
-    b.filename && `<div><span>Archivo</span><span>${esc(b.filename)}</span></div>`,
+    b.filename && `<div><span>${t.file}</span><span>${esc(b.filename)}</span></div>`,
     b.md5 && `<div><span>MD5</span><span>${esc(b.md5)}</span></div>`
   ].filter(Boolean).join("");
-
   const links = (b.downloads || []).map(dl => {
     const off = !dl.url || dl.url === "#";
-    return `<a class="btn ${dl.primary ? "primary" : ""} ${off ? "off" : ""}"
-      href="${esc(dl.url || "#")}" ${off ? "" : 'target="_blank" rel="noopener"'}>${esc(dl.label)}</a>`;
+    return `<a class="btn ${dl.primary ? "primary" : ""} ${off ? "off" : ""}" href="${esc(dl.url || "#")}" ${off ? "" : 'target="_blank" rel="noopener"'}>${esc(tr(dl.label))}</a>`;
   }).join("");
+  const notes = tr(b.notes);
 
   return `
   <article class="build ${b.latest ? "is-latest open" : ""}">
@@ -333,68 +417,62 @@ function renderBuild(b) {
       <div class="btitle">
         <h3>crDroid ${esc(b.version)}
           ${b.variant ? `<span class="tag variant">${esc(b.variant)}</span>` : ""}
-          ${b.latest ? `<span class="tag latest">Última</span>` : ""}
+          ${b.latest ? `<span class="tag latest">${t.latest}</span>` : ""}
         </h3>
         <div class="bmeta">Android ${esc(b.android)} · ${esc(meta)}</div>
       </div>
       <div class="chev">▼</div>
     </div>
     <div class="bbody">
-      <h4>Cambios</h4>
-      <ul>${(b.changelog || []).map(c => `<li>${esc(c)}</li>`).join("")}</ul>
-      ${b.notes ? `<h4>Notas</h4><ul><li>${esc(b.notes)}</li></ul>` : ""}
-      ${files ? `<h4>Archivo</h4><div class="files">${files}</div>` : ""}
+      <h4>${t.changes}</h4>
+      <ul>${trArr(b.changelog).map(c => `<li>${esc(c)}</li>`).join("")}</ul>
+      ${notes ? `<h4>${t.notes}</h4><ul><li>${esc(notes)}</li></ul>` : ""}
+      ${files ? `<h4>${t.file}</h4><div class="files">${files}</div>` : ""}
       <div class="dl">${links}</div>
     </div>
   </article>`;
 }
 
-function renderFlashing() {
-  const f = DATA.flashing;
-  if (!f) return "";
+function renderFlashing(){
+  const t = UI[lang], f = DATA.flashing;
+  if(!f) return "";
+  const reqs = trArr(f.requirements);
   return `
   <section id="flasheo"><div class="wrap">
-    <h2>Cómo instalarla</h2>
-    <p class="sub">Leé todo antes de empezar.</p>
-
-    ${f.warning ? `<div class="warn"><span>⚠️</span><div><b>Antes que nada.</b> ${esc(f.warning)}</div></div>` : ""}
-
-    ${(f.requirements || []).length ? `
+    <h2>${t.flashTitle}</h2>
+    <p class="sub">${t.flashSub}</p>
+    ${f.warning ? `<div class="warn"><span>⚠️</span><div><b>${t.warnLead}</b> ${esc(tr(f.warning))}</div></div>` : ""}
+    ${reqs.length ? `
       <div class="panel">
-        <h3>Lo que necesitás</h3>
-        <p class="psub">Sin esto no arranques.</p>
-        <ul class="reqs">${f.requirements.map(r => `<li>${esc(r)}</li>`).join("")}</ul>
+        <h3>${t.reqTitle}</h3><p class="psub">${t.reqSub}</p>
+        <ul class="reqs">${reqs.map(r => `<li>${esc(r)}</li>`).join("")}</ul>
       </div>` : ""}
-
     ${(f.procedures || []).map(p => `
       <div class="panel">
-        <h3>${esc(p.title)}</h3>
-        <p class="psub">${esc(p.subtitle || "")}</p>
-        <ol class="steps">${(p.steps || []).map(st => `<li>${rich(st)}</li>`).join("")}</ol>
-        ${p.note ? `<div class="pnote">${rich(p.note)}</div>` : ""}
+        <h3>${esc(tr(p.title))}</h3>
+        <p class="psub">${esc(tr(p.subtitle))}</p>
+        <ol class="steps">${trArr(p.steps).map(st => `<li>${rich(st)}</li>`).join("")}</ol>
+        ${p.note ? `<div class="pnote">${rich(tr(p.note))}</div>` : ""}
       </div>`).join("")}
-
     ${(f.troubleshooting || []).length ? `
       <div class="panel">
-        <h3>Si algo sale mal</h3>
-        <p class="psub">Los tropiezos más comunes.</p>
-        ${f.troubleshooting.map(t => `
-          <div class="tsp"><b>${esc(t.problem)}</b><p>${esc(t.solution)}</p></div>`).join("")}
+        <h3>${t.tsTitle}</h3><p class="psub">${t.tsSub}</p>
+        ${f.troubleshooting.map(x => `<div class="tsp"><b>${esc(tr(x.problem))}</b><p>${esc(tr(x.solution))}</p></div>`).join("")}
       </div>` : ""}
   </div></section>`;
 }
 
-function renderCredits() {
-  const c = DATA.credits || [];
-  if (!c.length) return "";
+function renderCredits(){
+  const t = UI[lang], c = DATA.credits || [];
+  if(!c.length) return "";
   return `
   <section id="creditos"><div class="wrap">
-    <h2>Créditos</h2>
-    <p class="sub">Esto se apoya casi enteramente en trabajo ajeno.</p>
+    <h2>${t.credTitle}</h2>
+    <p class="sub">${t.credSub}</p>
     ${c.map(x => `
       <div class="cred"><div>
         <b>${x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a>` : esc(x.name)}</b>
-        <p>${esc(x.role)}</p>
+        <p>${esc(tr(x.role))}</p>
       </div></div>`).join("")}
   </div></section>`;
 }

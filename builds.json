@@ -1,12 +1,22 @@
 {
+  "_leeme": "Los campos de texto aceptan un texto simple (se muestra igual en los tres idiomas) o un objeto {es, en, pt}. Si falta un idioma, cae al español.",
+
   "site": {
     "title": "dvy-jp builds",
-    "tagline": "Builds no oficiales de crDroid, compiladas y probadas en mi propio equipo.",
+    "tagline": {
+      "es": "Builds no oficiales de crDroid, compiladas y probadas en mi propio equipo.",
+      "en": "Unofficial crDroid builds, compiled and tested on my own device.",
+      "pt": "Builds não oficiais do crDroid, compiladas e testadas no meu próprio aparelho."
+    },
     "github": "https://github.com/dvy-jp",
     "donate": {
       "enabled": true,
-      "label": "Invitame un café",
-      "sublabel": "Si la build te sirvió y querés dar una mano",
+      "label": { "es": "Invitame un café", "en": "Buy me a coffee", "pt": "Me paga um café" },
+      "sublabel": {
+        "es": "Si la build te sirvió y querés dar una mano",
+        "en": "If the build worked for you and you'd like to help out",
+        "pt": "Se a build funcionou para você e quiser ajudar"
+      },
       "url": "#"
     }
   },
@@ -31,15 +41,29 @@
           "md5": "",
           "latest": true,
           "downloads": [
-            { "label": "Descargar", "url": "#", "primary": true },
-            { "label": "Espejo", "url": "#", "primary": false }
+            { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "#", "primary": true },
+            { "label": { "es": "Espejo", "en": "Mirror", "pt": "Espelho" }, "url": "#", "primary": false }
           ],
-          "changelog": [
-            "Parche de seguridad de Android al 1 de julio de 2026.",
-            "PowerShare (carga inversa) funcionando.",
-            "eSIM funcionando, con OpenEUICC integrado como gestor de perfiles.",
-            "Base actualizada a crDroid 16.0 (rama sixteen de mis forks)."
-          ],
+          "changelog": {
+            "es": [
+              "Parche de seguridad de Android al 1 de julio de 2026.",
+              "PowerShare (carga inversa) funcionando.",
+              "eSIM funcionando, con OpenEUICC integrado como gestor de perfiles.",
+              "Base actualizada a crDroid 16.0."
+            ],
+            "en": [
+              "Android security patch as of July 1, 2026.",
+              "PowerShare (reverse wireless charging) working.",
+              "eSIM working, with OpenEUICC built in as the profile manager.",
+              "Base updated to crDroid 16.0."
+            ],
+            "pt": [
+              "Patch de segurança do Android de 1º de julho de 2026.",
+              "PowerShare (carregamento reverso) funcionando.",
+              "eSIM funcionando, com OpenEUICC integrado como gerenciador de perfis.",
+              "Base atualizada para crDroid 16.0."
+            ]
+          },
           "notes": ""
         }
       ]
@@ -47,59 +71,163 @@
   ],
 
   "flashing": {
-    "warning": "Flashear una ROM implica riesgo. Requiere el bootloader desbloqueado, lo que anula la garantía y puede impedir el uso de algunas apps de banco. Hacé backup de tus datos antes de empezar. Yo pruebo cada build en mi propio equipo, pero no me hago responsable por daños en el tuyo.",
+    "warning": {
+      "es": "Flashear una ROM implica riesgo. Requiere el bootloader desbloqueado, lo que anula la garantía y puede impedir el uso de algunas apps de banco. Hacé backup de tus datos antes de empezar. Yo pruebo cada build en mi propio equipo, pero no me hago responsable por daños en el tuyo.",
+      "en": "Flashing a ROM carries risk. It requires an unlocked bootloader, which voids your warranty and may break some banking apps. Back up your data before you start. I test every build on my own device, but I take no responsibility for damage to yours.",
+      "pt": "Flashear uma ROM envolve risco. Exige o bootloader desbloqueado, o que anula a garantia e pode impedir o uso de alguns apps de banco. Faça backup dos seus dados antes de começar. Eu testo cada build no meu próprio aparelho, mas não me responsabilizo por danos ao seu."
+    },
 
-    "requirements": [
-      "Bootloader desbloqueado (Motorola, con el código oficial).",
-      "SDK Platform Tools de Google instalado en la PC (adb y fastboot).",
-      "Drivers USB de Motorola, y el Google USB Driver para el modo bootloader.",
-      "Batería del teléfono por encima del 50 %.",
-      "El ZIP de la build ya descargado en la PC."
-    ],
+    "requirements": {
+      "es": [
+        "Bootloader desbloqueado (Motorola, con el código oficial).",
+        "SDK Platform Tools de Google instalado en la PC (adb y fastboot).",
+        "Drivers USB de Motorola, y el Google USB Driver para el modo bootloader.",
+        "Batería del teléfono por encima del 50 %.",
+        "El ZIP de la build ya descargado en la PC."
+      ],
+      "en": [
+        "Unlocked bootloader (Motorola, using the official code).",
+        "Google SDK Platform Tools installed on your PC (adb and fastboot).",
+        "Motorola USB drivers, plus the Google USB Driver for bootloader mode.",
+        "Phone battery above 50%.",
+        "The build ZIP already downloaded to your PC."
+      ],
+      "pt": [
+        "Bootloader desbloqueado (Motorola, com o código oficial).",
+        "SDK Platform Tools do Google instalado no PC (adb e fastboot).",
+        "Drivers USB da Motorola, e o Google USB Driver para o modo bootloader.",
+        "Bateria do celular acima de 50%.",
+        "O ZIP da build já baixado no PC."
+      ]
+    },
 
     "procedures": [
       {
         "id": "dirty",
-        "title": "Actualizar sin perder datos (dirty flash)",
-        "subtitle": "Si ya tenés una build mía instalada y querés pasar a la nueva.",
-        "steps": [
-          "Reiniciá a recovery: mantené <b>Bajar volumen + Encendido</b>, elegí <b>Recovery</b>.",
-          "En el recovery, entrá a <b>Apply update</b> → <b>Apply from ADB</b>.",
-          "Conectá el teléfono a la PC y verificá que responda: <code>adb devices</code>",
-          "Enviá el ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
-          "Cuando termine, elegí <b>Reboot system now</b>. El primer arranque tarda varios minutos."
-        ],
-        "note": "No formatees nada. Tus apps y datos quedan tal cual."
+        "title": {
+          "es": "Actualizar sin perder datos (dirty flash)",
+          "en": "Update without losing data (dirty flash)",
+          "pt": "Atualizar sem perder dados (dirty flash)"
+        },
+        "subtitle": {
+          "es": "Si ya tenés una build mía instalada y querés pasar a la nueva.",
+          "en": "If you already have one of my builds installed and want to move to the new one.",
+          "pt": "Se você já tem uma build minha instalada e quer passar para a nova."
+        },
+        "steps": {
+          "es": [
+            "Reiniciá a recovery: mantené <b>Bajar volumen + Encendido</b>, elegí <b>Recovery</b>.",
+            "En el recovery, entrá a <b>Apply update</b> → <b>Apply from ADB</b>.",
+            "Conectá el teléfono a la PC y verificá que responda: <code>adb devices</code>",
+            "Enviá el ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "Cuando termine, elegí <b>Reboot system now</b>. El primer arranque tarda varios minutos."
+          ],
+          "en": [
+            "Boot into recovery: hold <b>Volume Down + Power</b>, then pick <b>Recovery</b>.",
+            "In recovery, go to <b>Apply update</b> → <b>Apply from ADB</b>.",
+            "Connect the phone to your PC and confirm it responds: <code>adb devices</code>",
+            "Send the ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "When it finishes, pick <b>Reboot system now</b>. The first boot takes several minutes."
+          ],
+          "pt": [
+            "Reinicie no recovery: segure <b>Diminuir volume + Power</b>, escolha <b>Recovery</b>.",
+            "No recovery, vá em <b>Apply update</b> → <b>Apply from ADB</b>.",
+            "Conecte o celular ao PC e confirme que responde: <code>adb devices</code>",
+            "Envie o ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "Ao terminar, escolha <b>Reboot system now</b>. O primeiro boot demora alguns minutos."
+          ]
+        },
+        "note": {
+          "es": "No formatees nada. Tus apps y datos quedan tal cual.",
+          "en": "Don't format anything. Your apps and data stay as they are.",
+          "pt": "Não formate nada. Seus apps e dados ficam como estão."
+        }
       },
       {
         "id": "clean",
-        "title": "Instalación limpia",
-        "subtitle": "Si venís de la ROM de fábrica o de otra ROM. Borra todos los datos.",
-        "steps": [
-          "Reiniciá a bootloader: <code>adb reboot bootloader</code>",
-          "Flasheá el arranque: <code>fastboot flash init_boot init_boot.img</code>",
-          "Reiniciá a recovery: <code>fastboot reboot recovery</code>",
-          "En el recovery: <b>Factory reset</b> → <b>Format data / factory reset</b>.",
-          "Volvé al menú principal → <b>Apply update</b> → <b>Apply from ADB</b>.",
-          "Enviá el ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
-          "Elegí <b>Reboot system now</b>."
-        ],
-        "note": "El paso de <code>init_boot</code> no es opcional. Saltearlo deja el equipo en bootloop."
+        "title": {
+          "es": "Instalación limpia",
+          "en": "Clean install",
+          "pt": "Instalação limpa"
+        },
+        "subtitle": {
+          "es": "Si venís de la ROM de fábrica o de otra ROM. Borra todos los datos.",
+          "en": "If you're coming from stock or another ROM. This wipes all data.",
+          "pt": "Se você vem da ROM de fábrica ou de outra ROM. Apaga todos os dados."
+        },
+        "steps": {
+          "es": [
+            "Reiniciá a bootloader: <code>adb reboot bootloader</code>",
+            "Flasheá el arranque: <code>fastboot flash init_boot init_boot.img</code>",
+            "Reiniciá a recovery: <code>fastboot reboot recovery</code>",
+            "En el recovery: <b>Factory reset</b> → <b>Format data / factory reset</b>.",
+            "Volvé al menú principal → <b>Apply update</b> → <b>Apply from ADB</b>.",
+            "Enviá el ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "Elegí <b>Reboot system now</b>."
+          ],
+          "en": [
+            "Boot into bootloader: <code>adb reboot bootloader</code>",
+            "Flash the boot image: <code>fastboot flash init_boot init_boot.img</code>",
+            "Boot into recovery: <code>fastboot reboot recovery</code>",
+            "In recovery: <b>Factory reset</b> → <b>Format data / factory reset</b>.",
+            "Back to the main menu → <b>Apply update</b> → <b>Apply from ADB</b>.",
+            "Send the ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "Pick <b>Reboot system now</b>."
+          ],
+          "pt": [
+            "Reinicie no bootloader: <code>adb reboot bootloader</code>",
+            "Flasheie a imagem de boot: <code>fastboot flash init_boot init_boot.img</code>",
+            "Reinicie no recovery: <code>fastboot reboot recovery</code>",
+            "No recovery: <b>Factory reset</b> → <b>Format data / factory reset</b>.",
+            "Volte ao menu principal → <b>Apply update</b> → <b>Apply from ADB</b>.",
+            "Envie o ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "Escolha <b>Reboot system now</b>."
+          ]
+        },
+        "note": {
+          "es": "El paso de <code>init_boot</code> no es opcional. Saltearlo deja el equipo en bootloop.",
+          "en": "The <code>init_boot</code> step is not optional. Skipping it leaves the device in a bootloop.",
+          "pt": "O passo do <code>init_boot</code> não é opcional. Pulá-lo deixa o aparelho em bootloop."
+        }
       }
     ],
 
     "troubleshooting": [
       {
-        "problem": "\"Can't install packages while in secure FRP\"",
-        "solution": "Quedó una cuenta de Google previa protegiendo la partición FRP. El factory reset no lo limpia en Motorola. Hay que resolverlo antes de flashear."
+        "problem": {
+          "es": "\"Can't install packages while in secure FRP\"",
+          "en": "\"Can't install packages while in secure FRP\"",
+          "pt": "\"Can't install packages while in secure FRP\""
+        },
+        "solution": {
+          "es": "Quedó una cuenta de Google previa protegiendo la partición FRP. El factory reset no lo limpia en Motorola. Hay que resolverlo antes de flashear.",
+          "en": "A previous Google account is still guarding the FRP partition. A factory reset won't clear it on Motorola. You have to sort this out before flashing.",
+          "pt": "Uma conta Google anterior ainda protege a partição FRP. O factory reset não limpa isso na Motorola. É preciso resolver antes de flashear."
+        }
       },
       {
-        "problem": "Windows no detecta el teléfono en modo fastboot",
-        "solution": "Instalá el Google USB Driver y asigná a mano el dispositivo \"Android Bootloader Interface\" desde el Administrador de dispositivos."
+        "problem": {
+          "es": "Windows no detecta el teléfono en modo fastboot",
+          "en": "Windows doesn't detect the phone in fastboot mode",
+          "pt": "O Windows não detecta o celular no modo fastboot"
+        },
+        "solution": {
+          "es": "Instalá el Google USB Driver y asigná a mano el dispositivo \"Android Bootloader Interface\" desde el Administrador de dispositivos.",
+          "en": "Install the Google USB Driver and manually assign the \"Android Bootloader Interface\" device from Device Manager.",
+          "pt": "Instale o Google USB Driver e atribua manualmente o dispositivo \"Android Bootloader Interface\" pelo Gerenciador de Dispositivos."
+        }
       },
       {
-        "problem": "\"fastboot: command not found\"",
-        "solution": "Estás usando un adb viejo que no trae fastboot. Bajá el SDK Platform Tools oficial de Google."
+        "problem": {
+          "es": "\"fastboot: command not found\"",
+          "en": "\"fastboot: command not found\"",
+          "pt": "\"fastboot: command not found\""
+        },
+        "solution": {
+          "es": "Estás usando un adb viejo que no trae fastboot. Bajá el SDK Platform Tools oficial de Google.",
+          "en": "You're using an old adb that doesn't ship fastboot. Download the official Google SDK Platform Tools.",
+          "pt": "Você está usando um adb antigo que não traz o fastboot. Baixe o SDK Platform Tools oficial do Google."
+        }
       }
     ]
   },
@@ -107,23 +235,40 @@
   "credits": [
     {
       "name": "crDroid",
-      "role": "El proyecto y todo el código base de la ROM.",
-      "url": "https://crdroid.net"
+      "url": "https://crdroid.net",
+      "role": {
+        "es": "El proyecto y todo el código base de la ROM.",
+        "en": "The project and the entire ROM codebase.",
+        "pt": "O projeto e todo o código base da ROM."
+      }
     },
     {
       "name": "moto-sm7550-dev",
-      "role": "Device trees, kernel y vendor originales del Edge 50 Pro. Sin ese trabajo esto no existiría.",
-      "url": "https://github.com/moto-sm7550-dev"
+      "url": "https://github.com/moto-sm7550-dev",
+      "role": {
+        "es": "Device trees, kernel y vendor originales del Edge 50 Pro. Sin ese trabajo esto no existiría.",
+        "en": "The original device trees, kernel and vendor blobs for the Edge 50 Pro. Without that work, none of this would exist.",
+        "pt": "Device trees, kernel e vendor originais do Edge 50 Pro. Sem esse trabalho, isto não existiria."
+      }
     },
     {
-      "name": "LineageOS y AOSP",
-      "role": "La base sobre la que se construye todo lo anterior.",
-      "url": "https://lineageos.org"
+      "name": "LineageOS · AOSP",
+      "url": "https://lineageos.org",
+      "role": {
+        "es": "La base sobre la que se construye todo lo anterior.",
+        "en": "The foundation everything above is built on.",
+        "pt": "A base sobre a qual tudo isso é construído."
+      }
     },
     {
-      "name": "dvy-jp (yo)",
-      "role": "Compilo estas builds y mantengo mis propios forks con algunos arreglos. No soy el desarrollador del dispositivo ni estoy afiliado a crDroid.",
-      "url": "https://github.com/dvy-jp"
+      "name": "dvy-jp",
+      "url": "https://github.com/dvy-jp",
+      "self": true,
+      "role": {
+        "es": "Compilo estas builds y mantengo mis propios forks con algunos arreglos. No soy el desarrollador del dispositivo ni estoy afiliado a crDroid.",
+        "en": "I compile these builds and maintain my own forks with a few fixes. I'm not the device developer and I'm not affiliated with crDroid.",
+        "pt": "Eu compilo estas builds e mantenho meus próprios forks com alguns ajustes. Não sou o desenvolvedor do aparelho nem sou afiliado à crDroid."
+      }
     }
   ]
 }
