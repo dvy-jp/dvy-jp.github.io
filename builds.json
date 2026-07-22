@@ -41,27 +41,18 @@
           "md5": "",
           "latest": true,
           "downloads": [
-            { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "#", "primary": true },
+            { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/file/d/1p3C78l7xqCai2_W_VAWJLIABGd3NsjGz/view?usp=sharing", "primary": true },
             { "label": { "es": "Espejo", "en": "Mirror", "pt": "Espelho" }, "url": "#", "primary": false }
           ],
           "changelog": {
             "es": [
               "Parche de seguridad de Android al 1 de julio de 2026.",
-              "PowerShare (carga inversa) funcionando.",
-              "eSIM funcionando, con OpenEUICC integrado como gestor de perfiles.",
-              "Base actualizada a crDroid 16.0."
             ],
             "en": [
               "Android security patch as of July 1, 2026.",
-              "PowerShare (reverse wireless charging) working.",
-              "eSIM working, with OpenEUICC built in as the profile manager.",
-              "Base updated to crDroid 16.0."
             ],
             "pt": [
               "Patch de segurança do Android de 1º de julho de 2026.",
-              "PowerShare (carregamento reverso) funcionando.",
-              "eSIM funcionando, com OpenEUICC integrado como gerenciador de perfis.",
-              "Base atualizada para crDroid 16.0."
             ]
           },
           "notes": ""
