@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agregar build · dvy-jp</title>
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --bg:#0d1117; --bg2:#161b22; --bg3:#1c2129;
+  --line:#272e38; --line2:#333c48;
+  --tx:#e6edf3; --tx2:#9aa7b4; --tx3:#6e7c8c;
+  --ac:#4ea1ff; --ac2:#1f6feb;
+  --ok:#3fb950; --okbg:#12261a;
+  --warn:#d29922; --warnbg:#2b2413;
+  --err:#f85149; --errbg:#2d1618;
+  --r:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--tx);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;padding-bottom:60px;
+}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+a{color:var(--ac)}
+
+header{border-bottom:1px solid var(--line);background:var(--bg2);padding:16px 0;margin-bottom:32px}
+header .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+header b{font-size:1.05rem}
+header a{margin-left:auto;font-size:.88rem;color:var(--tx2);text-decoration:none}
+header a:hover{color:var(--tx)}
+
+h1{font-size:1.5rem;letter-spacing:-.4px;margin-bottom:6px}
+.lead{color:var(--tx3);font-size:.92rem;margin-bottom:28px}
+
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:18px}
+.card h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.9px;color:var(--tx3);margin-bottom:18px;font-weight:600}
+
+.f{margin-bottom:18px}
+.f:last-child{margin-bottom:0}
+label{display:block;font-size:.88rem;font-weight:600;margin-bottom:5px}
+.hint{font-size:.79rem;color:var(--tx3);margin-bottom:7px;font-weight:400}
+input[type=text],input[type=date],input[type=month],select,textarea{
+  width:100%;background:var(--bg3);border:1px solid var(--line2);border-radius:9px;
+  color:var(--tx);padding:10px 12px;font:inherit;font-size:.92rem;
+}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ac2)}
+input::placeholder,textarea::placeholder{color:#4d5765}
+textarea{resize:vertical;min-height:110px;line-height:1.55}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.row>.f{flex:1;min-width:150px}
+
+.chk{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--tx2);cursor:pointer}
+.chk input{margin-top:4px;accent-color:var(--ac2);width:16px;height:16px;flex-shrink:0}
+.chk span b{color:var(--tx);display:block;font-size:.9rem}
+
+.ok-note{background:var(--okbg);border:1px solid rgba(63,185,80,.28);color:#7ee787;
+  border-radius:8px;padding:9px 12px;font-size:.82rem;margin-top:8px;display:none}
+.ok-note.on{display:block}
+
+.msg{border-radius:var(--r);padding:14px 16px;font-size:.9rem;margin-bottom:18px;display:none}
+.msg.on{display:block}
+.msg.err{background:var(--errbg);border:1px solid rgba(248,81,73,.35);color:#ff9b95}
+.msg.warn{background:var(--warnbg);border:1px solid rgba(210,153,34,.32);color:#e3c168}
+.msg.ok{background:var(--okbg);border:1px solid rgba(63,185,80,.28);color:#7ee787}
+.msg ul{margin:8px 0 0 18px}
+.msg li{margin-bottom:3px}
+
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+button.act{
+  font:inherit;font-size:.93rem;font-weight:600;border-radius:10px;padding:12px 22px;
+  border:1px solid var(--line2);background:var(--bg3);color:var(--tx);cursor:pointer;transition:.15s;
+}
+button.act:hover{background:#252c36}
+button.act.primary{background:var(--ac2);border-color:var(--ac2);color:#fff}
+button.act.primary:hover{background:#2f81f7}
+button.act:disabled{opacity:.4;cursor:not-allowed}
+
+/* vista previa de la tarjeta */
+.prev{background:var(--bg2);border:1px solid #2d4a6b;border-radius:var(--r);padding:18px 20px}
+.prev h3{font-size:1.05rem;display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:5px}
+.tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:2px 8px;border-radius:999px}
+.tag.latest{background:rgba(63,185,80,.14);color:var(--ok);border:1px solid rgba(63,185,80,.3)}
+.tag.variant{background:var(--bg3);color:var(--tx2);border:1px solid var(--line2)}
+.prev .m{color:var(--tx3);font-size:.83rem;margin-bottom:14px}
+.prev ul{list-style:none}
+.prev ul li{position:relative;padding-left:18px;margin-bottom:6px;font-size:.9rem;color:var(--tx2)}
+.prev ul li::before{content:"";position:absolute;left:5px;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--tx3)}
+
+pre.out{
+  background:#0a0d12;border:1px solid var(--line);border-radius:10px;
+  padding:14px;font-size:.76rem;line-height:1.5;color:#a5d6ff;
+  max-height:280px;overflow:auto;white-space:pre;
+}
+.steps{counter-reset:n;list-style:none;margin-top:14px}
+.steps li{counter-increment:n;position:relative;padding-left:30px;margin-bottom:9px;font-size:.9rem;color:var(--tx2)}
+.steps li::before{
+  content:counter(n);position:absolute;left:0;top:0;width:21px;height:21px;border-radius:50%;
+  background:var(--bg3);border:1px solid var(--line2);color:var(--tx2);
+  font-size:.72rem;font-weight:600;display:grid;place-items:center;
+}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <b>Agregar una build</b>
+  <a href="./">← Volver a la página</a>
+</div></header>
+
+<div class="wrap">
+  <h1>Formulario</h1>
+  <p class="lead">Llená los campos y al final te genera el <code>builds.json</code> completo, listo para subir. No hace falta tocar ninguna llave.</p>
+
+  <div class="msg" id="loadmsg"></div>
+
+  <!-- ============ DATOS ============ -->
+  <div class="card">
+    <h2>1 · Datos de la build</h2>
+
+    <div class="f" id="devwrap" style="display:none">
+      <label for="dev">Dispositivo</label>
+      <select id="dev"></select>
+    </div>
+
+    <div class="f">
+      <label for="zip">Nombre del ZIP</label>
+      <div class="hint">Pegalo tal cual. De acá saco la versión, la fecha y la versión de Android.</div>
+      <input type="text" id="zip" placeholder="crDroidAndroid-16.0-20260810-eqe-v12.12.zip" spellcheck="false">
+      <div class="ok-note" id="zipok"></div>
+    </div>
+
+    <div class="row">
+      <div class="f">
+        <label for="ver">Versión de crDroid</label>
+        <input type="text" id="ver" placeholder="12.12" spellcheck="false">
+      </div>
+      <div class="f">
+        <label for="andr">Android</label>
+        <input type="text" id="andr" placeholder="16" spellcheck="false">
+      </div>
+      <div class="f">
+        <label for="variant">Variante</label>
+        <input type="text" id="variant" value="Vanilla" spellcheck="false">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="f">
+        <label for="date">Fecha de la build</label>
+        <input type="date" id="date">
+      </div>
+      <div class="f">
+        <label for="patch">Parche de seguridad</label>
+        <input type="month" id="patch">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="f">
+        <label for="size">Tamaño <span style="font-weight:400;color:var(--tx3)">(opcional)</span></label>
+        <input type="text" id="size" placeholder="1.5 GB" spellcheck="false">
+      </div>
+      <div class="f">
+        <label for="md5">MD5 <span style="font-weight:400;color:var(--tx3)">(opcional)</span></label>
+        <input type="text" id="md5" placeholder="salida de md5sum" spellcheck="false">
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ DESCARGA ============ -->
+  <div class="card">
+    <h2>2 · Dónde se descarga</h2>
+
+    <div class="f">
+      <label for="url">Link principal</label>
+      <div class="hint">Pegá el link de Google Drive tal cual te lo da al compartir. Lo convierto solo a descarga directa.</div>
+      <input type="text" id="url" placeholder="https://drive.google.com/file/d/..." spellcheck="false">
+      <div class="ok-note" id="urlok"></div>
+    </div>
+
+    <div class="f">
+      <label for="mirror">Espejo <span style="font-weight:400;color:var(--tx3)">(opcional)</span></label>
+      <div class="hint">Si no tenés, dejalo vacío y el botón no aparece.</div>
+      <input type="text" id="mirror" placeholder="GitHub Releases, SourceForge…" spellcheck="false">
+    </div>
+  </div>
+
+  <!-- ============ CAMBIOS ============ -->
+  <div class="card">
+    <h2>3 · Qué cambió</h2>
+    <div class="f">
+      <label for="chg">Registro de cambios</label>
+      <div class="hint">Una línea por cambio. Se muestra igual en los tres idiomas.</div>
+      <textarea id="chg" placeholder="Parche de seguridad de Android al 1 de agosto de 2026.&#10;Arreglado el USB tethering.&#10;Actualizado el kernel."></textarea>
+    </div>
+    <div class="f">
+      <label for="notes">Nota <span style="font-weight:400;color:var(--tx3)">(opcional)</span></label>
+      <input type="text" id="notes" placeholder="Ej: requiere instalación limpia desde la 12.10">
+    </div>
+  </div>
+
+  <!-- ============ POSICIÓN ============ -->
+  <div class="card">
+    <h2>4 · Dónde va en la lista</h2>
+    <label class="chk">
+      <input type="checkbox" id="islatest" checked>
+      <span>
+        <b>Es la build más reciente</b>
+        Va arriba de todo y se marca como «Última». A la anterior se le saca la marca automáticamente.
+        Destildá esto solo si estás agregando una build vieja.
+      </span>
+    </label>
+  </div>
+
+  <!-- ============ RESULTADO ============ -->
+  <div class="msg" id="errbox"></div>
+
+  <div class="card">
+    <h2>Vista previa</h2>
+    <div class="prev" id="prev"></div>
+  </div>
+
+  <div class="card">
+    <h2>5 · Generar el archivo</h2>
+    <div class="actions">
+      <button class="act primary" id="dl">Descargar builds.json</button>
+      <button class="act" id="cp">Copiar al portapapeles</button>
+      <button class="act" id="tg">Ver el código</button>
+    </div>
+    <div class="msg" id="okbox" style="margin:18px 0 0"></div>
+    <div id="outwrap" style="display:none;margin-top:16px"><pre class="out" id="out"></pre></div>
+
+    <ol class="steps">
+      <li>Tocá <b>Descargar builds.json</b>. Se guarda en tu carpeta de descargas.</li>
+      <li>Entrá a <a href="https://github.com/dvy-jp/dvy-jp.github.io/upload/main" target="_blank" rel="noopener">subir archivos al repo</a>.</li>
+      <li>Arrastrá el <code>builds.json</code> que acabás de bajar. Reemplaza al viejo.</li>
+      <li>Botón verde <b>Commit changes</b>. En un minuto está publicado.</li>
+    </ol>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+let DATA = null;
+
+/* ---------- cargar el builds.json actual ---------- */
+fetch("builds.json", { cache:"no-cache" })
+  .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(d => {
+    DATA = d;
+    const devs = DATA.devices || [];
+    if(devs.length > 1){
+      $("devwrap").style.display = "block";
+      $("dev").innerHTML = devs.map((x,i) => `<option value="${i}">${x.name}</option>`).join("");
+    }
+    const n = (devs[0]?.builds || []).length;
+    show("loadmsg", "ok", `Archivo cargado. Ahora mismo hay <b>${n}</b> build${n===1?"":"s"} publicada${n===1?"":"s"}.`);
+    update();
+  })
+  .catch(e => {
+    show("loadmsg", "err",
+      `<b>No se pudo cargar builds.json</b> (${e.message}).<br>
+       Esta página tiene que abrirse desde el sitio publicado, no con doble clic.
+       Probá desde <a href="https://dvy-jp.github.io/nueva-build.html">dvy-jp.github.io/nueva-build.html</a>.`);
+  });
+
+function show(id, kind, html){
+  const el = $(id);
+  el.className = "msg on " + kind;
+  el.innerHTML = html;
+}
+function hide(id){ $(id).className = "msg"; }
+
+/* ---------- del nombre del ZIP saco versión, fecha y Android ---------- */
+$("zip").addEventListener("input", () => {
+  const v = $("zip").value.trim();
+  const got = [];
+  let m;
+  if((m = /-(\d{4})(\d{2})(\d{2})-/.exec(v))){
+    $("date").value = `${m[1]}-${m[2]}-${m[3]}`;
+    got.push("fecha");
+  }
+  if((m = /-v([\d.]+)\.zip$/i.exec(v)) || (m = /-v([\d.]+)$/i.exec(v))){
+    $("ver").value = m[1];
+    got.push("versión");
+  }
+  if((m = /crDroidAndroid-(\d+)\.\d+/i.exec(v))){
+    $("andr").value = m[1];
+    got.push("Android");
+  }
+  const note = $("zipok");
+  if(got.length){ note.className = "ok-note on"; note.textContent = "Completé solo: " + got.join(", ") + "."; }
+  else note.className = "ok-note";
+  update();
+});
+
+/* ---------- convertir link de Drive ---------- */
+function fixDrive(u){
+  u = (u || "").trim();
+  if(!u) return "";
+  const m = /drive\.google\.com\/file\/d\/([^/?]+)/.exec(u);
+  if(m) return `https://drive.google.com/uc?export=download&id=${m[1]}`;
+  const m2 = /drive\.google\.com\/open\?id=([^&]+)/.exec(u);
+  if(m2) return `https://drive.google.com/uc?export=download&id=${m2[1]}`;
+  return u;
+}
+$("url").addEventListener("input", () => {
+  const raw = $("url").value.trim();
+  const fixed = fixDrive(raw);
+  const note = $("urlok");
+  if(fixed && fixed !== raw){
+    note.className = "ok-note on";
+    note.innerHTML = "Convertido a descarga directa:<br><span class='mono'>" + esc(fixed) + "</span>";
+  } else note.className = "ok-note";
+  update();
+});
+
+["ver","andr","variant","date","patch","size","md5","mirror","chg","notes","islatest","dev"]
+  .forEach(id => $(id).addEventListener("input", update));
+$("islatest").addEventListener("change", update);
+$("dev").addEventListener("change", update);
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* ---------- armar el bloque ---------- */
+function buildBlock(){
+  const changelog = $("chg").value.split("\n").map(s => s.trim()).filter(Boolean);
+  const b = {
+    version: $("ver").value.trim(),
+    android: $("andr").value.trim(),
+    variant: $("variant").value.trim(),
+    date: $("date").value,
+    securityPatch: $("patch").value ? $("patch").value + "-01" : "",
+    filename: $("zip").value.trim(),
+    size: $("size").value.trim(),
+    md5: $("md5").value.trim(),
+    downloads: [],
+    changelog,
+    notes: $("notes").value.trim()
+  };
+  if($("islatest").checked) b.latest = true;
+  const url = fixDrive($("url").value);
+  const mir = $("mirror").value.trim();
+  if(url) b.downloads.push({ label:{es:"Descargar",en:"Download",pt:"Baixar"}, url, primary:true });
+  if(mir) b.downloads.push({ label:{es:"Espejo",en:"Mirror",pt:"Espelho"}, url:mir, primary:false });
+  return b;
+}
+
+function problems(b){
+  const p = [];
+  if(!b.version) p.push("Falta la versión de crDroid.");
+  if(!b.date) p.push("Falta la fecha de la build.");
+  if(!b.securityPatch) p.push("Falta el parche de seguridad.");
+  if(!b.filename) p.push("Falta el nombre del ZIP.");
+  if(!b.downloads.length) p.push("Falta el link de descarga.");
+  if(!b.changelog.length) p.push("Falta el registro de cambios (al menos una línea).");
+  const devs = DATA?.devices || [];
+  const d = devs[+($("dev").value || 0)];
+  if(d && b.version && (d.builds || []).some(x => x.version === b.version))
+    p.push(`Ya existe una build con la versión ${b.version}. Si la querés reemplazar, primero borrala a mano.`);
+  return p;
+}
+
+/* ---------- archivo completo ---------- */
+function fullFile(){
+  const out = JSON.parse(JSON.stringify(DATA));
+  const i = +($("dev").value || 0);
+  const dev = out.devices[i];
+  const b = buildBlock();
+  dev.builds = dev.builds || [];
+  if(b.latest){
+    dev.builds.forEach(x => { delete x.latest; });
+    dev.builds.unshift(b);
+  } else {
+    dev.builds.push(b);
+  }
+  return JSON.stringify(out, null, 2);
+}
+
+/* ---------- vista previa ---------- */
+function update(){
+  const b = buildBlock();
+  const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  const fd = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso||""); return m ? `${+m[3]} de ${meses[+m[2]-1]} de ${m[1]}` : "—"; };
+  const fp = iso => { const m = /^(\d{4})-(\d{2})/.exec(iso||""); return m ? `${meses[+m[2]-1]} de ${m[1]}` : "—"; };
+
+  $("prev").innerHTML = `
+    <h3>crDroid ${esc(b.version || "—")}
+      ${b.variant ? `<span class="tag variant">${esc(b.variant)}</span>` : ""}
+      ${b.latest ? `<span class="tag latest">Última</span>` : ""}
+    </h3>
+    <div class="m">Android ${esc(b.android || "—")} · ${fd(b.date)} · parche de ${fp(b.securityPatch)}${b.size ? " · " + esc(b.size) : ""}</div>
+    <ul>${b.changelog.length ? b.changelog.map(c => `<li>${esc(c)}</li>`).join("") : "<li style='color:#4d5765'>Sin cambios cargados todavía</li>"}</ul>`;
+
+  const p = DATA ? problems(b) : ["Todavía no se cargó el archivo actual."];
+  if(p.length){
+    show("errbox", "warn", "<b>Falta completar:</b><ul>" + p.map(x => `<li>${x}</li>`).join("") + "</ul>");
+    $("dl").disabled = $("cp").disabled = true;
+  } else {
+    hide("errbox");
+    $("dl").disabled = $("cp").disabled = false;
+  }
+  if($("outwrap").style.display !== "none" && DATA && !p.length) $("out").textContent = fullFile();
+}
+
+/* ---------- botones ---------- */
+$("dl").onclick = () => {
+  const txt = fullFile();
+  try{ JSON.parse(txt); }catch(e){ return show("okbox","err","Algo salió mal generando el archivo: " + e.message); }
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([txt], {type:"application/json"}));
+  a.download = "builds.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  show("okbox","ok","<b>Listo, se descargó.</b> Ahora subilo al repo reemplazando el viejo — los pasos están acá abajo.");
+};
+$("cp").onclick = async () => {
+  try{
+    await navigator.clipboard.writeText(fullFile());
+    show("okbox","ok","<b>Copiado.</b> Pegalo reemplazando todo el contenido de builds.json en GitHub.");
+  }catch(e){
+    show("okbox","warn","No pude copiar solo. Tocá «Ver el código» y copialo a mano.");
+  }
+};
+$("tg").onclick = () => {
+  const w = $("outwrap");
+  const open = w.style.display !== "none";
+  w.style.display = open ? "none" : "block";
+  $("tg").textContent = open ? "Ver el código" : "Ocultar el código";
+  if(!open && DATA) $("out").textContent = fullFile();
+};
+
+update();
+</script>
+</body>
+</html>
