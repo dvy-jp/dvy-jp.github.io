@@ -402,7 +402,7 @@ function renderBuild(b){
   const t = UI[lang];
   const meta = [fmtDate(b.date), b.securityPatch && t.patchOf(fmtPatch(b.securityPatch)), b.size].filter(Boolean).join(" · ");
   const files = [
-    b.filename && `<div><span>${t.file}</span><span>${esc(b.filename)}</span></div>`,
+    b.filename && `<div><span>${esc(b.filename)}</span></div>`,
     b.md5 && `<div><span>MD5</span><span>${esc(b.md5)}</span></div>`
   ].filter(Boolean).join("");
   const links = (b.downloads || []).map(dl => {
