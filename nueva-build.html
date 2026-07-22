@@ -359,8 +359,8 @@ function problems(b){
   if(!b.changelog.length) p.push("Falta el registro de cambios (al menos una línea).");
   const devs = DATA?.devices || [];
   const d = devs[+($("dev").value || 0)];
-  if(d && b.version && (d.builds || []).some(x => x.version === b.version))
-    p.push(`Ya existe una build con la versión ${b.version}. Si la querés reemplazar, primero borrala a mano.`);
+  if(d && b.date && (d.builds || []).some(x => x.date === b.date))
+    p.push(`Ya hay una build con esa fecha (${b.date}). Dos builds no pueden tener la misma fecha — cambiala, o borrá la anterior a mano si la vas a reemplazar.`);
   return p;
 }
 
