@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dvy-jp builds</title>
+<meta name="description" content="Builds no oficiales de crDroid para Motorola Edge 50 Pro (eqe), compiladas y probadas por dvy-jp.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+<style>
+:root{
+  --bg:#0d1117; --bg2:#161b22; --bg3:#1c2129;
+  --line:#272e38; --line2:#333c48;
+  --tx:#e6edf3; --tx2:#9aa7b4; --tx3:#6e7c8c;
+  --ac:#4ea1ff; --ac2:#1f6feb;
+  --ok:#3fb950; --warn:#d29922; --warnbg:#2b2413;
+  --r:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--tx);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+code{
+  font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  font-size:.87em; background:var(--bg3); border:1px solid var(--line);
+  padding:.15em .45em; border-radius:6px; color:#a5d6ff; word-break:break-all;
+}
+a{color:var(--ac);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+header{border-bottom:1px solid var(--line);background:var(--bg2)}
+.hbar{display:flex;align-items:center;gap:16px;padding:16px 0;flex-wrap:wrap}
+.brand{font-weight:700;font-size:1.05rem;letter-spacing:-.2px}
+.brand span{color:var(--ac)}
+.hbar nav{margin-left:auto;display:flex;gap:18px;font-size:.9rem}
+.hbar nav a{color:var(--tx2)}
+.hbar nav a:hover{color:var(--tx);text-decoration:none}
+
+.hero{padding:44px 0 40px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:2rem;line-height:1.2;letter-spacing:-.7px;margin-bottom:12px}
+.hero p{color:var(--tx2);max-width:60ch}
+
+.donate{
+  display:inline-flex;align-items:center;gap:10px;margin-top:22px;
+  background:var(--ac2);color:#fff;border:0;border-radius:var(--r);
+  padding:11px 20px;font-size:.95rem;font-weight:600;cursor:pointer;
+  transition:background .15s;
+}
+.donate:hover{background:#2f81f7;text-decoration:none}
+.donate small{display:block;font-weight:400;font-size:.78rem;opacity:.85;margin-top:1px}
+
+/* ---------- device tabs ---------- */
+.devbar{display:flex;gap:8px;padding:20px 0 0;flex-wrap:wrap}
+.devtab{
+  background:var(--bg2);border:1px solid var(--line);color:var(--tx2);
+  padding:8px 15px;border-radius:999px;font-size:.88rem;cursor:pointer;
+  font-family:inherit;transition:.15s;
+}
+.devtab:hover{border-color:var(--line2);color:var(--tx)}
+.devtab[aria-selected="true"]{background:var(--ac2);border-color:var(--ac2);color:#fff}
+
+/* ---------- sections ---------- */
+section{padding:44px 0}
+section+section{border-top:1px solid var(--line)}
+h2{font-size:1.3rem;letter-spacing:-.3px;margin-bottom:6px}
+.sub{color:var(--tx3);font-size:.9rem;margin-bottom:24px}
+
+.devmeta{
+  display:flex;gap:8px 22px;flex-wrap:wrap;
+  color:var(--tx3);font-size:.85rem;margin-bottom:26px;
+}
+.devmeta b{color:var(--tx2);font-weight:500}
+
+/* ---------- build cards ---------- */
+.build{
+  background:var(--bg2);border:1px solid var(--line);
+  border-radius:var(--r);margin-bottom:16px;overflow:hidden;
+}
+.build.is-latest{border-color:#2d4a6b}
+.bhead{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:18px 20px;cursor:pointer;user-select:none;
+}
+.bhead:hover{background:var(--bg3)}
+.btitle{flex:1;min-width:0}
+.btitle h3{font-size:1.05rem;font-weight:600;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.tag{
+  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  padding:2px 8px;border-radius:999px;
+}
+.tag.latest{background:rgba(63,185,80,.14);color:var(--ok);border:1px solid rgba(63,185,80,.3)}
+.tag.variant{background:var(--bg3);color:var(--tx2);border:1px solid var(--line2)}
+.bmeta{color:var(--tx3);font-size:.83rem;margin-top:5px}
+.chev{color:var(--tx3);font-size:.8rem;transition:transform .2s;flex-shrink:0;margin-top:5px}
+.build.open .chev{transform:rotate(180deg)}
+
+.bbody{display:none;padding:0 20px 20px;border-top:1px solid var(--line)}
+.build.open .bbody{display:block}
+.bbody h4{
+  font-size:.75rem;text-transform:uppercase;letter-spacing:.8px;
+  color:var(--tx3);margin:20px 0 10px;font-weight:600;
+}
+.bbody ul{list-style:none}
+.bbody ul li{
+  position:relative;padding-left:20px;margin-bottom:7px;
+  font-size:.93rem;color:var(--tx2);
+}
+.bbody ul li::before{content:"";position:absolute;left:6px;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--tx3)}
+
+.files{display:flex;flex-direction:column;gap:6px;font-size:.85rem;color:var(--tx3)}
+.files div{display:flex;gap:10px}
+.files span:first-child{min-width:64px;color:var(--tx3)}
+.files span:last-child{color:var(--tx2);word-break:break-all}
+
+.dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{
+  display:inline-block;padding:9px 18px;border-radius:9px;
+  font-size:.9rem;font-weight:600;border:1px solid var(--line2);
+  background:var(--bg3);color:var(--tx);transition:.15s;
+}
+.btn:hover{background:#252c36;text-decoration:none}
+.btn.primary{background:var(--ac2);border-color:var(--ac2);color:#fff}
+.btn.primary:hover{background:#2f81f7}
+.btn.off{opacity:.45;pointer-events:none}
+
+/* ---------- flashing ---------- */
+.warn{
+  background:var(--warnbg);border:1px solid rgba(210,153,34,.32);
+  border-radius:var(--r);padding:15px 18px;margin-bottom:26px;
+  font-size:.9rem;color:#e3c168;display:flex;gap:12px;
+}
+.warn b{color:var(--warn)}
+
+.panel{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.panel>h3{font-size:1rem;margin-bottom:4px}
+.panel>p.psub{color:var(--tx3);font-size:.86rem;margin-bottom:16px}
+ol.steps{list-style:none;counter-reset:s}
+ol.steps li{
+  counter-increment:s;position:relative;padding-left:34px;
+  margin-bottom:12px;font-size:.93rem;color:var(--tx2);
+}
+ol.steps li::before{
+  content:counter(s);position:absolute;left:0;top:1px;
+  width:23px;height:23px;border-radius:50%;
+  background:var(--bg3);border:1px solid var(--line2);
+  color:var(--tx2);font-size:.75rem;font-weight:600;
+  display:grid;place-items:center;
+}
+ol.steps li b{color:var(--tx)}
+.pnote{
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:.85rem;color:var(--tx3);
+}
+.reqs{list-style:none}
+.reqs li{padding-left:22px;position:relative;font-size:.92rem;color:var(--tx2);margin-bottom:7px}
+.reqs li::before{content:"→";position:absolute;left:0;color:var(--tx3)}
+
+.tsp{border-bottom:1px solid var(--line);padding:14px 0}
+.tsp:last-child{border-bottom:0}
+.tsp b{display:block;font-size:.92rem;margin-bottom:4px}
+.tsp p{font-size:.88rem;color:var(--tx2)}
+
+/* ---------- credits ---------- */
+.cred{
+  display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);
+}
+.cred:last-child{border-bottom:0}
+.cred>div{flex:1}
+.cred b{font-size:.95rem}
+.cred p{color:var(--tx2);font-size:.88rem;margin-top:3px}
+
+footer{border-top:1px solid var(--line);background:var(--bg2);padding:32px 0;margin-top:20px}
+footer p{color:var(--tx3);font-size:.85rem}
+footer p+p{margin-top:8px}
+
+.err{
+  background:var(--warnbg);border:1px solid rgba(210,153,34,.32);
+  border-radius:var(--r);padding:20px;color:#e3c168;font-size:.92rem;margin:40px 0;
+}
+
+@media (max-width:560px){
+  .hero h1{font-size:1.6rem}
+  .hbar nav{width:100%;margin-left:0;gap:14px}
+  section{padding:34px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hbar">
+    <div class="brand" id="brand">dvy-jp<span>/</span>builds</div>
+    <nav>
+      <a href="#builds">Builds</a>
+      <a href="#flasheo">Instalación</a>
+      <a href="#creditos">Créditos</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app">
+  <div class="wrap"><p style="padding:60px 0;color:var(--tx3)">Cargando…</p></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p id="foot-credit"></p>
+    <p>Proyecto personal y sin fines de lucro. No afiliado a crDroid, Motorola ni Google.</p>
+  </div>
+</footer>
+
+<script>
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+// Los campos de instrucciones admiten <b> y <code> a propósito (contenido propio, no de usuarios).
+const rich = s => String(s ?? "");
+
+const fmtDate = iso => {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+  if (!m) return iso || "";
+  const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  return `${+m[3]} de ${meses[+m[2]-1]} de ${m[1]}`;
+};
+const fmtPatch = iso => {
+  const m = /^(\d{4})-(\d{2})/.exec(iso || "");
+  if (!m) return iso || "";
+  const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  return `${meses[+m[2]-1]} ${m[1]}`;
+};
+
+let DATA = null, current = 0;
+
+fetch("builds.json", { cache: "no-cache" })
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(d => { DATA = d; render(); })
+  .catch(e => {
+    document.getElementById("app").innerHTML =
+      `<div class="wrap"><div class="err"><b>No se pudo cargar builds.json</b><br>${esc(e.message)}
+       <br><br>Si estás abriendo el archivo con doble clic, el navegador bloquea la lectura del JSON.
+       Levantá un servidor local desde la carpeta: <code>python3 -m http.server</code> y entrá a
+       <code>http://localhost:8000</code>.</div></div>`;
+  });
+
+function render() {
+  const s = DATA.site || {};
+  document.title = s.title || "builds";
+  document.getElementById("brand").innerHTML =
+    esc(s.title || "builds").replace("/", '<span>/</span>');
+
+  const devices = (DATA.devices || []).filter(d => d.active !== false);
+  const d = devices[current];
+
+  const don = s.donate || {};
+  const donateBtn = don.enabled === false ? "" : `
+    <a class="donate" href="${esc(don.url || "#")}" ${don.url && don.url !== "#" ? 'target="_blank" rel="noopener"' : ""}>
+      <span>☕</span>
+      <span>${esc(don.label || "Invitame un café")}
+        ${don.sublabel ? `<small>${esc(don.sublabel)}</small>` : ""}
+      </span>
+    </a>`;
+
+  const tabs = devices.length > 1 ? `
+    <div class="wrap"><div class="devbar" role="tablist">
+      ${devices.map((dev, i) => `
+        <button class="devtab" role="tab" aria-selected="${i === current}" data-i="${i}">
+          ${esc(dev.name)}
+        </button>`).join("")}
+    </div></div>` : "";
+
+  document.getElementById("app").innerHTML = `
+    <div class="hero"><div class="wrap">
+      <h1>${esc(s.title || "builds")}</h1>
+      <p>${esc(s.tagline || "")}</p>
+      ${donateBtn}
+    </div></div>
+
+    ${tabs}
+
+    <section id="builds"><div class="wrap">
+      <h2>${esc(d ? d.name : "Builds")}</h2>
+      <p class="sub">Tocá una build para ver su registro de cambios y descargarla.</p>
+      ${d ? renderMeta(d) : ""}
+      ${d ? (d.builds || []).map(renderBuild).join("") : "<p class='sub'>Todavía no hay builds publicadas.</p>"}
+    </div></section>
+
+    ${renderFlashing()}
+    ${renderCredits()}
+  `;
+
+  document.querySelectorAll(".devtab").forEach(b =>
+    b.onclick = () => { current = +b.dataset.i; render(); document.getElementById("builds").scrollIntoView(); });
+
+  document.querySelectorAll(".bhead").forEach(h =>
+    h.onclick = () => h.parentElement.classList.toggle("open"));
+
+  const me = (DATA.credits || []).find(c => /yo/i.test(c.name));
+  document.getElementById("foot-credit").textContent = me ? me.role : "";
+}
+
+function renderMeta(d) {
+  const bits = [
+    d.codename && `<b>Codename</b> ${esc(d.codename)}`,
+    d.model && `<b>Modelo</b> ${esc(d.model)}`,
+    d.soc && `<b>SoC</b> ${esc(d.soc)}`
+  ].filter(Boolean);
+  return bits.length ? `<div class="devmeta">${bits.join("")}</div>` : "";
+}
+
+function renderBuild(b) {
+  const meta = [
+    fmtDate(b.date),
+    b.securityPatch && `parche de ${fmtPatch(b.securityPatch)}`,
+    b.size
+  ].filter(Boolean).join(" · ");
+
+  const files = [
+    b.filename && `<div><span>Archivo</span><span>${esc(b.filename)}</span></div>`,
+    b.md5 && `<div><span>MD5</span><span>${esc(b.md5)}</span></div>`
+  ].filter(Boolean).join("");
+
+  const links = (b.downloads || []).map(dl => {
+    const off = !dl.url || dl.url === "#";
+    return `<a class="btn ${dl.primary ? "primary" : ""} ${off ? "off" : ""}"
+      href="${esc(dl.url || "#")}" ${off ? "" : 'target="_blank" rel="noopener"'}>${esc(dl.label)}</a>`;
+  }).join("");
+
+  return `
+  <article class="build ${b.latest ? "is-latest open" : ""}">
+    <div class="bhead">
+      <div class="btitle">
+        <h3>crDroid ${esc(b.version)}
+          ${b.variant ? `<span class="tag variant">${esc(b.variant)}</span>` : ""}
+          ${b.latest ? `<span class="tag latest">Última</span>` : ""}
+        </h3>
+        <div class="bmeta">Android ${esc(b.android)} · ${esc(meta)}</div>
+      </div>
+      <div class="chev">▼</div>
+    </div>
+    <div class="bbody">
+      <h4>Cambios</h4>
+      <ul>${(b.changelog || []).map(c => `<li>${esc(c)}</li>`).join("")}</ul>
+      ${b.notes ? `<h4>Notas</h4><ul><li>${esc(b.notes)}</li></ul>` : ""}
+      ${files ? `<h4>Archivo</h4><div class="files">${files}</div>` : ""}
+      <div class="dl">${links}</div>
+    </div>
+  </article>`;
+}
+
+function renderFlashing() {
+  const f = DATA.flashing;
+  if (!f) return "";
+  return `
+  <section id="flasheo"><div class="wrap">
+    <h2>Cómo instalarla</h2>
+    <p class="sub">Leé todo antes de empezar.</p>
+
+    ${f.warning ? `<div class="warn"><span>⚠️</span><div><b>Antes que nada.</b> ${esc(f.warning)}</div></div>` : ""}
+
+    ${(f.requirements || []).length ? `
+      <div class="panel">
+        <h3>Lo que necesitás</h3>
+        <p class="psub">Sin esto no arranques.</p>
+        <ul class="reqs">${f.requirements.map(r => `<li>${esc(r)}</li>`).join("")}</ul>
+      </div>` : ""}
+
+    ${(f.procedures || []).map(p => `
+      <div class="panel">
+        <h3>${esc(p.title)}</h3>
+        <p class="psub">${esc(p.subtitle || "")}</p>
+        <ol class="steps">${(p.steps || []).map(st => `<li>${rich(st)}</li>`).join("")}</ol>
+        ${p.note ? `<div class="pnote">${rich(p.note)}</div>` : ""}
+      </div>`).join("")}
+
+    ${(f.troubleshooting || []).length ? `
+      <div class="panel">
+        <h3>Si algo sale mal</h3>
+        <p class="psub">Los tropiezos más comunes.</p>
+        ${f.troubleshooting.map(t => `
+          <div class="tsp"><b>${esc(t.problem)}</b><p>${esc(t.solution)}</p></div>`).join("")}
+      </div>` : ""}
+  </div></section>`;
+}
+
+function renderCredits() {
+  const c = DATA.credits || [];
+  if (!c.length) return "";
+  return `
+  <section id="creditos"><div class="wrap">
+    <h2>Créditos</h2>
+    <p class="sub">Esto se apoya casi enteramente en trabajo ajeno.</p>
+    ${c.map(x => `
+      <div class="cred"><div>
+        <b>${x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a>` : esc(x.name)}</b>
+        <p>${esc(x.role)}</p>
+      </div></div>`).join("")}
+  </div></section>`;
+}
+</script>
+</body>
+</html>

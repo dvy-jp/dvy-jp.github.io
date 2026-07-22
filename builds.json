@@ -1,0 +1,129 @@
+{
+  "site": {
+    "title": "dvy-jp builds",
+    "tagline": "Builds no oficiales de crDroid, compiladas y probadas en mi propio equipo.",
+    "github": "https://github.com/dvy-jp",
+    "donate": {
+      "enabled": true,
+      "label": "Invitame un café",
+      "sublabel": "Si la build te sirvió y querés dar una mano",
+      "url": "#"
+    }
+  },
+
+  "devices": [
+    {
+      "codename": "eqe",
+      "name": "Motorola Edge 50 Pro",
+      "model": "XT2403-2",
+      "soc": "Snapdragon 7 Gen 3 (SM7550-AB)",
+      "active": true,
+
+      "builds": [
+        {
+          "version": "12.11",
+          "android": "16",
+          "variant": "Vanilla",
+          "date": "2026-07-08",
+          "securityPatch": "2026-07-01",
+          "filename": "crDroidAndroid-16.0-20260708-eqe-v12.11.zip",
+          "size": "",
+          "md5": "",
+          "latest": true,
+          "downloads": [
+            { "label": "Descargar", "url": "#", "primary": true },
+            { "label": "Espejo", "url": "#", "primary": false }
+          ],
+          "changelog": [
+            "Parche de seguridad de Android al 1 de julio de 2026.",
+            "PowerShare (carga inversa) funcionando.",
+            "eSIM funcionando, con OpenEUICC integrado como gestor de perfiles.",
+            "Base actualizada a crDroid 16.0 (rama sixteen de mis forks)."
+          ],
+          "notes": ""
+        }
+      ]
+    }
+  ],
+
+  "flashing": {
+    "warning": "Flashear una ROM implica riesgo. Requiere el bootloader desbloqueado, lo que anula la garantía y puede impedir el uso de algunas apps de banco. Hacé backup de tus datos antes de empezar. Yo pruebo cada build en mi propio equipo, pero no me hago responsable por daños en el tuyo.",
+
+    "requirements": [
+      "Bootloader desbloqueado (Motorola, con el código oficial).",
+      "SDK Platform Tools de Google instalado en la PC (adb y fastboot).",
+      "Drivers USB de Motorola, y el Google USB Driver para el modo bootloader.",
+      "Batería del teléfono por encima del 50 %.",
+      "El ZIP de la build ya descargado en la PC."
+    ],
+
+    "procedures": [
+      {
+        "id": "dirty",
+        "title": "Actualizar sin perder datos (dirty flash)",
+        "subtitle": "Si ya tenés una build mía instalada y querés pasar a la nueva.",
+        "steps": [
+          "Reiniciá a recovery: mantené <b>Bajar volumen + Encendido</b>, elegí <b>Recovery</b>.",
+          "En el recovery, entrá a <b>Apply update</b> → <b>Apply from ADB</b>.",
+          "Conectá el teléfono a la PC y verificá que responda: <code>adb devices</code>",
+          "Enviá el ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+          "Cuando termine, elegí <b>Reboot system now</b>. El primer arranque tarda varios minutos."
+        ],
+        "note": "No formatees nada. Tus apps y datos quedan tal cual."
+      },
+      {
+        "id": "clean",
+        "title": "Instalación limpia",
+        "subtitle": "Si venís de la ROM de fábrica o de otra ROM. Borra todos los datos.",
+        "steps": [
+          "Reiniciá a bootloader: <code>adb reboot bootloader</code>",
+          "Flasheá el arranque: <code>fastboot flash init_boot init_boot.img</code>",
+          "Reiniciá a recovery: <code>fastboot reboot recovery</code>",
+          "En el recovery: <b>Factory reset</b> → <b>Format data / factory reset</b>.",
+          "Volvé al menú principal → <b>Apply update</b> → <b>Apply from ADB</b>.",
+          "Enviá el ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+          "Elegí <b>Reboot system now</b>."
+        ],
+        "note": "El paso de <code>init_boot</code> no es opcional. Saltearlo deja el equipo en bootloop."
+      }
+    ],
+
+    "troubleshooting": [
+      {
+        "problem": "\"Can't install packages while in secure FRP\"",
+        "solution": "Quedó una cuenta de Google previa protegiendo la partición FRP. El factory reset no lo limpia en Motorola. Hay que resolverlo antes de flashear."
+      },
+      {
+        "problem": "Windows no detecta el teléfono en modo fastboot",
+        "solution": "Instalá el Google USB Driver y asigná a mano el dispositivo \"Android Bootloader Interface\" desde el Administrador de dispositivos."
+      },
+      {
+        "problem": "\"fastboot: command not found\"",
+        "solution": "Estás usando un adb viejo que no trae fastboot. Bajá el SDK Platform Tools oficial de Google."
+      }
+    ]
+  },
+
+  "credits": [
+    {
+      "name": "crDroid",
+      "role": "El proyecto y todo el código base de la ROM.",
+      "url": "https://crdroid.net"
+    },
+    {
+      "name": "moto-sm7550-dev",
+      "role": "Device trees, kernel y vendor originales del Edge 50 Pro. Sin ese trabajo esto no existiría.",
+      "url": "https://github.com/moto-sm7550-dev"
+    },
+    {
+      "name": "LineageOS y AOSP",
+      "role": "La base sobre la que se construye todo lo anterior.",
+      "url": "https://lineageos.org"
+    },
+    {
+      "name": "dvy-jp (yo)",
+      "role": "Compilo estas builds y mantengo mis propios forks con algunos arreglos. No soy el desarrollador del dispositivo ni estoy afiliado a crDroid.",
+      "url": "https://github.com/dvy-jp"
+    }
+  ]
+}
