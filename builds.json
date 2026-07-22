@@ -70,49 +70,6 @@
     }
   ],
 
-  "builds": [
-        {
-          "version": "12.11",
-          "android": "16",
-          "variant": "Vanilla",
-          "date": "2026-07-08",
-          "securityPatch": "2026-07-01",
-          "filename": "crDroidAndroid-16.0-20260708-eqe-v12.11.zip",
-          "size": "",
-          "md5": "",
-          "latest": true,
-          "downloads": [
-            { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "#", "primary": true },
-            { "label": { "es": "Espejo", "en": "Mirror", "pt": "Espelho" }, "url": "#", "primary": false }
-          ],
-          "changelog": {
-            "es": [
-              "Parche de seguridad de Android al 1 de julio de 2026.",
-              "PowerShare (carga inversa) funcionando.",
-              "eSIM funcionando, con OpenEUICC integrado como gestor de perfiles.",
-              "Base actualizada a crDroid 16.0."
-            ],
-            "en": [
-              "Android security patch as of July 1, 2026.",
-              "PowerShare (reverse wireless charging) working.",
-              "eSIM working, with OpenEUICC built in as the profile manager.",
-              "Base updated to crDroid 16.0."
-            ],
-            "pt": [
-              "Patch de segurança do Android de 1º de julho de 2026.",
-              "PowerShare (carregamento reverso) funcionando.",
-              "eSIM funcionando, com OpenEUICC integrado como gerenciador de perfis.",
-              "Base atualizada para crDroid 16.0."
-            ]
-          },
-          "notes": ""
-        }
-      ]
-    }
-  ],
-
-  
-
   "flashing": {
     "warning": {
       "es": "Flashear una ROM implica riesgo. Requiere el bootloader desbloqueado, lo que anula la garantía y puede impedir el uso de algunas apps de banco. Hacé backup de tus datos antes de empezar. Yo pruebo cada build en mi propio equipo, pero no me hago responsable por daños en el tuyo.",
