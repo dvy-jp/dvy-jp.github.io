@@ -41,18 +41,17 @@
           "md5": "",
           "latest": true,
           "downloads": [
-            { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/file/d/1p3C78l7xqCai2_W_VAWJLIABGd3NsjGz/view?usp=sharing", "primary": true },
-            { "label": { "es": "Espejo", "en": "Mirror", "pt": "Espelho" }, "url": "#", "primary": false }
+            { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1p3C78l7xqCai2_W_VAWJLIABGd3NsjGz", "primary": true }
           ],
           "changelog": {
             "es": [
-              "Parche de seguridad de Android al 1 de julio de 2026.",
+              "Parche de seguridad de Android al 1 de julio de 2026."
             ],
             "en": [
-              "Android security patch as of July 1, 2026.",
+              "Android security patch as of July 1, 2026."
             ],
             "pt": [
-              "Patch de segurança do Android de 1º de julho de 2026.",
+              "Patch de segurança do Android de 1º de julho de 2026."
             ]
           },
           "notes": ""
