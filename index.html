@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>dvy-jp builds</title>
 <meta name="description" id="meta-desc" content="Builds no oficiales de crDroid para Motorola Edge 50 Pro (eqe).">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect width='48' height='48' rx='11' fill='%23161b22'/><line x1='18' y1='21' x2='15' y2='13' stroke='%233fb950' stroke-width='2.6' stroke-linecap='round'/><line x1='30' y1='21' x2='33' y2='13' stroke='%233fb950' stroke-width='2.6' stroke-linecap='round'/><path d='M10 33 A14 14 0 0 1 38 33 Z' fill='%233fb950'/><line x1='24' y1='20' x2='24' y2='29' stroke='%230d1117' stroke-width='3' stroke-linecap='round'/><path d='M19 25 L24 30 L29 25' fill='none' stroke='%230d1117' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <style>
 :root{
   --bg:#0d1117; --bg2:#161b22; --bg3:#1c2129;
@@ -34,8 +34,33 @@ a:hover{text-decoration:underline}
 /* ---------- header ---------- */
 header{border-bottom:1px solid var(--line);background:var(--bg2);position:sticky;top:0;z-index:100}
 .hbar{display:flex;align-items:center;gap:16px;padding:14px 0;flex-wrap:wrap}
-.brand{font-weight:700;font-size:1.05rem;letter-spacing:-.2px}
+.brandwrap{display:inline-flex;align-items:center;gap:11px;text-decoration:none}
+.brandwrap:hover{text-decoration:none}
+.brand{font-weight:700;font-size:1.05rem;letter-spacing:-.2px;color:var(--tx)}
 .brand span{color:var(--ac)}
+
+/* logo con destello verde girando */
+.logo-mark{
+  position:relative;width:36px;height:36px;flex-shrink:0;
+  border-radius:10px;background:var(--bg2);border:1px solid var(--line2);
+  display:grid;place-items:center;
+}
+.logo-mark svg{width:26px;height:26px;display:block}
+.logo-mark::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;
+  background:conic-gradient(from var(--beam-angle),
+    rgba(63,185,80,0) 0deg,
+    rgba(63,185,80,0) 250deg,
+    rgba(63,185,80,.4) 315deg,
+    #7ee787 352deg,
+    rgba(63,185,80,0) 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask-composite:exclude;
+  animation:beam-spin 3.5s linear infinite;
+}
+@media (prefers-reduced-motion:reduce){ .logo-mark::before{ animation:none } }
 .hbar nav{display:flex;gap:18px;font-size:.9rem}
 .hbar nav a{color:var(--tx2)}
 .hbar nav a:hover{color:var(--tx);text-decoration:none}
@@ -247,7 +272,18 @@ footer p+p{margin-top:8px}
 
 <header>
   <div class="wrap hbar">
-    <div class="brand" id="brand">dvy-jp<span>/</span>builds</div>
+    <a class="brandwrap" href="./" aria-label="dvy-jp builds - inicio">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <line x1="18" y1="21" x2="15" y2="13" stroke="#3fb950" stroke-width="2.6" stroke-linecap="round"/>
+          <line x1="30" y1="21" x2="33" y2="13" stroke="#3fb950" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M10 33 A14 14 0 0 1 38 33 Z" fill="#3fb950"/>
+          <line x1="24" y1="20" x2="24" y2="29" stroke="#161b22" stroke-width="3" stroke-linecap="round"/>
+          <path d="M19 25 L24 30 L29 25" fill="none" stroke="#161b22" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="brand" id="brand">dvy-jp<span>/</span>builds</span>
+    </a>
     <div class="lang" id="lang" role="group" aria-label="Idioma / Language / Idioma">
       <button data-l="es" type="button">ES</button>
       <button data-l="en" type="button">EN</button>
