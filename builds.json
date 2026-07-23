@@ -28,6 +28,10 @@
       "url": "https://ko-fi.com/dvyjp"
     }
   },
+  "contact": {
+    "enabled": true,
+    "accessKey": "1fe3dbd9-2f31-4244-aebb-edac3ea2ac92"
+  },
   "devices": [
     {
       "codename": "eqe",
@@ -36,34 +40,6 @@
       "soc": "Snapdragon 7 Gen 3 (SM7550-AB)",
       "active": true,
       "builds": [
-        {
-          "version": "12.11",
-          "android": "16",
-          "variant": "Vanilla",
-          "date": "2026-07-23",
-          "securityPatch": "2026-07-01",
-          "filename": "crDroidAndroid-16.0-20260723-eqe-v12.11.zip",
-          "size": "1.6 GB",
-          "md5": "e9248405f7e82d6d77f8c061cfd85f9a",
-          "downloads": [
-            {
-              "label": {
-                "es": "Descargar",
-                "en": "Download",
-                "pt": "Baixar"
-              },
-              "url": "https://drive.google.com/uc?export=download&id=1__S1fAuvKvMFfd7ZLFpA__cTYtZpTlb_",
-              "primary": true
-            }
-          ],
-          "changelog": [
-            "eSIM functionality: fixed the issue that rendered it unusable on crDroid (reverted the NFC HAL for the ST54L chip).",
-            "OpenEUICC integrated as the profile manager: add, activate, and deactivate eSIM profiles without relying on Google.",
-            "Retains features from previous builds: PowerShare (reverse charging) and up-to-date security patch."
-          ],
-          "notes": "",
-          "latest": true
-        },
         {
           "version": "12.11",
           "android": "16",
@@ -87,7 +63,8 @@
           "changelog": [
             "Wireless reverse charging (Power Sharing): FIXED, it's working now (custom solution)."
           ],
-          "notes": ""
+          "notes": "",
+          "latest": true
         },
         {
           "version": "12.11",

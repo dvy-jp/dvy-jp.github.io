@@ -178,6 +178,31 @@ ol.steps li b{color:var(--tx)}
 .cred b{font-size:.95rem}
 .cred p{color:var(--tx2);font-size:.88rem;margin-top:3px}
 
+/* ---------- formulario de contacto ---------- */
+.cform{max-width:620px}
+.cf-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.cf-row{display:flex;gap:14px;flex-wrap:wrap}
+.cf-row>.cf-field{flex:1;min-width:170px}
+.cf-field{display:block;margin-bottom:16px}
+.cf-field>span{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px;color:var(--tx)}
+.cf-field input,.cf-field select,.cf-field textarea{
+  width:100%;background:var(--bg3);border:1px solid var(--line2);border-radius:9px;
+  color:var(--tx);padding:10px 12px;font:inherit;font-size:.92rem;
+}
+.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{outline:0;border-color:var(--ac2)}
+.cf-field textarea{resize:vertical;min-height:120px;line-height:1.55}
+.cf-hint{display:block;font-size:.78rem;color:var(--tx3);margin-top:5px}
+.cf-foot{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:4px}
+.cf-send{
+  font:inherit;font-size:.93rem;font-weight:600;border-radius:10px;padding:11px 26px;
+  border:1px solid var(--ac2);background:var(--ac2);color:#fff;cursor:pointer;transition:.15s;
+}
+.cf-send:hover{background:#2f81f7}
+.cf-send:disabled{opacity:.5;cursor:not-allowed}
+.cf-status{font-size:.88rem}
+.cf-status.ok{color:var(--ok)}
+.cf-status.err{color:var(--err)}
+
 footer{border-top:1px solid var(--line);background:var(--bg2);padding:32px 0;margin-top:20px}
 footer p{color:var(--tx3);font-size:.85rem}
 footer p+p{margin-top:8px}
@@ -241,6 +266,13 @@ const UI = {
     reqTitle:"Lo que necesitás", reqSub:"Sin esto no arranques.",
     tsTitle:"Si algo sale mal", tsSub:"Los tropiezos más comunes.",
     credTitle:"Créditos", credSub:"Esto se apoya casi enteramente en trabajo ajeno.",
+    navContact:"Contacto",
+    contactTitle:"Contacto y reportes", contactSub:"¿Encontraste un bug o tenés una consulta? Escribime. No hace falta cuenta.",
+    cType:"Tipo", cTypeBug:"Reporte de bug", cTypeGen:"Consulta general",
+    cBuild:"Build", cBuildNA:"No aplica / otra",
+    cEmail:"Tu email (opcional)", cEmailHint:"Solo si querés que te responda.",
+    cMsg:"Mensaje", cMsgPh:"Contame qué pasa. Si es un bug, incluí los pasos para reproducirlo.",
+    cSend:"Enviar", cSending:"Enviando…", cSent:"¡Gracias! Tu mensaje fue enviado.", cErr:"No se pudo enviar. Probá de nuevo en un rato.",
     disclaimer:"Proyecto personal y sin fines de lucro. No afiliado a crDroid, Motorola ni Google.",
     loadErr:"No se pudo cargar builds.json",
     loadHint:"Si abriste el archivo con doble clic, el navegador bloquea la lectura del JSON. Levantá un servidor local con <code>python3 -m http.server</code> y entrá a <code>http://localhost:8000</code>."
@@ -257,6 +289,13 @@ const UI = {
     reqTitle:"What you need", reqSub:"Don't start without this.",
     tsTitle:"If something goes wrong", tsSub:"The most common snags.",
     credTitle:"Credits", credSub:"This rests almost entirely on other people's work.",
+    navContact:"Contact",
+    contactTitle:"Contact & reports", contactSub:"Found a bug or have a question? Drop me a message. No account needed.",
+    cType:"Type", cTypeBug:"Bug report", cTypeGen:"General question",
+    cBuild:"Build", cBuildNA:"N/A · other",
+    cEmail:"Your email (optional)", cEmailHint:"Only if you'd like a reply.",
+    cMsg:"Message", cMsgPh:"Tell me what's going on. For a bug, include steps to reproduce it.",
+    cSend:"Send", cSending:"Sending…", cSent:"Thanks! Your message was sent.", cErr:"Couldn't send. Please try again later.",
     disclaimer:"Personal, non-commercial project. Not affiliated with crDroid, Motorola or Google.",
     loadErr:"Could not load builds.json",
     loadHint:"If you opened the file by double-clicking it, the browser blocks reading the JSON. Start a local server with <code>python3 -m http.server</code> and open <code>http://localhost:8000</code>."
@@ -273,6 +312,13 @@ const UI = {
     reqTitle:"O que você precisa", reqSub:"Não comece sem isto.",
     tsTitle:"Se algo der errado", tsSub:"Os tropeços mais comuns.",
     credTitle:"Créditos", credSub:"Isto se apoia quase inteiramente no trabalho de outras pessoas.",
+    navContact:"Contato",
+    contactTitle:"Contato e relatos", contactSub:"Achou um bug ou tem uma dúvida? Me manda uma mensagem. Sem precisar de conta.",
+    cType:"Tipo", cTypeBug:"Relato de bug", cTypeGen:"Dúvida geral",
+    cBuild:"Build", cBuildNA:"N/A · outra",
+    cEmail:"Seu email (opcional)", cEmailHint:"Só se quiser resposta.",
+    cMsg:"Mensagem", cMsgPh:"Conta o que está acontecendo. Se for um bug, inclua os passos para reproduzir.",
+    cSend:"Enviar", cSending:"Enviando…", cSent:"Obrigado! Sua mensagem foi enviada.", cErr:"Não foi possível enviar. Tente de novo mais tarde.",
     disclaimer:"Projeto pessoal e sem fins lucrativos. Não afiliado à crDroid, Motorola ou Google.",
     loadErr:"Não foi possível carregar builds.json",
     loadHint:"Se você abriu o arquivo com duplo clique, o navegador bloqueia a leitura do JSON. Suba um servidor local com <code>python3 -m http.server</code> e acesse <code>http://localhost:8000</code>."
@@ -354,10 +400,14 @@ function render(){
   document.querySelectorAll("#lang button").forEach(b =>
     b.setAttribute("aria-pressed", String(b.dataset.l === lang)));
 
+  const contactCfg = DATA.contact || {};
+  const showContact = contactCfg.enabled !== false && contactCfg.accessKey;
+
   document.getElementById("nav").innerHTML = `
     <a href="#builds">${t.navBuilds}</a>
     <a href="#flasheo">${t.navFlash}</a>
-    <a href="#creditos">${t.navCredits}</a>`;
+    <a href="#creditos">${t.navCredits}</a>
+    ${showContact ? `<a href="#contacto">${t.navContact}</a>` : ""}`;
 
   const devices = (DATA.devices || []).filter(d => d.active !== false);
   if(current >= devices.length) current = 0;
@@ -399,15 +449,96 @@ function render(){
       ${d && (d.builds || []).length ? d.builds.map(renderBuild).join("") : `<p class="sub">${t.noBuilds}</p>`}
     </div></section>
     ${renderFlashing()}
-    ${renderCredits()}`;
+    ${renderCredits()}
+    ${showContact ? renderContact(contactCfg, d) : ""}`;
 
   document.querySelectorAll(".devtab").forEach(b =>
     b.onclick = () => { current = +b.dataset.i; render(); document.getElementById("builds").scrollIntoView(); });
   document.querySelectorAll(".bhead").forEach(h =>
     h.onclick = () => h.parentElement.classList.toggle("open"));
 
+  if (showContact) wireContactForm();
+
   const me = (DATA.credits || []).find(c => c.self);
   document.getElementById("foot-credit").textContent = me ? tr(me.role) : "";
+}
+
+function renderContact(cfg, d){
+  const t = UI[lang];
+  const builds = (d && d.builds) || [];
+  const buildOpts = builds.map(b => {
+    const label = `crDroid ${b.version} · ${fmtDate(b.date)}`;
+    return `<option value="${esc(label)}">${esc(label)}</option>`;
+  }).join("");
+
+  return `
+  <section id="contacto"><div class="wrap">
+    <h2>${t.contactTitle}</h2>
+    <p class="sub">${t.contactSub}</p>
+    <form id="contactForm" class="cform" novalidate>
+      <input type="hidden" name="access_key" value="${esc(cfg.accessKey)}">
+      <input type="hidden" name="subject" value="Nuevo mensaje desde dvy-jp builds">
+      <input type="hidden" name="from_name" value="dvy-jp builds">
+      <input type="checkbox" name="botcheck" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="cf-row">
+        <label class="cf-field">
+          <span>${t.cType}</span>
+          <select name="Tipo">
+            <option value="${esc(t.cTypeBug)}">${t.cTypeBug}</option>
+            <option value="${esc(t.cTypeGen)}">${t.cTypeGen}</option>
+          </select>
+        </label>
+        <label class="cf-field">
+          <span>${t.cBuild}</span>
+          <select name="Build">
+            ${buildOpts}
+            <option value="${esc(t.cBuildNA)}">${t.cBuildNA}</option>
+          </select>
+        </label>
+      </div>
+      <label class="cf-field">
+        <span>${t.cEmail}</span>
+        <input type="email" name="email" autocomplete="email">
+        <small class="cf-hint">${t.cEmailHint}</small>
+      </label>
+      <label class="cf-field">
+        <span>${t.cMsg}</span>
+        <textarea name="message" required placeholder="${esc(t.cMsgPh)}"></textarea>
+      </label>
+      <div class="cf-foot">
+        <button type="submit" class="cf-send">${t.cSend}</button>
+        <span id="cStatus" class="cf-status" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+  </div></section>`;
+}
+
+function wireContactForm(){
+  const form = document.getElementById("contactForm");
+  if(!form || form.dataset.wired) return;
+  form.dataset.wired = "1";
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const t = UI[lang];
+    const status = document.getElementById("cStatus");
+    const btn = form.querySelector(".cf-send");
+    if(form.botcheck && form.botcheck.checked) return;           // honeypot
+    if(!form.message.value.trim()){ status.className = "cf-status err"; status.textContent = t.cErr; return; }
+    btn.disabled = true; btn.textContent = t.cSending;
+    status.className = "cf-status"; status.textContent = "";
+    try{
+      const res = await fetch("https://api.web3forms.com/submit", { method:"POST", body:new FormData(form) });
+      const json = await res.json();
+      if(json.success){
+        form.reset();
+        status.className = "cf-status ok"; status.textContent = t.cSent;
+      } else throw new Error(json.message || "error");
+    }catch(err){
+      status.className = "cf-status err"; status.textContent = t.cErr;
+    }finally{
+      btn.disabled = false; btn.textContent = t.cSend;
+    }
+  });
 }
 
 function renderMeta(d){
