@@ -16,9 +16,14 @@
         "pt": "Me paga um café"
       },
       "sublabel": {
-        "es": "Si la build te sirvió y querés dar una mano",
-        "en": "If the build worked for you and you'd like to help out",
-        "pt": "Se a build funcionou para você e quiser ajudar"
+        "es": "¿Te sirvió?",
+        "en": "Did it help?",
+        "pt": "Te ajudou?"
+      },
+      "description": {
+        "es": "Cada build se compila en un servidor en la nube que pago de mi bolsillo. Si esta ROM te sirve, un café ayuda a cubrir ese costo. Es totalmente opcional: las builds son y van a seguir siendo gratis.",
+        "en": "Every build is compiled on a cloud server I pay for out of my own pocket. If this ROM is useful to you, a coffee helps cover that cost. Completely optional: the builds are and will stay free.",
+        "pt": "Cada build é compilada num servidor na nuvem que eu pago do meu próprio bolso. Se esta ROM te for útil, um café ajuda a cobrir esse custo. Totalmente opcional: as builds são e vão continuar gratuitas."
       },
       "url": "https://ko-fi.com/dvyjp"
     }

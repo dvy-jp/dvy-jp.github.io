@@ -59,14 +59,24 @@ header{border-bottom:1px solid var(--line);background:var(--bg2)}
 .hero h1{font-size:2rem;line-height:1.2;letter-spacing:-.7px;margin-bottom:12px}
 .hero p{color:var(--tx2);max-width:60ch}
 
-.donate{
-  display:inline-flex;align-items:center;gap:10px;margin-top:22px;
-  background:var(--ac2);color:#fff;border:0;border-radius:var(--r);
-  padding:11px 20px;font-size:.95rem;font-weight:600;cursor:pointer;
-  transition:background .15s;
+/* icono de café discreto en el header */
+.coffee{
+  color:var(--tx3);font-size:1.05rem;line-height:1;text-decoration:none;
+  padding:6px 9px;border-radius:8px;transition:.15s;
 }
-.donate:hover{background:#2f81f7;text-decoration:none}
-.donate small{display:block;font-weight:400;font-size:.78rem;opacity:.85;margin-top:1px}
+.coffee:hover{color:var(--tx);background:var(--bg3);text-decoration:none}
+
+/* bloque de apoyo al pie */
+.support{text-align:center;padding-bottom:26px;margin-bottom:24px;border-bottom:1px solid var(--line)}
+.support:empty{display:none}
+.sup-h{font-size:1rem;font-weight:600;color:var(--tx);margin-bottom:8px}
+.sup-desc{color:var(--tx2);font-size:.9rem;line-height:1.6;max-width:54ch;margin:0 auto 16px}
+.donate-sm{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--line2);background:var(--bg3);color:var(--tx);
+  padding:9px 18px;border-radius:10px;font-size:.9rem;font-weight:600;transition:.15s;
+}
+.donate-sm:hover{background:#252c36;border-color:#3d4757;text-decoration:none}
 
 /* ---------- dispositivos ---------- */
 .devbar{display:flex;gap:8px;padding:20px 0 0;flex-wrap:wrap}
@@ -197,6 +207,7 @@ footer p+p{margin-top:8px}
       <button data-l="pt" type="button">PT</button>
     </div>
     <nav id="nav"></nav>
+    <a class="coffee" id="coffee" href="#" target="_blank" rel="noopener" title="Ko-fi" style="display:none">☕</a>
   </div>
 </header>
 
@@ -206,6 +217,7 @@ footer p+p{margin-top:8px}
 
 <footer>
   <div class="wrap">
+    <div class="support" id="support"></div>
     <p id="foot-credit"></p>
     <p id="foot-disclaimer"></p>
   </div>
@@ -352,11 +364,22 @@ function render(){
   const d = devices[current];
 
   const don = s.donate || {};
-  const donateBtn = don.enabled === false ? "" : `
-    <a class="donate" href="${esc(don.url || "#")}" ${don.url && don.url !== "#" ? 'target="_blank" rel="noopener"' : ""}>
-      <span>☕</span>
-      <span>${esc(tr(don.label))}${don.sublabel ? `<small>${esc(tr(don.sublabel))}</small>` : ""}</span>
-    </a>`;
+  const showDonate = don.enabled !== false && don.url && don.url !== "#";
+
+  const coffee = document.getElementById("coffee");
+  if (showDonate) {
+    coffee.href = don.url;
+    coffee.title = tr(don.label);
+    coffee.style.display = "";
+  } else {
+    coffee.style.display = "none";
+  }
+
+  const sup = document.getElementById("support");
+  sup.innerHTML = showDonate ? `
+    ${don.sublabel ? `<h4 class="sup-h">${esc(tr(don.sublabel))}</h4>` : ""}
+    ${don.description ? `<p class="sup-desc">${esc(tr(don.description))}</p>` : ""}
+    <a class="donate-sm" href="${esc(don.url)}" target="_blank" rel="noopener">☕ ${esc(tr(don.label))}</a>` : "";
 
   const tabs = devices.length > 1 ? `
     <div class="wrap"><div class="devbar" role="tablist">
@@ -367,7 +390,6 @@ function render(){
     <div class="hero"><div class="wrap">
       <h1>${esc(tr(s.title))}</h1>
       <p>${esc(tr(s.tagline))}</p>
-      ${donateBtn}
     </div></div>
     ${tabs}
     <section id="builds"><div class="wrap">
