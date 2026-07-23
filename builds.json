@@ -28,6 +28,10 @@
       "url": "https://ko-fi.com/dvyjp"
     }
   },
+  "contact": {
+    "enabled": true,
+    "accessKey": "1fe3dbd9-2f31-4244-aebb-edac3ea2ac92"
+  },
   "devices": [
     {
       "codename": "eqe",
