@@ -126,6 +126,12 @@ pre.out{
     </div>
 
     <div class="f">
+      <label for="rom">ROM</label>
+      <div class="hint">A cuál ROM le agregás esta build.</div>
+      <select id="rom"></select>
+    </div>
+
+    <div class="f">
       <label for="zip">Nombre del ZIP</label>
       <div class="hint">Pegalo tal cual. De acá saco la versión, la fecha y la versión de Android.</div>
       <input type="text" id="zip" placeholder="crDroidAndroid-16.0-20260810-eqe-v12.12.zip" spellcheck="false">
@@ -134,7 +140,7 @@ pre.out{
 
     <div class="row">
       <div class="f">
-        <label for="ver">Versión de crDroid</label>
+        <label for="ver">Versión de la ROM</label>
         <input type="text" id="ver" placeholder="12.12" spellcheck="false">
       </div>
       <div class="f">
@@ -256,9 +262,7 @@ fetch("builds.json", { cache:"no-cache" })
       $("devwrap").style.display = "block";
       $("dev").innerHTML = devs.map((x,i) => `<option value="${i}">${x.name}</option>`).join("");
     }
-    const n = (devs[0]?.builds || []).length;
-    show("loadmsg", "ok", `Archivo cargado. Ahora mismo hay <b>${n}</b> build${n===1?"":"s"} publicada${n===1?"":"s"}.`);
-    update();
+    fillRoms();
   })
   .catch(e => {
     show("loadmsg", "err",
@@ -318,10 +322,27 @@ $("url").addEventListener("input", () => {
   update();
 });
 
-["ver","andr","variant","date","patch","size","md5","mirror","chg","notes","islatest","dev"]
+["ver","andr","variant","date","patch","size","md5","mirror","chg","notes","islatest"]
   .forEach(id => $(id).addEventListener("input", update));
 $("islatest").addEventListener("change", update);
-$("dev").addEventListener("change", update);
+$("dev").addEventListener("change", fillRoms);
+$("rom").addEventListener("change", romChanged);
+
+/* ---------- ROM seleccionada ---------- */
+function curDev(){ return (DATA?.devices || [])[+($("dev").value || 0)]; }
+function curRom(){ const d = curDev(); return d ? (d.roms || [])[+($("rom").value || 0)] : null; }
+function fillRoms(){
+  const d = curDev();
+  const roms = (d && d.roms) || [];
+  $("rom").innerHTML = roms.map((r,i) => `<option value="${i}">${esc(r.name)}</option>`).join("");
+  romChanged();
+}
+function romChanged(){
+  const r = curRom();
+  const n = (r && r.builds ? r.builds.length : 0);
+  show("loadmsg", "ok", `Editando <b>${r ? esc(r.name) : "—"}</b>. Ahora mismo tiene <b>${n}</b> build${n===1?"":"s"} publicada${n===1?"":"s"}.`);
+  update();
+}
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
@@ -351,31 +372,31 @@ function buildBlock(){
 
 function problems(b){
   const p = [];
-  if(!b.version) p.push("Falta la versión de crDroid.");
+  if(!b.version) p.push("Falta la versión.");
   if(!b.date) p.push("Falta la fecha de la build.");
   if(!b.securityPatch) p.push("Falta el parche de seguridad.");
   if(!b.filename) p.push("Falta el nombre del ZIP.");
   if(!b.downloads.length) p.push("Falta el link de descarga.");
   if(!b.changelog.length) p.push("Falta el registro de cambios (al menos una línea).");
-  const devs = DATA?.devices || [];
-  const d = devs[+($("dev").value || 0)];
-  if(d && b.date && (d.builds || []).some(x => x.date === b.date))
-    p.push(`Ya hay una build con esa fecha (${b.date}). Dos builds no pueden tener la misma fecha — cambiala, o borrá la anterior a mano si la vas a reemplazar.`);
+  const r = curRom();
+  if(r && b.date && (r.builds || []).some(x => x.date === b.date))
+    p.push(`${r.name} ya tiene una build con esa fecha (${b.date}). Dos builds no pueden tener la misma fecha — cambiala, o borrá la anterior a mano si la vas a reemplazar.`);
   return p;
 }
 
 /* ---------- archivo completo ---------- */
 function fullFile(){
   const out = JSON.parse(JSON.stringify(DATA));
-  const i = +($("dev").value || 0);
-  const dev = out.devices[i];
+  const di = +($("dev").value || 0);
+  const ri = +($("rom").value || 0);
+  const rom = out.devices[di].roms[ri];
   const b = buildBlock();
-  dev.builds = dev.builds || [];
+  rom.builds = rom.builds || [];
   if(b.latest){
-    dev.builds.forEach(x => { delete x.latest; });
-    dev.builds.unshift(b);
+    rom.builds.forEach(x => { delete x.latest; });
+    rom.builds.unshift(b);
   } else {
-    dev.builds.push(b);
+    rom.builds.push(b);
   }
   return JSON.stringify(out, null, 2);
 }
@@ -387,8 +408,9 @@ function update(){
   const fd = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso||""); return m ? `${+m[3]} de ${meses[+m[2]-1]} de ${m[1]}` : "—"; };
   const fp = iso => { const m = /^(\d{4})-(\d{2})/.exec(iso||""); return m ? `${meses[+m[2]-1]} de ${m[1]}` : "—"; };
 
+  const rn = (curRom() && curRom().name) || "";
   $("prev").innerHTML = `
-    <h3>crDroid ${esc(b.version || "—")}
+    <h3>${esc(rn)} ${esc(b.version || "—")}
       ${b.variant ? `<span class="tag variant">${esc(b.variant)}</span>` : ""}
       ${b.latest ? `<span class="tag latest">Última</span>` : ""}
     </h3>
