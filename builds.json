@@ -60,7 +60,15 @@
               "size": "1.6 GB",
               "md5": "e9248405f7e82d6d77f8c061cfd85f9a",
               "downloads": [
-                { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1__S1fAuvKvMFfd7ZLFpA__cTYtZpTlb_", "primary": true }
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://drive.google.com/uc?export=download&id=1__S1fAuvKvMFfd7ZLFpA__cTYtZpTlb_",
+                  "primary": true
+                }
               ],
               "changelog": [
                 "eSIM functionality: fixed the issue that rendered it unusable on crDroid (reverted the NFC HAL for the ST54L chip).",
@@ -80,7 +88,15 @@
               "size": "1.7 GB",
               "md5": "",
               "downloads": [
-                { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1Ml6utoB3KJ_V2VMbE2GIY36S4hX10Zxm", "primary": true }
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://drive.google.com/uc?export=download&id=1Ml6utoB3KJ_V2VMbE2GIY36S4hX10Zxm",
+                  "primary": true
+                }
               ],
               "changelog": [
                 "Wireless reverse charging (Power Sharing): FIXED, it's working now (custom solution)."
@@ -97,12 +113,26 @@
               "size": "",
               "md5": "",
               "downloads": [
-                { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1p3C78l7xqCai2_W_VAWJLIABGd3NsjGz", "primary": true }
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://drive.google.com/uc?export=download&id=1p3C78l7xqCai2_W_VAWJLIABGd3NsjGz",
+                  "primary": true
+                }
               ],
               "changelog": {
-                "es": [ "Parche de seguridad de Android al 1 de julio de 2026." ],
-                "en": [ "Android security patch as of July 1, 2026." ],
-                "pt": [ "Patch de segurança do Android de 1º de julho de 2026." ]
+                "es": [
+                  "Parche de seguridad de Android al 1 de julio de 2026."
+                ],
+                "en": [
+                  "Android security patch as of July 1, 2026."
+                ],
+                "pt": [
+                  "Patch de segurança do Android de 1º de julho de 2026."
+                ]
               },
               "notes": ""
             }
@@ -117,7 +147,38 @@
             "en": "Focused on stability and smoothness. Vanilla build without Google, with the same eqe fixes: eSIM, OpenEUICC and PowerShare.",
             "pt": "Focada em estabilidade e fluidez. Build Vanilla sem Google, com os mesmos ajustes do eqe: eSIM, OpenEUICC e PowerShare."
           },
-          "builds": []
+          "builds": [
+            {
+              "version": "3.12",
+              "android": "",
+              "variant": "Vanilla",
+              "date": "2026-07-25",
+              "securityPatch": "2026-07-01",
+              "filename": "Project_Infinity-X-3.12-eqe-25-07-2026-VANILLA-UNOFFICIAL.zip",
+              "size": "1.7 GB",
+              "md5": "763ae752b0f60a0afff83c813707b08a",
+              "downloads": [
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://drive.google.com/uc?export=download&id=1DaOINBKArWLPANGV5lhvAIF47Qyndt_l",
+                  "primary": true
+                }
+              ],
+              "changelog": [
+                "» Security patch: July 2026",
+                "» Variant: Vanilla (no GApps / no Google)",
+                "» Build type: Userdebug",
+                "» Working eSIM + OpenEUICC integrated as LPA",
+                "» PowerShare (reverse wireless charging)"
+              ],
+              "notes": "",
+              "latest": true
+            }
+          ]
         }
       ]
     }
