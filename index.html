@@ -114,8 +114,33 @@ header{border-bottom:1px solid var(--line);background:var(--bg2);position:sticky
 .devtab[aria-selected="true"]{background:var(--ac2);border-color:var(--ac2);color:#fff}
 
 /* ---------- secciones ---------- */
-section{padding:44px 0}
+section{padding:44px 0;scroll-margin-top:72px}
 section+section{border-top:1px solid var(--line)}
+
+/* portada: grilla de ROMs */
+.romgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:16px}
+.romcard{
+  display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;
+  background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);
+  padding:22px 22px 20px;text-decoration:none;transition:.15s;
+}
+.romcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rc)}
+.romcard:hover{border-color:var(--line2);transform:translateY(-2px);text-decoration:none}
+.rc-head{display:flex;align-items:center;gap:10px}
+.rc-name{font-size:1.25rem;font-weight:700;color:var(--tx)}
+.rc-variant{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:2px 8px;border-radius:999px;background:var(--bg3);color:var(--tx2);border:1px solid var(--line2)}
+.rc-desc{color:var(--tx2);font-size:.92rem;line-height:1.55;flex:1;margin:0}
+.rc-foot{display:flex;align-items:center;justify-content:space-between;margin-top:2px}
+.rc-meta{color:var(--tx3);font-size:.82rem}
+.rc-arrow{color:var(--rc);font-size:1.15rem;transition:transform .15s}
+.romcard:hover .rc-arrow{transform:translateX(4px)}
+
+/* pagina de una ROM */
+.backlink{display:inline-block;color:var(--tx3);font-size:.85rem;text-decoration:none;margin-bottom:14px}
+.backlink:hover{color:var(--tx);text-decoration:none}
+.rom-hero h1{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.hero-dev{color:var(--tx3);font-weight:400;font-size:1.25rem}
+.rom-dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--rc)}
 h2{font-size:1.3rem;letter-spacing:-.3px;margin-bottom:6px}
 .sub{color:var(--tx3);font-size:.9rem;margin-bottom:24px}
 
@@ -272,7 +297,7 @@ footer p+p{margin-top:8px}
 
 <header>
   <div class="wrap hbar">
-    <a class="brandwrap" href="./" aria-label="dvy-jp builds - inicio">
+    <a class="brandwrap" href="#" aria-label="dvy-jp builds - inicio">
       <span class="logo-mark" aria-hidden="true">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <line x1="18" y1="21" x2="15" y2="13" stroke="#3fb950" stroke-width="2.6" stroke-linecap="round"/>
@@ -325,6 +350,7 @@ const UI = {
     tsTitle:"Si algo sale mal", tsSub:"Los tropiezos más comunes.",
     credTitle:"Créditos", credSub:"Esto se apoya casi enteramente en trabajo ajeno.",
     navContact:"Contacto",
+    chooseRom:"Elegí tu ROM.", allRoms:"← Todas las ROMs",
     contactTitle:"Contacto y reportes", contactSub:"¿Encontraste un bug o tenés una consulta? Escribime. No hace falta cuenta.",
     cType:"Tipo", cTypeBug:"Reporte de bug", cTypeGen:"Consulta general",
     cBuild:"Build", cBuildNA:"No aplica / otra",
@@ -348,6 +374,7 @@ const UI = {
     tsTitle:"If something goes wrong", tsSub:"The most common snags.",
     credTitle:"Credits", credSub:"This rests almost entirely on other people's work.",
     navContact:"Contact",
+    chooseRom:"Choose your ROM.", allRoms:"← All ROMs",
     contactTitle:"Contact & reports", contactSub:"Found a bug or have a question? Drop me a message. No account needed.",
     cType:"Type", cTypeBug:"Bug report", cTypeGen:"General question",
     cBuild:"Build", cBuildNA:"N/A · other",
@@ -371,6 +398,7 @@ const UI = {
     tsTitle:"Se algo der errado", tsSub:"Os tropeços mais comuns.",
     credTitle:"Créditos", credSub:"Isto se apoia quase inteiramente no trabalho de outras pessoas.",
     navContact:"Contato",
+    chooseRom:"Escolha sua ROM.", allRoms:"← Todas as ROMs",
     contactTitle:"Contato e relatos", contactSub:"Achou um bug ou tem uma dúvida? Me manda uma mensagem. Sem precisar de conta.",
     cType:"Tipo", cTypeBug:"Relato de bug", cTypeGen:"Dúvida geral",
     cBuild:"Build", cBuildNA:"N/A · outra",
@@ -392,7 +420,7 @@ function initialLang(){
   return LANGS.includes(n) ? n : "es";
 }
 let lang = initialLang();
-let DATA = null, current = 0;
+let DATA = null, current = 0, currentRom = null;
 
 /* tr(): acepta un texto simple (se muestra igual en los tres idiomas)
    o un objeto {es,en,pt}. Si falta un idioma, cae al español. */
@@ -444,13 +472,21 @@ document.getElementById("lang").addEventListener("click", ev => {
   if(DATA) render();
 });
 
+function readRoute(){
+  const h = (location.hash || "").replace(/^#/, "").split("/")[0].trim().toLowerCase();
+  const devs = (DATA.devices || []).filter(d => d.active !== false);
+  const roms = (devs[current] && devs[current].roms) || [];
+  currentRom = roms.some(r => r.id === h) ? h : null;
+}
+window.addEventListener("hashchange", () => { if(DATA){ render(); window.scrollTo(0,0); } });
+
 /* ---------- render ---------- */
 function render(){
   const t = UI[lang];
   const s = DATA.site || {};
+  readRoute();
 
   document.documentElement.lang = lang;
-  document.title = tr(s.title) || "builds";
   document.getElementById("meta-desc").content = tr(s.tagline) || "";
   document.getElementById("brand").innerHTML = esc(tr(s.title) || "builds").replace("/", '<span>/</span>');
   document.getElementById("foot-disclaimer").textContent = t.disclaimer;
@@ -461,27 +497,19 @@ function render(){
   const contactCfg = DATA.contact || {};
   const showContact = contactCfg.enabled !== false && contactCfg.accessKey;
 
-  document.getElementById("nav").innerHTML = `
-    <a href="#builds">${t.navBuilds}</a>
-    <a href="#flasheo">${t.navFlash}</a>
-    <a href="#creditos">${t.navCredits}</a>
-    ${showContact ? `<a href="#contacto">${t.navContact}</a>` : ""}`;
-
   const devices = (DATA.devices || []).filter(d => d.active !== false);
   if(current >= devices.length) current = 0;
   const d = devices[current];
+  const roms = (d && d.roms) || [];
+  const rom = roms.find(r => r.id === currentRom) || null;
+
+  document.title = (rom ? `${rom.name} · ` : "") + (tr(s.title) || "builds");
 
   const don = s.donate || {};
   const showDonate = don.enabled !== false && don.url && don.url !== "#";
-
   const coffee = document.getElementById("coffee");
-  if (showDonate) {
-    coffee.href = don.url;
-    coffee.title = tr(don.label);
-    coffee.style.display = "";
-  } else {
-    coffee.style.display = "none";
-  }
+  if (showDonate) { coffee.href = don.url; coffee.title = tr(don.label); coffee.style.display = ""; }
+  else coffee.style.display = "none";
 
   const sup = document.getElementById("support");
   sup.innerHTML = showDonate ? `
@@ -489,31 +517,23 @@ function render(){
     ${don.description ? `<p class="sup-desc">${esc(tr(don.description))}</p>` : ""}
     <a class="donate-sm" href="${esc(don.url)}" target="_blank" rel="noopener">☕ ${esc(tr(don.label))}</a>` : "";
 
-  const tabs = devices.length > 1 ? `
-    <div class="wrap"><div class="devbar" role="tablist">
-      ${devices.map((dev,i) => `<button class="devtab" role="tab" aria-selected="${i===current}" data-i="${i}">${esc(dev.name)}</button>`).join("")}
-    </div></div>` : "";
+  document.getElementById("nav").innerHTML = rom ? `
+    <a class="navjump" href="#${esc(rom.id)}" data-target="builds">${t.navBuilds}</a>
+    <a class="navjump" href="#${esc(rom.id)}" data-target="flasheo">${t.navFlash}</a>
+    <a class="navjump" href="#${esc(rom.id)}" data-target="creditos">${t.navCredits}</a>
+    ${showContact ? `<a class="navjump" href="#${esc(rom.id)}" data-target="contacto">${t.navContact}</a>` : ""}` : `
+    <a class="navjump" href="#" data-target="roms">ROMs</a>
+    <a class="navjump" href="#" data-target="creditos">${t.navCredits}</a>
+    ${showContact ? `<a class="navjump" href="#" data-target="contacto">${t.navContact}</a>` : ""}`;
 
-  document.getElementById("app").innerHTML = `
-    <div class="hero"><div class="wrap">
-      <h1>${esc(tr(s.title))}</h1>
-      <p>${esc(tr(s.tagline))}</p>
-    </div></div>
-    ${tabs}
-    <section id="builds"><div class="wrap">
-      <h2>${esc(d ? d.name : t.navBuilds)}</h2>
-      <p class="sub">${t.buildsSub}</p>
-      ${d ? renderMeta(d) : ""}
-      ${d && (d.builds || []).length ? d.builds.map(renderBuild).join("") : `<p class="sub">${t.noBuilds}</p>`}
-    </div></section>
-    ${renderFlashing()}
-    ${renderCredits()}
-    ${showContact ? renderContact(contactCfg, d) : ""}`;
+  document.getElementById("app").innerHTML = rom
+    ? renderRomView(d, rom, showContact, contactCfg)
+    : renderLanding(d, roms, showContact, contactCfg);
 
-  document.querySelectorAll(".devtab").forEach(b =>
-    b.onclick = () => { current = +b.dataset.i; render(); document.getElementById("builds").scrollIntoView(); });
   document.querySelectorAll(".bhead").forEach(h =>
     h.onclick = () => h.parentElement.classList.toggle("open"));
+  document.querySelectorAll(".navjump").forEach(a =>
+    a.onclick = e => { e.preventDefault(); const el = document.getElementById(a.dataset.target); if(el) el.scrollIntoView(); });
 
   if (showContact) wireContactForm();
 
@@ -521,11 +541,65 @@ function render(){
   document.getElementById("foot-credit").textContent = me ? tr(me.role) : "";
 }
 
-function renderContact(cfg, d){
+function renderLanding(d, roms, showContact, contactCfg){
+  const t = UI[lang], s = DATA.site || {};
+  return `
+    <div class="hero"><div class="wrap">
+      <h1>${esc(tr(s.title))}</h1>
+      <p>${esc(tr(s.tagline))}</p>
+    </div></div>
+    <section id="roms"><div class="wrap">
+      <h2>${esc(d ? d.name : "")}</h2>
+      <p class="sub">${t.chooseRom}</p>
+      <div class="romgrid">${roms.map(renderRomCard).join("")}</div>
+    </div></section>
+    ${renderCredits()}
+    ${showContact ? renderContact(contactCfg, null) : ""}`;
+}
+
+function renderRomCard(r){
   const t = UI[lang];
-  const builds = (d && d.builds) || [];
+  const builds = r.builds || [];
+  const latest = builds.find(b => b.latest) || builds[0];
+  const meta = latest ? `${t.latest} · ${fmtDate(latest.date)} · Android ${latest.android}` : t.noBuilds;
+  const variant = latest ? latest.variant : "";
+  return `
+  <a class="romcard" href="#${esc(r.id)}" style="--rc:${esc(r.accent || "#4ea1ff")}">
+    <div class="rc-head">
+      <span class="rc-name">${esc(r.name)}</span>
+      ${variant ? `<span class="rc-variant">${esc(variant)}</span>` : ""}
+    </div>
+    <p class="rc-desc">${esc(tr(r.description))}</p>
+    <div class="rc-foot"><span class="rc-meta">${esc(meta)}</span><span class="rc-arrow">→</span></div>
+  </a>`;
+}
+
+function renderRomView(d, rom, showContact, contactCfg){
+  const t = UI[lang];
+  const builds = rom.builds || [];
+  return `
+    <div class="hero rom-hero" style="--rc:${esc(rom.accent || "#4ea1ff")}"><div class="wrap">
+      <a class="backlink" href="#">${t.allRoms}</a>
+      <h1><span class="rom-dot"></span>${esc(rom.name)} <span class="hero-dev">· ${esc(d.name)}</span></h1>
+      <p>${esc(tr(rom.description))}</p>
+    </div></div>
+    <section id="builds"><div class="wrap">
+      <h2>Builds</h2>
+      <p class="sub">${t.buildsSub}</p>
+      ${renderMeta(d)}
+      ${builds.length ? builds.map(b => renderBuild(b, rom.name)).join("") : `<p class="sub">${t.noBuilds}</p>`}
+    </div></section>
+    ${renderFlashing()}
+    ${renderCredits()}
+    ${showContact ? renderContact(contactCfg, rom) : ""}`;
+}
+
+function renderContact(cfg, rom){
+  const t = UI[lang];
+  const rn = rom ? rom.name : "";
+  const builds = (rom && rom.builds) || [];
   const buildOpts = builds.map(b => {
-    const label = `crDroid ${b.version} · ${fmtDate(b.date)}`;
+    const label = `${rn} ${b.version} · ${fmtDate(b.date)}`;
     return `<option value="${esc(label)}">${esc(label)}</option>`;
   }).join("");
 
@@ -537,6 +611,7 @@ function renderContact(cfg, d){
       <input type="hidden" name="access_key" value="${esc(cfg.accessKey)}">
       <input type="hidden" name="subject" value="Nuevo mensaje desde dvy-jp builds">
       <input type="hidden" name="from_name" value="dvy-jp builds">
+      ${rn ? `<input type="hidden" name="ROM" value="${esc(rn)}">` : ""}
       <input type="checkbox" name="botcheck" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="cf-row">
         <label class="cf-field">
@@ -609,8 +684,9 @@ function renderMeta(d){
   return bits.length ? `<div class="devmeta">${bits.join("")}</div>` : "";
 }
 
-function renderBuild(b){
+function renderBuild(b, romName){
   const t = UI[lang];
+  romName = romName || "";
   const meta = [fmtDate(b.date), b.securityPatch && t.patchOf(fmtPatch(b.securityPatch)), b.size].filter(Boolean).join(" · ");
   const files = [
     b.filename && `<div><span>${esc(b.filename)}</span></div>`,
@@ -626,7 +702,7 @@ function renderBuild(b){
   <article class="build ${b.latest ? "is-latest open" : ""}">
     <div class="bhead">
       <div class="btitle">
-        <h3>crDroid ${esc(b.version)}
+        <h3>${esc(romName)} ${esc(b.version)}
           ${b.variant ? `<span class="tag variant">${esc(b.variant)}</span>` : ""}
           ${b.latest ? `<span class="tag latest">${t.latest}</span>` : ""}
         </h3>

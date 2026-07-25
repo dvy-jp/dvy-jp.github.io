@@ -1,11 +1,11 @@
 {
-  "_leeme": "Los campos de texto aceptan un texto simple (se muestra igual en los tres idiomas) o un objeto {es, en, pt}. Si falta un idioma, cae al español.",
+  "_leeme": "Los campos de texto aceptan un texto simple (se muestra igual en los tres idiomas) o un objeto {es, en, pt}. Las builds se agrupan por ROM dentro de cada dispositivo: devices[].roms[].builds[].",
   "site": {
     "title": "dvy-jp builds",
     "tagline": {
-      "es": "Builds no oficiales de crDroid, compiladas y probadas en mi propio equipo.",
-      "en": "Unofficial crDroid builds, compiled and tested on my own device.",
-      "pt": "Builds não oficiais do crDroid, compiladas e testadas no meu próprio aparelho."
+      "es": "ROMs no oficiales para el Motorola Edge 50 Pro, compiladas y probadas en mi propio equipo.",
+      "en": "Unofficial ROMs for the Motorola Edge 50 Pro, compiled and tested on my own device.",
+      "pt": "ROMs não oficiais para o Motorola Edge 50 Pro, compiladas e testadas no meu próprio aparelho."
     },
     "github": "https://github.com/dvy-jp",
     "donate": {
@@ -39,92 +39,85 @@
       "model": "XT2403-2",
       "soc": "Snapdragon 7 Gen 3 (SM7550-AB)",
       "active": true,
-      "builds": [
+      "roms": [
         {
-          "version": "12.11",
-          "android": "16",
-          "variant": "Vanilla",
-          "date": "2026-07-23",
-          "securityPatch": "2026-07-01",
-          "filename": "crDroidAndroid-16.0-20260723-eqe-v12.11.zip",
-          "size": "1.6 GB",
-          "md5": "e9248405f7e82d6d77f8c061cfd85f9a",
-          "downloads": [
-            {
-              "label": {
-                "es": "Descargar",
-                "en": "Download",
-                "pt": "Baixar"
-              },
-              "url": "https://drive.google.com/uc?export=download&id=1__S1fAuvKvMFfd7ZLFpA__cTYtZpTlb_",
-              "primary": true
-            }
-          ],
-          "changelog": [
-            "eSIM functionality: fixed the issue that rendered it unusable on crDroid (reverted the NFC HAL for the ST54L chip).",
-            "OpenEUICC integrated as the profile manager: add, activate, and deactivate eSIM profiles without relying on Google.",
-            "Retains features from previous builds: PowerShare (reverse charging) and up-to-date security patch."
-          ],
-          "notes": "",
-          "latest": true
-        },
-        {
-          "version": "12.11",
-          "android": "16",
-          "variant": "Vanilla",
-          "date": "2026-07-12",
-          "securityPatch": "2026-07-01",
-          "filename": "crDroidAndroid-16.0-20260712-eqe-v12.11.zip",
-          "size": "1.7 GB",
-          "md5": "",
-          "downloads": [
-            {
-              "label": {
-                "es": "Descargar",
-                "en": "Download",
-                "pt": "Baixar"
-              },
-              "url": "https://drive.google.com/uc?export=download&id=1Ml6utoB3KJ_V2VMbE2GIY36S4hX10Zxm",
-              "primary": true
-            }
-          ],
-          "changelog": [
-            "Wireless reverse charging (Power Sharing): FIXED, it's working now (custom solution)."
-          ],
-          "notes": ""
-        },
-        {
-          "version": "12.11",
-          "android": "16",
-          "variant": "Vanilla",
-          "date": "2026-07-08",
-          "securityPatch": "2026-07-01",
-          "filename": "crDroidAndroid-16.0-20260708-eqe-v12.11.zip",
-          "size": "",
-          "md5": "",
-          "downloads": [
-            {
-              "label": {
-                "es": "Descargar",
-                "en": "Download",
-                "pt": "Baixar"
-              },
-              "url": "https://drive.google.com/uc?export=download&id=1p3C78l7xqCai2_W_VAWJLIABGd3NsjGz",
-              "primary": true
-            }
-          ],
-          "changelog": {
-            "es": [
-              "Parche de seguridad de Android al 1 de julio de 2026."
-            ],
-            "en": [
-              "Android security patch as of July 1, 2026."
-            ],
-            "pt": [
-              "Patch de segurança do Android de 1º de julho de 2026."
-            ]
+          "id": "crdroid",
+          "name": "crDroid",
+          "accent": "#4ea1ff",
+          "description": {
+            "es": "La más personalizable, sobre base LineageOS. Build Vanilla sin Google, con eSIM, OpenEUICC y PowerShare funcionando.",
+            "en": "The most customizable, LineageOS-based. Vanilla build without Google, with working eSIM, OpenEUICC and PowerShare.",
+            "pt": "A mais personalizável, baseada no LineageOS. Build Vanilla sem Google, com eSIM, OpenEUICC e PowerShare funcionando."
           },
-          "notes": ""
+          "builds": [
+            {
+              "version": "12.11",
+              "android": "16",
+              "variant": "Vanilla",
+              "date": "2026-07-23",
+              "securityPatch": "2026-07-01",
+              "filename": "crDroidAndroid-16.0-20260723-eqe-v12.11.zip",
+              "size": "1.6 GB",
+              "md5": "e9248405f7e82d6d77f8c061cfd85f9a",
+              "downloads": [
+                { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1__S1fAuvKvMFfd7ZLFpA__cTYtZpTlb_", "primary": true }
+              ],
+              "changelog": [
+                "eSIM functionality: fixed the issue that rendered it unusable on crDroid (reverted the NFC HAL for the ST54L chip).",
+                "OpenEUICC integrated as the profile manager: add, activate, and deactivate eSIM profiles without relying on Google.",
+                "Retains features from previous builds: PowerShare (reverse charging) and up-to-date security patch."
+              ],
+              "notes": "",
+              "latest": true
+            },
+            {
+              "version": "12.11",
+              "android": "16",
+              "variant": "Vanilla",
+              "date": "2026-07-12",
+              "securityPatch": "2026-07-01",
+              "filename": "crDroidAndroid-16.0-20260712-eqe-v12.11.zip",
+              "size": "1.7 GB",
+              "md5": "",
+              "downloads": [
+                { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1Ml6utoB3KJ_V2VMbE2GIY36S4hX10Zxm", "primary": true }
+              ],
+              "changelog": [
+                "Wireless reverse charging (Power Sharing): FIXED, it's working now (custom solution)."
+              ],
+              "notes": ""
+            },
+            {
+              "version": "12.11",
+              "android": "16",
+              "variant": "Vanilla",
+              "date": "2026-07-08",
+              "securityPatch": "2026-07-01",
+              "filename": "crDroidAndroid-16.0-20260708-eqe-v12.11.zip",
+              "size": "",
+              "md5": "",
+              "downloads": [
+                { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1p3C78l7xqCai2_W_VAWJLIABGd3NsjGz", "primary": true }
+              ],
+              "changelog": {
+                "es": [ "Parche de seguridad de Android al 1 de julio de 2026." ],
+                "en": [ "Android security patch as of July 1, 2026." ],
+                "pt": [ "Patch de segurança do Android de 1º de julho de 2026." ]
+              },
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "id": "infinityx",
+          "name": "InfinityX",
+          "accent": "#a371f7",
+          "description": {
+            "es": "Enfocada en estabilidad y fluidez. Build Vanilla sin Google, con los mismos arreglos del eqe: eSIM, OpenEUICC y PowerShare.",
+            "en": "Focused on stability and smoothness. Vanilla build without Google, with the same eqe fixes: eSIM, OpenEUICC and PowerShare.",
+            "pt": "Focada em estabilidade e fluidez. Build Vanilla sem Google, com os mesmos ajustes do eqe: eSIM, OpenEUICC e PowerShare."
+          },
+          "builds": []
         }
       ]
     }
@@ -176,21 +169,21 @@
             "Reiniciá a recovery: mantené <b>Bajar volumen + Encendido</b>, elegí <b>Recovery</b>.",
             "En el recovery, entrá a <b>Apply update</b> → <b>Apply from ADB</b>.",
             "Conectá el teléfono a la PC y verificá que responda: <code>adb devices</code>",
-            "Enviá el ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "Enviá el ZIP: <code>adb sideload nombre-de-la-build.zip</code>",
             "Cuando termine, elegí <b>Reboot system now</b>. El primer arranque tarda varios minutos."
           ],
           "en": [
             "Boot into recovery: hold <b>Volume Down + Power</b>, then pick <b>Recovery</b>.",
             "In recovery, go to <b>Apply update</b> → <b>Apply from ADB</b>.",
             "Connect the phone to your PC and confirm it responds: <code>adb devices</code>",
-            "Send the ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "Send the ZIP: <code>adb sideload build-name.zip</code>",
             "When it finishes, pick <b>Reboot system now</b>. The first boot takes several minutes."
           ],
           "pt": [
             "Reinicie no recovery: segure <b>Diminuir volume + Power</b>, escolha <b>Recovery</b>.",
             "No recovery, vá em <b>Apply update</b> → <b>Apply from ADB</b>.",
             "Conecte o celular ao PC e confirme que responde: <code>adb devices</code>",
-            "Envie o ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "Envie o ZIP: <code>adb sideload nome-da-build.zip</code>",
             "Ao terminar, escolha <b>Reboot system now</b>. O primeiro boot demora alguns minutos."
           ]
         },
@@ -219,7 +212,7 @@
             "Reiniciá a recovery: <code>fastboot reboot recovery</code>",
             "En el recovery: <b>Factory reset</b> → <b>Format data / factory reset</b>.",
             "Volvé al menú principal → <b>Apply update</b> → <b>Apply from ADB</b>.",
-            "Enviá el ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "Enviá el ZIP: <code>adb sideload nombre-de-la-build.zip</code>",
             "Elegí <b>Reboot system now</b>."
           ],
           "en": [
@@ -228,7 +221,7 @@
             "Boot into recovery: <code>fastboot reboot recovery</code>",
             "In recovery: <b>Factory reset</b> → <b>Format data / factory reset</b>.",
             "Back to the main menu → <b>Apply update</b> → <b>Apply from ADB</b>.",
-            "Send the ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "Send the ZIP: <code>adb sideload build-name.zip</code>",
             "Pick <b>Reboot system now</b>."
           ],
           "pt": [
@@ -237,7 +230,7 @@
             "Reinicie no recovery: <code>fastboot reboot recovery</code>",
             "No recovery: <b>Factory reset</b> → <b>Format data / factory reset</b>.",
             "Volte ao menu principal → <b>Apply update</b> → <b>Apply from ADB</b>.",
-            "Envie o ZIP: <code>adb sideload crDroidAndroid-16.0-XXXXXXXX-eqe-vXX.XX.zip</code>",
+            "Envie o ZIP: <code>adb sideload nome-da-build.zip</code>",
             "Escolha <b>Reboot system now</b>."
           ]
         },
@@ -292,9 +285,18 @@
       "name": "crDroid",
       "url": "https://crdroid.net",
       "role": {
-        "es": "El proyecto y todo el código base de la ROM.",
-        "en": "The project and the entire ROM codebase.",
-        "pt": "O projeto e todo o código base da ROM."
+        "es": "Una de las ROMs que compilo. Proyecto y código base.",
+        "en": "One of the ROMs I build. Project and codebase.",
+        "pt": "Uma das ROMs que compilo. Projeto e código base."
+      }
+    },
+    {
+      "name": "Project Infinity-X",
+      "url": "https://github.com/ProjectInfinity-X",
+      "role": {
+        "es": "Otra de las ROMs que compilo. Proyecto y código base.",
+        "en": "Another ROM I build. Project and codebase.",
+        "pt": "Outra das ROMs que compilo. Projeto e código base."
       }
     },
     {
@@ -320,9 +322,9 @@
       "url": "https://github.com/dvy-jp",
       "self": true,
       "role": {
-        "es": "Compilo estas builds y mantengo mis propios forks con algunos arreglos. No soy el desarrollador del dispositivo ni estoy afiliado a crDroid.",
-        "en": "I compile these builds and maintain my own forks with a few fixes. I'm not the device developer and I'm not affiliated with crDroid.",
-        "pt": "Eu compilo estas builds e mantenho meus próprios forks com alguns ajustes. Não sou o desenvolvedor do aparelho nem sou afiliado à crDroid."
+        "es": "Compilo estas builds y mantengo mis propios forks con algunos arreglos. No soy el desarrollador del dispositivo ni estoy afiliado a estas ROMs.",
+        "en": "I compile these builds and maintain my own forks with a few fixes. I'm not the device developer and I'm not affiliated with these ROMs.",
+        "pt": "Eu compilo estas builds e mantenho meus próprios forks com alguns ajustes. Não sou o desenvolvedor do aparelho nem sou afiliado a estas ROMs."
       }
     }
   ]
