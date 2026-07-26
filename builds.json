@@ -60,15 +60,7 @@
               "size": "1.6 GB",
               "md5": "e9248405f7e82d6d77f8c061cfd85f9a",
               "downloads": [
-                {
-                  "label": {
-                    "es": "Descargar",
-                    "en": "Download",
-                    "pt": "Baixar"
-                  },
-                  "url": "https://drive.google.com/uc?export=download&id=1__S1fAuvKvMFfd7ZLFpA__cTYtZpTlb_",
-                  "primary": true
-                }
+                { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1__S1fAuvKvMFfd7ZLFpA__cTYtZpTlb_", "primary": true }
               ],
               "changelog": [
                 "eSIM functionality: fixed the issue that rendered it unusable on crDroid (reverted the NFC HAL for the ST54L chip).",
@@ -88,15 +80,7 @@
               "size": "1.7 GB",
               "md5": "",
               "downloads": [
-                {
-                  "label": {
-                    "es": "Descargar",
-                    "en": "Download",
-                    "pt": "Baixar"
-                  },
-                  "url": "https://drive.google.com/uc?export=download&id=1Ml6utoB3KJ_V2VMbE2GIY36S4hX10Zxm",
-                  "primary": true
-                }
+                { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1Ml6utoB3KJ_V2VMbE2GIY36S4hX10Zxm", "primary": true }
               ],
               "changelog": [
                 "Wireless reverse charging (Power Sharing): FIXED, it's working now (custom solution)."
@@ -113,26 +97,12 @@
               "size": "",
               "md5": "",
               "downloads": [
-                {
-                  "label": {
-                    "es": "Descargar",
-                    "en": "Download",
-                    "pt": "Baixar"
-                  },
-                  "url": "https://drive.google.com/uc?export=download&id=1p3C78l7xqCai2_W_VAWJLIABGd3NsjGz",
-                  "primary": true
-                }
+                { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1p3C78l7xqCai2_W_VAWJLIABGd3NsjGz", "primary": true }
               ],
               "changelog": {
-                "es": [
-                  "Parche de seguridad de Android al 1 de julio de 2026."
-                ],
-                "en": [
-                  "Android security patch as of July 1, 2026."
-                ],
-                "pt": [
-                  "Patch de segurança do Android de 1º de julho de 2026."
-                ]
+                "es": [ "Parche de seguridad de Android al 1 de julio de 2026." ],
+                "en": [ "Android security patch as of July 1, 2026." ],
+                "pt": [ "Patch de segurança do Android de 1º de julho de 2026." ]
               },
               "notes": ""
             }
@@ -143,9 +113,9 @@
           "name": "InfinityX",
           "accent": "#a371f7",
           "description": {
-            "es": "Enfocada en estabilidad y fluidez. Build Vanilla sin Google, con los mismos arreglos del eqe: eSIM, OpenEUICC y PowerShare.",
-            "en": "Focused on stability and smoothness. Vanilla build without Google, with the same eqe fixes: eSIM, OpenEUICC and PowerShare.",
-            "pt": "Focada em estabilidade e fluidez. Build Vanilla sem Google, com os mesmos ajustes do eqe: eSIM, OpenEUICC e PowerShare."
+            "es": "Enfocada en estabilidad y fluidez. En variantes Vanilla y GApps, con los mismos arreglos del eqe: eSIM, OpenEUICC y PowerShare.",
+            "en": "Focused on stability and smoothness. In Vanilla and GApps variants, with the same eqe fixes: eSIM, OpenEUICC and PowerShare.",
+            "pt": "Focada em estabilidade e fluidez. Nas variantes Vanilla e GApps, com os mesmos ajustes do eqe: eSIM, OpenEUICC e PowerShare."
           },
           "builds": [
             {
@@ -158,15 +128,7 @@
               "size": "2.0 GB",
               "md5": "43d048460c4607045d5e12020b75c6ed",
               "downloads": [
-                {
-                  "label": {
-                    "es": "Descargar",
-                    "en": "Download",
-                    "pt": "Baixar"
-                  },
-                  "url": "https://drive.google.com/uc?export=download&id=1qLNro-BfdWMgaSdI7zuAuQSxoU-ymdff",
-                  "primary": true
-                }
+                { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1qLNro-BfdWMgaSdI7zuAuQSxoU-ymdff", "primary": true }
               ],
               "changelog": [
                 "» Security patch: July 2026",
@@ -192,15 +154,7 @@
               "size": "1.7 GB",
               "md5": "763ae752b0f60a0afff83c813707b08a",
               "downloads": [
-                {
-                  "label": {
-                    "es": "Descargar",
-                    "en": "Download",
-                    "pt": "Baixar"
-                  },
-                  "url": "https://drive.google.com/uc?export=download&id=1DaOINBKArWLPANGV5lhvAIF47Qyndt_l",
-                  "primary": true
-                }
+                { "label": { "es": "Descargar", "en": "Download", "pt": "Baixar" }, "url": "https://drive.google.com/uc?export=download&id=1DaOINBKArWLPANGV5lhvAIF47Qyndt_l", "primary": true }
               ],
               "changelog": [
                 "» Security patch: July 2026",
@@ -228,21 +182,24 @@
         "SDK Platform Tools de Google instalado en la PC (adb y fastboot).",
         "Drivers USB de Motorola, y el Google USB Driver para el modo bootloader.",
         "Batería del teléfono por encima del 50 %.",
-        "El ZIP de la build ya descargado en la PC."
+        "El ZIP de la build (y la <code>recovery.img</code> para instalación limpia), descargados de esta página.",
+        "Una terminal de Windows abierta en la carpeta de platform-tools: CMD o PowerShell."
       ],
       "en": [
         "Unlocked bootloader (Motorola, using the official code).",
         "Google SDK Platform Tools installed on your PC (adb and fastboot).",
         "Motorola USB drivers, plus the Google USB Driver for bootloader mode.",
         "Phone battery above 50%.",
-        "The build ZIP already downloaded to your PC."
+        "The build ZIP (and the <code>recovery.img</code> for a clean install), downloaded from this page.",
+        "A Windows terminal open in the platform-tools folder: CMD or PowerShell."
       ],
       "pt": [
         "Bootloader desbloqueado (Motorola, com o código oficial).",
         "SDK Platform Tools do Google instalado no PC (adb e fastboot).",
         "Drivers USB da Motorola, e o Google USB Driver para o modo bootloader.",
         "Bateria do celular acima de 50%.",
-        "O ZIP da build já baixado no PC."
+        "O ZIP da build (e o <code>recovery.img</code> para instalação limpa), baixados desta página.",
+        "Um terminal do Windows aberto na pasta do platform-tools: CMD ou PowerShell."
       ]
     },
     "procedures": [
@@ -260,31 +217,37 @@
         },
         "steps": {
           "es": [
-            "Reiniciá a recovery: mantené <b>Bajar volumen + Encendido</b>, elegí <b>Recovery</b>.",
-            "En el recovery, entrá a <b>Apply update</b> → <b>Apply from ADB</b>.",
-            "Conectá el teléfono a la PC y verificá que responda: <code>adb devices</code>",
-            "Enviá el ZIP: <code>adb sideload nombre-de-la-build.zip</code>",
+            "Descargá de esta página el <b>ZIP</b> de la build y su <b>recovery.img</b>.",
+            "Reiniciá a bootloader: <code>.\\adb.exe reboot bootloader</code>",
+            "Flasheá la recovery de la build: <code>.\\fastboot.exe flash recovery recovery.img</code>",
+            "Entrá a la recovery: <code>.\\fastboot.exe reboot recovery</code>",
+            "En el recovery: <b>Apply update</b> → <b>Apply from ADB</b>. <b>No hagas el wipe.</b>",
+            "Enviá el ZIP: <code>.\\adb.exe sideload nombre-de-la-build.zip</code>",
             "Cuando termine, elegí <b>Reboot system now</b>. El primer arranque tarda varios minutos."
           ],
           "en": [
-            "Boot into recovery: hold <b>Volume Down + Power</b>, then pick <b>Recovery</b>.",
-            "In recovery, go to <b>Apply update</b> → <b>Apply from ADB</b>.",
-            "Connect the phone to your PC and confirm it responds: <code>adb devices</code>",
-            "Send the ZIP: <code>adb sideload build-name.zip</code>",
+            "Download the build <b>ZIP</b> and its <b>recovery.img</b> from this page.",
+            "Boot into bootloader: <code>.\\adb.exe reboot bootloader</code>",
+            "Flash the build's recovery: <code>.\\fastboot.exe flash recovery recovery.img</code>",
+            "Enter recovery: <code>.\\fastboot.exe reboot recovery</code>",
+            "In recovery: <b>Apply update</b> → <b>Apply from ADB</b>. <b>Do not wipe.</b>",
+            "Send the ZIP: <code>.\\adb.exe sideload build-name.zip</code>",
             "When it finishes, pick <b>Reboot system now</b>. The first boot takes several minutes."
           ],
           "pt": [
-            "Reinicie no recovery: segure <b>Diminuir volume + Power</b>, escolha <b>Recovery</b>.",
-            "No recovery, vá em <b>Apply update</b> → <b>Apply from ADB</b>.",
-            "Conecte o celular ao PC e confirme que responde: <code>adb devices</code>",
-            "Envie o ZIP: <code>adb sideload nome-da-build.zip</code>",
+            "Baixe desta página o <b>ZIP</b> da build e o seu <b>recovery.img</b>.",
+            "Reinicie no bootloader: <code>.\\adb.exe reboot bootloader</code>",
+            "Flasheie a recovery da build: <code>.\\fastboot.exe flash recovery recovery.img</code>",
+            "Entre no recovery: <code>.\\fastboot.exe reboot recovery</code>",
+            "No recovery: <b>Apply update</b> → <b>Apply from ADB</b>. <b>Não faça o wipe.</b>",
+            "Envie o ZIP: <code>.\\adb.exe sideload nome-da-build.zip</code>",
             "Ao terminar, escolha <b>Reboot system now</b>. O primeiro boot demora alguns minutos."
           ]
         },
         "note": {
-          "es": "No formatees nada. Tus apps y datos quedan tal cual.",
-          "en": "Don't format anything. Your apps and data stay as they are.",
-          "pt": "Não formate nada. Seus apps e dados ficam como estão."
+          "es": "La única diferencia con la instalación limpia es que acá NO hacés el wipe. Tus apps y datos quedan intactos.",
+          "en": "The only difference from a clean install is that here you do NOT wipe. Your apps and data stay intact.",
+          "pt": "A única diferença da instalação limpa é que aqui você NÃO faz o wipe. Seus apps e dados ficam intactos."
         }
       },
       {
@@ -301,37 +264,40 @@
         },
         "steps": {
           "es": [
-            "Reiniciá a bootloader: <code>adb reboot bootloader</code>",
-            "Flasheá el arranque: <code>fastboot flash init_boot init_boot.img</code>",
-            "Reiniciá a recovery: <code>fastboot reboot recovery</code>",
-            "En el recovery: <b>Factory reset</b> → <b>Format data / factory reset</b>.",
-            "Volvé al menú principal → <b>Apply update</b> → <b>Apply from ADB</b>.",
-            "Enviá el ZIP: <code>adb sideload nombre-de-la-build.zip</code>",
-            "Elegí <b>Reboot system now</b>."
+            "Descargá de esta página el <b>ZIP</b> de la build y su <b>recovery.img</b>.",
+            "Reiniciá a bootloader: <code>.\\adb.exe reboot bootloader</code>",
+            "Flasheá la recovery de la build: <code>.\\fastboot.exe flash recovery recovery.img</code>",
+            "Entrá a la recovery: <code>.\\fastboot.exe reboot recovery</code>",
+            "En el recovery: <b>Factory reset</b> → <b>Format data / factory reset</b> (borra todo).",
+            "Volvé al menú → <b>Apply update</b> → <b>Apply from ADB</b>.",
+            "Enviá el ZIP: <code>.\\adb.exe sideload nombre-de-la-build.zip</code>",
+            "Elegí <b>Reboot system now</b>. El primer arranque tarda varios minutos."
           ],
           "en": [
-            "Boot into bootloader: <code>adb reboot bootloader</code>",
-            "Flash the boot image: <code>fastboot flash init_boot init_boot.img</code>",
-            "Boot into recovery: <code>fastboot reboot recovery</code>",
-            "In recovery: <b>Factory reset</b> → <b>Format data / factory reset</b>.",
-            "Back to the main menu → <b>Apply update</b> → <b>Apply from ADB</b>.",
-            "Send the ZIP: <code>adb sideload build-name.zip</code>",
-            "Pick <b>Reboot system now</b>."
+            "Download the build <b>ZIP</b> and its <b>recovery.img</b> from this page.",
+            "Boot into bootloader: <code>.\\adb.exe reboot bootloader</code>",
+            "Flash the build's recovery: <code>.\\fastboot.exe flash recovery recovery.img</code>",
+            "Enter recovery: <code>.\\fastboot.exe reboot recovery</code>",
+            "In recovery: <b>Factory reset</b> → <b>Format data / factory reset</b> (wipes everything).",
+            "Back to the menu → <b>Apply update</b> → <b>Apply from ADB</b>.",
+            "Send the ZIP: <code>.\\adb.exe sideload build-name.zip</code>",
+            "Pick <b>Reboot system now</b>. The first boot takes several minutes."
           ],
           "pt": [
-            "Reinicie no bootloader: <code>adb reboot bootloader</code>",
-            "Flasheie a imagem de boot: <code>fastboot flash init_boot init_boot.img</code>",
-            "Reinicie no recovery: <code>fastboot reboot recovery</code>",
-            "No recovery: <b>Factory reset</b> → <b>Format data / factory reset</b>.",
-            "Volte ao menu principal → <b>Apply update</b> → <b>Apply from ADB</b>.",
-            "Envie o ZIP: <code>adb sideload nome-da-build.zip</code>",
-            "Escolha <b>Reboot system now</b>."
+            "Baixe desta página o <b>ZIP</b> da build e o seu <b>recovery.img</b>.",
+            "Reinicie no bootloader: <code>.\\adb.exe reboot bootloader</code>",
+            "Flasheie a recovery da build: <code>.\\fastboot.exe flash recovery recovery.img</code>",
+            "Entre no recovery: <code>.\\fastboot.exe reboot recovery</code>",
+            "No recovery: <b>Factory reset</b> → <b>Format data / factory reset</b> (apaga tudo).",
+            "Volte ao menu → <b>Apply update</b> → <b>Apply from ADB</b>.",
+            "Envie o ZIP: <code>.\\adb.exe sideload nome-da-build.zip</code>",
+            "Escolha <b>Reboot system now</b>. O primeiro boot demora alguns minutos."
           ]
         },
         "note": {
-          "es": "El paso de <code>init_boot</code> no es opcional. Saltearlo deja el equipo en bootloop.",
-          "en": "The <code>init_boot</code> step is not optional. Skipping it leaves the device in a bootloop.",
-          "pt": "O passo do <code>init_boot</code> não é opcional. Pulá-lo deixa o aparelho em bootloop."
+          "es": "Los comandos van en una terminal de Windows (CMD o PowerShell), desde la carpeta de platform-tools; el <code>.\\</code> adelante es obligatorio en PowerShell. Con builds firmadas usá la recovery de <b>esta misma build</b> (misma firma, acepta el ZIP). Si el equipo queda en bootloop, flasheá el init_boot al slot activo: <code>.\\fastboot.exe flash init_boot init_boot.img</code>.",
+          "en": "Run the commands in a Windows terminal (CMD or PowerShell) from the platform-tools folder; the leading <code>.\\</code> is required in PowerShell. With signed builds, use the recovery from <b>this same build</b> (matching signature, accepts the ZIP). If the device ends up in a bootloop, flash init_boot to the active slot: <code>.\\fastboot.exe flash init_boot init_boot.img</code>.",
+          "pt": "Rode os comandos num terminal do Windows (CMD ou PowerShell) na pasta do platform-tools; o <code>.\\</code> na frente é obrigatório no PowerShell. Com builds assinadas, use a recovery <b>desta mesma build</b> (mesma assinatura, aceita o ZIP). Se o aparelho ficar em bootloop, flasheie o init_boot no slot ativo: <code>.\\fastboot.exe flash init_boot init_boot.img</code>."
         }
       }
     ],
