@@ -192,6 +192,18 @@ pre.out{
       <div class="hint">Si no tenés, dejalo vacío y el botón no aparece.</div>
       <input type="text" id="mirror" placeholder="GitHub Releases, SourceForge…" spellcheck="false">
     </div>
+
+    <div class="f">
+      <label for="recurl">Link del recovery (.img) <span style="font-weight:400;color:var(--tx3)">(opcional)</span></label>
+      <div class="hint">La <code>recovery.img</code> de esta build. En el eqe hace falta para instalación limpia. Mismo formato de link que el principal.</div>
+      <input type="text" id="recurl" placeholder="https://drive.google.com/file/d/..." spellcheck="false">
+      <div class="ok-note" id="recurlok"></div>
+    </div>
+
+    <div class="f">
+      <label for="recmd5">MD5 del recovery <span style="font-weight:400;color:var(--tx3)">(opcional)</span></label>
+      <input type="text" id="recmd5" placeholder="salida de md5sum del recovery.img" spellcheck="false">
+    </div>
   </div>
 
   <!-- ============ CAMBIOS ============ -->
@@ -322,7 +334,18 @@ $("url").addEventListener("input", () => {
   update();
 });
 
-["ver","andr","variant","date","patch","size","md5","mirror","chg","notes","islatest"]
+$("recurl").addEventListener("input", () => {
+  const raw = $("recurl").value.trim();
+  const fixed = fixDrive(raw);
+  const note = $("recurlok");
+  if(fixed && fixed !== raw){
+    note.className = "ok-note on";
+    note.innerHTML = "Convertido a descarga directa:<br><span class='mono'>" + esc(fixed) + "</span>";
+  } else note.className = "ok-note";
+  update();
+});
+
+["ver","andr","variant","date","patch","size","md5","mirror","recmd5","chg","notes","islatest"]
   .forEach(id => $(id).addEventListener("input", update));
 $("islatest").addEventListener("change", update);
 $("dev").addEventListener("change", fillRoms);
@@ -367,6 +390,9 @@ function buildBlock(){
   const mir = $("mirror").value.trim();
   if(url) b.downloads.push({ label:{es:"Descargar",en:"Download",pt:"Baixar"}, url, primary:true });
   if(mir) b.downloads.push({ label:{es:"Espejo",en:"Mirror",pt:"Espelho"}, url:mir, primary:false });
+  const recurl = fixDrive($("recurl").value);
+  const recmd5 = $("recmd5").value.trim();
+  if(recurl){ b.recovery = { url: recurl }; if(recmd5) b.recovery.md5 = recmd5; }
   return b;
 }
 
@@ -415,7 +441,9 @@ function update(){
       ${b.latest ? `<span class="tag latest">Última</span>` : ""}
     </h3>
     <div class="m">Android ${esc(b.android || "—")} · ${fd(b.date)} · parche de ${fp(b.securityPatch)}${b.size ? " · " + esc(b.size) : ""}</div>
-    <ul>${b.changelog.length ? b.changelog.map(c => `<li>${esc(c)}</li>`).join("") : "<li style='color:#4d5765'>Sin cambios cargados todavía</li>"}</ul>`;
+    <ul>${b.changelog.length ? b.changelog.map(c => `<li>${esc(c)}</li>`).join("") : "<li style='color:#4d5765'>Sin cambios cargados todavía</li>"}</ul>
+    ${(b.downloads && b.downloads.length) ? `<div class="m" style="margin-top:12px">Descarga ROM: <b style="color:var(--tx2)">link cargado ✓</b></div>` : ""}
+    ${(b.recovery && b.recovery.url) ? `<div class="m" style="margin-top:6px">Recovery (.img): <b style="color:var(--tx2)">adjunto ✓</b>${b.recovery.md5 ? " · MD5 " + esc(b.recovery.md5) : ""}</div>` : ""}`;
 
   const p = DATA ? problems(b) : ["Todavía no se cargó el archivo actual."];
   if(p.length){

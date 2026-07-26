@@ -344,6 +344,7 @@ const UI = {
     codename:"Codename", model:"Modelo", soc:"SoC",
     latest:"Última", changes:"Cambios", notes:"Notas", file:"Archivo",
     patchOf:p=>`parche de ${p}`,
+    recovery:"Recovery", recoveryNote:"Necesaria para la instalación limpia. En el eqe hay que flashearla (fastboot flash recovery); bootearla temporal no funciona.", recoveryDl:"Descargar recovery (.img)",
     flashTitle:"Cómo instalarla", flashSub:"Leé todo antes de empezar.",
     warnLead:"Antes que nada.",
     reqTitle:"Lo que necesitás", reqSub:"Sin esto no arranques.",
@@ -368,6 +369,7 @@ const UI = {
     codename:"Codename", model:"Model", soc:"SoC",
     latest:"Latest", changes:"Changes", notes:"Notes", file:"File",
     patchOf:p=>`${p} security patch`,
+    recovery:"Recovery", recoveryNote:"Required for a clean install. On the eqe it must be flashed (fastboot flash recovery); temporary boot doesn't work.", recoveryDl:"Download recovery (.img)",
     flashTitle:"How to install", flashSub:"Read everything before you start.",
     warnLead:"First things first.",
     reqTitle:"What you need", reqSub:"Don't start without this.",
@@ -392,6 +394,7 @@ const UI = {
     codename:"Codename", model:"Modelo", soc:"SoC",
     latest:"Mais recente", changes:"Mudanças", notes:"Notas", file:"Arquivo",
     patchOf:p=>`patch de ${p}`,
+    recovery:"Recovery", recoveryNote:"Necessária para a instalação limpa. No eqe precisa ser flasheada (fastboot flash recovery); dar boot temporário não funciona.", recoveryDl:"Baixar recovery (.img)",
     flashTitle:"Como instalar", flashSub:"Leia tudo antes de começar.",
     warnLead:"Antes de mais nada.",
     reqTitle:"O que você precisa", reqSub:"Não comece sem isto.",
@@ -697,6 +700,11 @@ function renderBuild(b, romName){
     return `<a class="btn ${dl.primary ? "primary" : ""} ${off ? "off" : ""}" href="${esc(dl.url || "#")}" ${off ? "" : 'target="_blank" rel="noopener"'}>${esc(tr(dl.label))}</a>`;
   }).join("");
   const notes = tr(b.notes);
+  const rec = (b.recovery && b.recovery.url) ? `
+      <h4>${t.recovery}</h4>
+      <p style="font-size:13px;color:var(--tx3);margin:4px 0 10px">${t.recoveryNote}</p>
+      ${b.recovery.md5 ? `<div class="files"><div><span>MD5</span><span>${esc(b.recovery.md5)}</span></div></div>` : ""}
+      <div class="dl"><a class="btn" href="${esc(b.recovery.url)}" target="_blank" rel="noopener">${t.recoveryDl}</a></div>` : "";
 
   return `
   <article class="build ${b.latest ? "is-latest open" : ""}">
@@ -716,6 +724,7 @@ function renderBuild(b, romName){
       ${notes ? `<h4>${t.notes}</h4><ul><li>${esc(notes)}</li></ul>` : ""}
       ${files ? `<h4>${t.file}</h4><div class="files">${files}</div>` : ""}
       <div class="dl">${links}</div>
+      ${rec}
     </div>
   </article>`;
 }
