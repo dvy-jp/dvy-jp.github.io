@@ -166,6 +166,17 @@
               "notes": ""
             }
           ]
+        },
+        {
+          "id": "lunaris",
+          "name": "LunarisOS",
+          "accent": "#22d3ee",
+          "description": {
+            "es": "Basada en AOSP puro, equilibra rendimiento, fluidez y personalización. Con los mismos arreglos del eqe: eSIM, OpenEUICC y PowerShare.",
+            "en": "Based on pure AOSP, balancing performance, smoothness and customization. With the same eqe fixes: eSIM, OpenEUICC and PowerShare.",
+            "pt": "Baseada em AOSP puro, equilibra desempenho, fluidez e personalização. Com os mesmos ajustes do eqe: eSIM, OpenEUICC e PowerShare."
+          },
+          "builds": []
         }
       ]
     }
@@ -353,6 +364,15 @@
     {
       "name": "Project Infinity-X",
       "url": "https://github.com/ProjectInfinity-X",
+      "role": {
+        "es": "Otra de las ROMs que compilo. Proyecto y código base.",
+        "en": "Another ROM I build. Project and codebase.",
+        "pt": "Outra das ROMs que compilo. Projeto e código base."
+      }
+    },
+    {
+      "name": "Lunaris-AOSP",
+      "url": "https://github.com/Lunaris-AOSP",
       "role": {
         "es": "Otra de las ROMs que compilo. Proyecto y código base.",
         "en": "Another ROM I build. Project and codebase.",
