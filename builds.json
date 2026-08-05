@@ -54,6 +54,37 @@
               "version": "12.11",
               "android": "16",
               "variant": "Vanilla",
+              "date": "2026-08-04",
+              "securityPatch": "2026-08-01",
+              "filename": "crDroidAndroid-16.0-20260804-eqe-v12.11.zip",
+              "size": "1.6 GB",
+              "md5": "8ec5eb6704498aa48f090d4a3d491928",
+              "downloads": [
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://drive.google.com/uc?export=download&id=1oJ52isIK4Va1XGh_vq1p_34DLBR10Q8V",
+                  "primary": true
+                }
+              ],
+              "changelog": [
+                "Parche de Seguridad 01 de Agosto 2026",
+                "Kernel actualizado a 5.15.179",
+                "Mejoras de estabilidad"
+              ],
+              "notes": "",
+              "latest": true,
+              "recovery": {
+                "url": "https://drive.google.com/uc?export=download&id=12Y0brHvS1pUT4m5Nw67t30SSmLntk6TO"
+              }
+            },
+            {
+              "version": "12.11",
+              "android": "16",
+              "variant": "Vanilla",
               "date": "2026-07-23",
               "securityPatch": "2026-07-01",
               "filename": "crDroidAndroid-16.0-20260723-eqe-v12.11.zip",
@@ -75,8 +106,7 @@
                 "OpenEUICC integrated as the profile manager: add, activate, and deactivate eSIM profiles without relying on Google.",
                 "Retains features from previous builds: PowerShare (reverse charging) and up-to-date security patch."
               ],
-              "notes": "",
-              "latest": true
+              "notes": ""
             },
             {
               "version": "12.11",
