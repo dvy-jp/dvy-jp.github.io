@@ -53,6 +53,34 @@
             {
               "version": "12.11",
               "android": "16",
+              "variant": "Gapps",
+              "date": "2026-08-07",
+              "securityPatch": "2026-08-01",
+              "filename": "crDroidAndroid-16.0-20260807-eqe-v12.11.zip",
+              "size": "2.0 GB",
+              "md5": "a578180f5df864d428eb3374e5b0e8ed",
+              "downloads": [
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://artifacts.serverhive.in/?id=crdroid-android-eqe-20260807-213913825494",
+                  "primary": true
+                }
+              ],
+              "changelog": [
+                "• August 2026 Security Patch",
+                "• Kernel updated to 5.15.185",
+                "• Stability improvements"
+              ],
+              "notes": "",
+              "latest": true
+            },
+            {
+              "version": "12.11",
+              "android": "16",
               "variant": "Vanilla",
               "date": "2026-08-04",
               "securityPatch": "2026-08-01",
@@ -76,7 +104,6 @@
                 "Mejoras de estabilidad"
               ],
               "notes": "",
-              "latest": true,
               "recovery": {
                 "url": "https://drive.google.com/uc?export=download&id=12Y0brHvS1pUT4m5Nw67t30SSmLntk6TO"
               }
