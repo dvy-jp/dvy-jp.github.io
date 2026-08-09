@@ -53,6 +53,45 @@
             {
               "version": "12.11",
               "android": "16",
+              "variant": "with a minimal GApps package",
+              "date": "2026-08-09",
+              "securityPatch": "2026-08-01",
+              "filename": "crDroidAndroid-16.0-20260809-eqe-v12.11.zip",
+              "size": "1.7 GB",
+              "md5": "ccea2bc5ea089d8e363d4921fde5c2db",
+              "downloads": [
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://artifacts.serverhive.in/?id=crdroid-android-eqe-20260809-030442896860",
+                  "primary": true
+                }
+              ],
+              "changelog": [
+                "• Kernel 2.15.186 Connection problem resolved.",
+                "• Minimalist GApps includes:",
+                "• *Google Play Services.",
+                "• *Play Store.",
+                "• *Google Services Framework.",
+                "• *Initial setup wizard.",
+                "• *Google account setup and restore.",
+                "• *App installer.",
+                "• *Updater for necessary settings and permissions.",
+                "• *Visual and functional integration of Google with crDroid."
+              ],
+              "notes": "",
+              "latest": true,
+              "recovery": {
+                "url": "https://gofile.io/d/qpmqfr",
+                "md5": "42c558f477012361b77e6a17f1e935ec"
+              }
+            },
+            {
+              "version": "12.11",
+              "android": "16",
               "variant": "Gapps",
               "date": "2026-08-07",
               "securityPatch": "2026-08-01",
@@ -75,8 +114,7 @@
                 "• Kernel updated to 5.15.185",
                 "• Stability improvements"
               ],
-              "notes": "",
-              "latest": true
+              "notes": ""
             },
             {
               "version": "12.11",
