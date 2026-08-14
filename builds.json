@@ -247,6 +247,38 @@
               "version": "3.12",
               "android": "16",
               "variant": "Gapps",
+              "date": "2026-08-10",
+              "securityPatch": "2026-08-01",
+              "filename": "Project_Infinity-X-3.12-eqe-10.08.2026-GAPPS-UNOFFICIAL.zip",
+              "size": "2.0 GB",
+              "md5": "8f1b448ba6651bb3436b86583474b567",
+              "downloads": [
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://gofile.io/d/i5wMfP",
+                  "primary": true
+                }
+              ],
+              "changelog": [
+                "Kernel updated to version 5.15.186.",
+                "Network connection fixes.",
+                "Improvements."
+              ],
+              "notes": "",
+              "latest": true,
+              "recovery": {
+                "url": "https://gofile.io/d/bQFcdk",
+                "md5": "27f616211b0a416b555a21f2c0aaedea"
+              }
+            },
+            {
+              "version": "3.12",
+              "android": "16",
+              "variant": "Gapps",
               "date": "2026-07-26",
               "securityPatch": "2026-07-01",
               "filename": "Project_Infinity-X-3.12-eqe-26.07.2026-GAPPS-UNOFFICIAL.zip",
@@ -271,7 +303,6 @@
                 "» PowerShare (reverse wireless charging)"
               ],
               "notes": "Requires a clean installation",
-              "latest": true,
               "recovery": {
                 "url": "https://drive.google.com/uc?export=download&id=1SwrU7TyYRg5ZjqNIiG0ixhEnsDShI7ek",
                 "md5": "37aeca7b32f2bda54f0fbb271f5ead08"
