@@ -135,6 +135,14 @@ section+section{border-top:1px solid var(--line)}
 .rc-arrow{color:var(--rc);font-size:1.15rem;transition:transform .15s}
 .romcard:hover .rc-arrow{transform:translateX(4px)}
 
+/* telegram */
+.tg-link{display:inline-flex;align-items:center;gap:6px;color:var(--rc);text-decoration:none;font-size:.8rem;font-weight:600}
+.tg-link:hover{text-decoration:underline}
+.tg-link-lg{margin-top:10px;font-size:.88rem}
+.tglist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;max-width:420px}
+.tgitem{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--rc);border-radius:var(--r);padding:12px 16px}
+.tg-rom{font-weight:600;color:var(--tx)}
+
 /* pagina de una ROM */
 .backlink{display:inline-block;color:var(--tx3);font-size:.85rem;text-decoration:none;margin-bottom:14px}
 .backlink:hover{color:var(--tx);text-decoration:none}
@@ -352,6 +360,7 @@ const UI = {
     credTitle:"Créditos", credSub:"Esto se apoya casi enteramente en trabajo ajeno.",
     navContact:"Contacto",
     chooseRom:"Elegí tu ROM.", allRoms:"← Todas las ROMs",
+    joinChannel:"Canal de Telegram", communityTitle:"Comunidad", communitySub:"Un canal de Telegram por ROM: novedades, avisos de builds y soporte de la comunidad.",
     contactTitle:"Contacto y reportes", contactSub:"¿Encontraste un bug o tenés una consulta? Escribime. No hace falta cuenta.",
     cType:"Tipo", cTypeBug:"Reporte de bug", cTypeGen:"Consulta general",
     cBuild:"Build", cBuildNA:"No aplica / otra",
@@ -377,6 +386,7 @@ const UI = {
     credTitle:"Credits", credSub:"This rests almost entirely on other people's work.",
     navContact:"Contact",
     chooseRom:"Choose your ROM.", allRoms:"← All ROMs",
+    joinChannel:"Telegram channel", communityTitle:"Community", communitySub:"One Telegram channel per ROM: news, build alerts and community support.",
     contactTitle:"Contact & reports", contactSub:"Found a bug or have a question? Drop me a message. No account needed.",
     cType:"Type", cTypeBug:"Bug report", cTypeGen:"General question",
     cBuild:"Build", cBuildNA:"N/A · other",
@@ -402,6 +412,7 @@ const UI = {
     credTitle:"Créditos", credSub:"Isto se apoia quase inteiramente no trabalho de outras pessoas.",
     navContact:"Contato",
     chooseRom:"Escolha sua ROM.", allRoms:"← Todas as ROMs",
+    joinChannel:"Canal do Telegram", communityTitle:"Comunidade", communitySub:"Um canal do Telegram por ROM: novidades, avisos de builds e suporte da comunidade.",
     contactTitle:"Contato e relatos", contactSub:"Achou um bug ou tem uma dúvida? Me manda uma mensagem. Sem precisar de conta.",
     cType:"Tipo", cTypeBug:"Relato de bug", cTypeGen:"Dúvida geral",
     cBuild:"Build", cBuildNA:"N/A · outra",
@@ -526,6 +537,7 @@ function render(){
     <a class="navjump" href="#${esc(rom.id)}" data-target="creditos">${t.navCredits}</a>
     ${showContact ? `<a class="navjump" href="#${esc(rom.id)}" data-target="contacto">${t.navContact}</a>` : ""}` : `
     <a class="navjump" href="#" data-target="roms">ROMs</a>
+    <a class="navjump" href="#" data-target="comunidad">${t.communityTitle}</a>
     <a class="navjump" href="#" data-target="creditos">${t.navCredits}</a>
     ${showContact ? `<a class="navjump" href="#" data-target="contacto">${t.navContact}</a>` : ""}`;
 
@@ -556,8 +568,31 @@ function renderLanding(d, roms, showContact, contactCfg){
       <p class="sub">${t.chooseRom}</p>
       <div class="romgrid">${roms.map(renderRomCard).join("")}</div>
     </div></section>
+    ${renderCommunity(roms)}
     ${renderCredits()}
-    ${showContact ? renderContact(contactCfg, null) : ""}`;
+    ${showContact ? renderContact(contactCfg, null, roms) : ""}`;
+}
+
+function renderCommunity(roms){
+  const t = UI[lang];
+  const withTg = (roms || []).filter(r => r.telegram);
+  if(!withTg.length) return "";
+  return `
+  <section id="comunidad"><div class="wrap">
+    <h2>${t.communityTitle}</h2>
+    <p class="sub">${t.communitySub}</p>
+    <ul class="tglist">
+      ${withTg.map(r => `
+        <li class="tgitem" style="--rc:${esc(r.accent || "#4ea1ff")}">
+          <span class="tg-rom">${esc(r.name)}</span>
+          <a class="tg-link" href="${esc(r.telegram)}" target="_blank" rel="noopener">${tgIcon()} ${esc(t.joinChannel)}</a>
+        </li>`).join("")}
+    </ul>
+  </div></section>`;
+}
+
+function tgIcon(){
+  return `<svg viewBox="0 0 240 240" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M199 40 172 209c-2 10-8 12-16 8l-45-33-22 21c-2 2-4 4-8 4l3-41 76-69c3-3-1-5-5-2l-94 59-40-13c-9-3-9-9 2-13L187 27c7-3 14 2 12 13z"/></svg>`;
 }
 
 function renderRomCard(r){
@@ -573,7 +608,11 @@ function renderRomCard(r){
       ${variant ? `<span class="rc-variant">${esc(variant)}</span>` : ""}
     </div>
     <p class="rc-desc">${esc(tr(r.description))}</p>
-    <div class="rc-foot"><span class="rc-meta">${esc(meta)}</span><span class="rc-arrow">→</span></div>
+    <div class="rc-foot">
+      <span class="rc-meta">${esc(meta)}</span>
+      ${r.telegram ? `<a class="tg-link" href="${esc(r.telegram)}" target="_blank" rel="noopener" title="${esc(t.joinChannel)}" onclick="event.stopPropagation()">${tgIcon()}</a>` : ""}
+      <span class="rc-arrow">→</span>
+    </div>
   </a>`;
 }
 
@@ -585,6 +624,7 @@ function renderRomView(d, rom, showContact, contactCfg){
       <a class="backlink" href="#">${t.allRoms}</a>
       <h1><span class="rom-dot"></span>${esc(rom.name)} <span class="hero-dev">· ${esc(d.name)}</span></h1>
       <p>${esc(tr(rom.description))}</p>
+      ${rom.telegram ? `<a class="tg-link tg-link-lg" href="${esc(rom.telegram)}" target="_blank" rel="noopener">${tgIcon()} ${esc(t.joinChannel)}</a>` : ""}
     </div></div>
     <section id="builds"><div class="wrap">
       <h2>Builds</h2>
@@ -597,14 +637,21 @@ function renderRomView(d, rom, showContact, contactCfg){
     ${showContact ? renderContact(contactCfg, rom) : ""}`;
 }
 
-function renderContact(cfg, rom){
+function renderContact(cfg, rom, allRoms){
   const t = UI[lang];
   const rn = rom ? rom.name : "";
-  const builds = (rom && rom.builds) || [];
-  const buildOpts = builds.map(b => {
-    const label = `${rn} ${b.version} · ${fmtDate(b.date)}`;
-    return `<option value="${esc(label)}">${esc(label)}</option>`;
-  }).join("");
+  let buildOpts;
+  if(rom){
+    buildOpts = (rom.builds || []).map(b => {
+      const label = `${rn} ${b.version} · ${fmtDate(b.date)}`;
+      return `<option value="${esc(label)}">${esc(label)}</option>`;
+    }).join("");
+  } else {
+    buildOpts = (allRoms || []).flatMap(r => (r.builds || []).map(b => {
+      const label = `${r.name} ${b.version} · ${fmtDate(b.date)}`;
+      return `<option value="${esc(label)}">${esc(label)}</option>`;
+    })).join("");
+  }
 
   return `
   <section id="contacto"><div class="wrap">
