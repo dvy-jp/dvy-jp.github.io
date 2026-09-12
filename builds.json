@@ -51,6 +51,39 @@
           },
           "builds": [
             {
+              "version": "12.12",
+              "android": "16",
+              "variant": "Gapps",
+              "date": "2026-09-11",
+              "securityPatch": "2026-09-01",
+              "filename": "crDroidAndroid-16.0-20260911-eqe-v12.12.zip",
+              "size": "1.8",
+              "md5": "",
+              "downloads": [
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://downloads.dvy-jp.workers.dev/crdroid/crDroidAndroid-16.0-20260911-eqe-v12.12.zip",
+                  "primary": true
+                }
+              ],
+              "changelog": [
+                "Safety patch September 2026",
+                "Kernel version 5.15.190",
+                "Stability improvements",
+                "Changes:",
+                "https://crdroid.net/blog/2026-09-11-crDroid-12.12-is-now-ready"
+              ],
+              "notes": "",
+              "latest": true,
+              "recovery": {
+                "url": "https://downloads.dvy-jp.workers.dev/crdroid/crDroidAndroid-16.0-20260911-eqe-v12.12-recovery.img"
+              }
+            },
+            {
               "version": "12.11",
               "android": "16",
               "variant": "with a minimal GApps package",
@@ -83,7 +116,6 @@
                 "• *Visual and functional integration of Google with crDroid."
               ],
               "notes": "",
-              "latest": true,
               "recovery": {
                 "url": "https://downloads.dvy-jp.workers.dev/crdroid/crDroidAndroid-16-eqe-GAPPS-MINIMALISTA-kernel-5.15.186-recovery.img",
                 "md5": "195495d4d4d31c070a7584348a386045"
