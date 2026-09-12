@@ -44,6 +44,7 @@
           "id": "crdroid",
           "name": "crDroid",
           "accent": "#4ea1ff",
+          "telegram": "https://t.me/crDroid_eqe",
           "description": {
             "es": "La más personalizable, sobre base LineageOS. Build Vanilla sin Google, con eSIM, OpenEUICC y PowerShare funcionando.",
             "en": "The most customizable, LineageOS-based. Vanilla build without Google, with working eSIM, OpenEUICC and PowerShare.",
@@ -269,6 +270,7 @@
           "id": "infinityx",
           "name": "InfinityX",
           "accent": "#a371f7",
+          "telegram": "https://t.me/InfinityX_eqe",
           "description": {
             "es": "Enfocada en estabilidad y fluidez. En variantes Vanilla y GApps, con los mismos arreglos del eqe: eSIM, OpenEUICC y PowerShare.",
             "en": "Focused on stability and smoothness. In Vanilla and GApps variants, with the same eqe fixes: eSIM, OpenEUICC and PowerShare.",
@@ -375,6 +377,7 @@
           "id": "lunaris",
           "name": "LunarisOS",
           "accent": "#22d3ee",
+          "telegram": "https://t.me/LunarisAOSP_eqe",
           "description": {
             "es": "Basada en AOSP puro, equilibra rendimiento, fluidez y personalización. Con los mismos arreglos del eqe: eSIM, OpenEUICC y PowerShare.",
             "en": "Based on pure AOSP, balancing performance, smoothness and customization. With the same eqe fixes: eSIM, OpenEUICC and PowerShare.",
