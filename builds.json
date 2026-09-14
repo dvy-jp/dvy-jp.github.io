@@ -281,6 +281,37 @@
               "version": "3.12",
               "android": "16",
               "variant": "Gapps",
+              "date": "2026-09-14",
+              "securityPatch": "2026-09-01",
+              "filename": "Project_Infinity-X-3.12-eqe-14.09.2026-VANILLA-UNOFFICIAL.zip",
+              "size": "2.1",
+              "md5": "",
+              "downloads": [
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://gofile.io/d/BpHvvCGO",
+                  "primary": true
+                }
+              ],
+              "changelog": [
+                "September 2026 monthly security patch",
+                "Stability improvements",
+                "Integrated Motorola camera"
+              ],
+              "notes": "This ROM is in the testing phase, so there may be errors.",
+              "latest": true,
+              "recovery": {
+                "url": "https://gofile.io/d/0ulKIexY"
+              }
+            },
+            {
+              "version": "3.12",
+              "android": "16",
+              "variant": "Gapps",
               "date": "2026-08-10",
               "securityPatch": "2026-08-01",
               "filename": "Project_Infinity-X-3.12-eqe-10.08.2026-GAPPS-UNOFFICIAL.zip",
@@ -303,7 +334,6 @@
                 "Improvements."
               ],
               "notes": "",
-              "latest": true,
               "recovery": {
                 "url": "https://drive.google.com/file/d/1YjKKU603poWzb2fUNmfK-E9zoZLtZ10f/view?usp=sharing",
                 "md5": "821b3514d94d5b31901f6f50203abb37"
