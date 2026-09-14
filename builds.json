@@ -388,6 +388,38 @@
               "version": "3.12",
               "android": "16",
               "variant": "Gapps",
+              "date": "2026-09-14",
+              "securityPatch": "2026-08-01",
+              "filename": "Lunaris-AOSP-eqe-Community-3.12-GMS-2026091409-kernel-5.15.198.zip",
+              "size": "2.7GB",
+              "md5": "c152314d7a8344273fc69ec13f23f1b1",
+              "downloads": [
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://gofile.io/d/deE7ooAf",
+                  "primary": true
+                }
+              ],
+              "changelog": [
+                "Security and stability updates.",
+                "Kernel updated to version 5.15.198.",
+                "Integrated Motorola camera."
+              ],
+              "notes": "This ROM is in the testing phase, so there may be errors.",
+              "latest": true,
+              "recovery": {
+                "url": "https://gofile.io/d/3vKcZ1EB",
+                "md5": "ec223c0e1290e8d2ef56889e5ecd16db"
+              }
+            },
+            {
+              "version": "3.12",
+              "android": "16",
+              "variant": "Gapps",
               "date": "2026-08-02",
               "securityPatch": "2026-07-01",
               "filename": "Lunaris-AOSP-eqe-Community-3.12-GMS-2026080214.zip",
@@ -412,7 +444,6 @@
                 "» PowerShare (reverse wireless charging)"
               ],
               "notes": "Requires a clean installation",
-              "latest": true,
               "recovery": {
                 "url": "https://drive.google.com/uc?export=download&id=1IYd-fyq5ECKgtuxU9kHwsKEinumzEBr_",
                 "md5": "f59ad61df5147b57a8f2c2344b5f2c5a"
