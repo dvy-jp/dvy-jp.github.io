@@ -613,6 +613,59 @@
           "en": "Run the commands in a Windows terminal (CMD or PowerShell) from the platform-tools folder; the leading <code>.\\</code> is required in PowerShell. With signed builds, use the recovery from <b>this same build</b> (matching signature, accepts the ZIP). If the device ends up in a bootloop, flash init_boot to the active slot: <code>.\\fastboot.exe flash init_boot init_boot.img</code>.",
           "pt": "Rode os comandos num terminal do Windows (CMD ou PowerShell) na pasta do platform-tools; o <code>.\\</code> na frente é obrigatório no PowerShell. Com builds assinadas, use a recovery <b>desta mesma build</b> (mesma assinatura, aceita o ZIP). Se o aparelho ficar em bootloop, flasheie o init_boot no slot ativo: <code>.\\fastboot.exe flash init_boot init_boot.img</code>."
         }
+      },
+      {
+        "id": "rollback",
+        "title": {
+          "es": "Volver a la versión anterior si una actualización no inicia",
+          "en": "Roll back to the previous version if an update won't boot",
+          "pt": "Voltar à versão anterior se uma atualização não iniciar"
+        },
+        "subtitle": {
+          "es": "Todas las actualizaciones se prueban antes de publicarse. Aun así, si el teléfono se queda en el logo de Motorola por más de 10 minutos, seguí estos pasos. Normalmente el teléfono vuelve solo a la versión anterior después de varios arranques fallidos; si eso no pasa, hacelo a mano.",
+          "en": "Every update is tested before it's published. Still, if the phone stays on the Motorola logo for more than 10 minutes, follow these steps. The phone will usually roll back on its own after several failed boots; if it doesn't, do it manually.",
+          "pt": "Toda atualização é testada antes de ser publicada. Mesmo assim, se o celular ficar parado no logo da Motorola por mais de 10 minutos, siga estes passos. Normalmente o celular volta sozinho para a versão anterior depois de vários boots falhos; se isso não acontecer, faça manualmente."
+        },
+        "steps": {
+          "es": [
+            "Mantené presionado <b>Encendido</b> hasta que el teléfono se apague.",
+            "Mantené presionados <b>Volumen abajo + Encendido</b> juntos, y soltalos cuando aparezca <b>AP Fastboot Flash Mode</b>. Ya estás en Fastboot.",
+            "En la PC, descargá y descomprimí <b>Android Platform Tools</b>.",
+            "Abrí la carpeta <code>platform-tools</code>, hacé clic derecho adentro y elegí <b>Abrir en Terminal</b>.",
+            "Conectá el teléfono a la PC por USB y ejecutá: <code>.\\fastboot.exe devices</code>. Tiene que aparecer el número de serie del teléfono; si no aparece, revisá el cable USB y los drivers de Motorola.",
+            "Comprobá la ranura activa: <code>.\\fastboot.exe getvar current-slot</code>",
+            "Si dice <code>current-slot: b</code>, volvé a la versión anterior con: <code>.\\fastboot.exe set_active a</code> y después <code>.\\fastboot.exe reboot</code>",
+            "Si dice <code>current-slot: a</code>, usá: <code>.\\fastboot.exe set_active b</code> y después <code>.\\fastboot.exe reboot</code>",
+            "El teléfono debería iniciar de nuevo con la versión anterior, conservando tus datos."
+          ],
+          "en": [
+            "Hold <b>Power</b> until the phone turns off.",
+            "Hold <b>Volume down + Power</b> together, and let go when <b>AP Fastboot Flash Mode</b> appears. You're now in Fastboot.",
+            "On the PC, download and unzip <b>Android Platform Tools</b>.",
+            "Open the <code>platform-tools</code> folder, right-click inside it and choose <b>Open in Terminal</b>.",
+            "Connect the phone to the PC via USB and run: <code>.\\fastboot.exe devices</code>. The phone's serial number should show up; if it doesn't, check the USB cable and Motorola's drivers.",
+            "Check the active slot: <code>.\\fastboot.exe getvar current-slot</code>",
+            "If it says <code>current-slot: b</code>, go back to the previous version with: <code>.\\fastboot.exe set_active a</code> then <code>.\\fastboot.exe reboot</code>",
+            "If it says <code>current-slot: a</code>, use: <code>.\\fastboot.exe set_active b</code> then <code>.\\fastboot.exe reboot</code>",
+            "The phone should boot back into the previous version, keeping your data."
+          ],
+          "pt": [
+            "Mantenha pressionado <b>Ligar</b> até o celular desligar.",
+            "Mantenha pressionados <b>Volume para baixo + Ligar</b> juntos, e solte quando aparecer <b>AP Fastboot Flash Mode</b>. Você já está no Fastboot.",
+            "No PC, baixe e descompacte o <b>Android Platform Tools</b>.",
+            "Abra a pasta <code>platform-tools</code>, clique com o botão direito dentro dela e escolha <b>Abrir no Terminal</b>.",
+            "Conecte o celular ao PC via USB e execute: <code>.\\fastboot.exe devices</code>. O número de série do celular deve aparecer; se não aparecer, verifique o cabo USB e os drivers da Motorola.",
+            "Verifique a ranhura ativa: <code>.\\fastboot.exe getvar current-slot</code>",
+            "Se aparecer <code>current-slot: b</code>, volte para a versão anterior com: <code>.\\fastboot.exe set_active a</code> e depois <code>.\\fastboot.exe reboot</code>",
+            "Se aparecer <code>current-slot: a</code>, use: <code>.\\fastboot.exe set_active b</code> e depois <code>.\\fastboot.exe reboot</code>",
+            "O celular deve iniciar novamente com a versão anterior, mantendo seus dados."
+          ]
+        },
+        "note": {
+          "es": "⚠️ No selecciones opciones para borrar datos, bloquear el bootloader ni flashear particiones. Si el teléfono tampoco inicia después de cambiar de ranura, detenete y pedí ayuda antes de seguir.",
+          "en": "⚠️ Don't select any option to wipe data, lock the bootloader, or flash partitions. If the phone still won't boot after switching slots, stop and ask for help before continuing.",
+          "pt": "⚠️ Não selecione opções para apagar dados, bloquear o bootloader ou flashear partições. Se o celular também não iniciar depois de trocar de ranhura, pare e peça ajuda antes de continuar."
+        }
       }
     ],
     "troubleshooting": [
