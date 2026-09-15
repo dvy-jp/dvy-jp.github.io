@@ -1,0 +1,17 @@
+[
+  {
+    "datetime": 1789171200,
+    "type": "release",
+    "version": "12.12",
+    "files": [
+      {
+        "filename": "crDroidAndroid-16.0-20260912-eqe-v12.12-kernel-5.15.198.zip",
+        "sha256": "72aaaf230d1946292e77d6dc8e3c71e0e9c2b28fb7ca7e843f0057582cd18c37",
+        "size": 1984066827,
+        "os_patch_level": "2026-09-01",
+        "os_sdk_level": 36,
+        "url": "https://pub-bcd11709fb5742f1ae77b414bff73a7d.r2.dev/crdroid/crDroidAndroid-16.0-20260912-eqe-v12.12-kernel-5.15.198.zip"
+      }
+    ]
+  }
+]
