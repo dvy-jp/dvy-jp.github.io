@@ -1,15 +1,18 @@
 {
-    "datetime":  1789507735,
-    "type":  "",
-    "version":  "12.12",
-    "files":  [
-                  {
-                      "filename":  "crDroidAndroid-16-eqe-GAPPS-MINIMALISTA-kernel-5.15.201.zip",
-                      "sha256":  "075832471579470e70430544d83ada369736238e0bb2ed27863aac98a88328a2",
-                      "size":  1984139155,
-                      "os_patch_level":  "2026-09-01",
-                      "os_sdk_level":  36,
-                      "url":  "https://pub-bcd11709fb5742f1ae77b414bff73a7d.r2.dev/crdroid/crDroidAndroid-16-eqe-GAPPS-MINIMALISTA-kernel-5.15.201.zip"
-                  }
-              ]
+  "response": [
+    {
+      "maintainer": "Deivy",
+      "oem": "Motorola",
+      "device": "motorola edge 50 pro",
+      "filename": "crDroidAndroid-16-eqe-GAPPS-MINIMALISTA-kernel-5.15.201.zip",
+      "download": "https://pub-bcd11709fb5742f1ae77b414bff73a7d.r2.dev/crdroid/crDroidAndroid-16-eqe-GAPPS-MINIMALISTA-kernel-5.15.201.zip",
+      "timestamp": 1789507735,
+      "sha256": "075832471579470e70430544d83ada369736238e0bb2ed27863aac98a88328a2",
+      "size": 1984139155,
+      "version": "12.12",
+      "os_patch_level": "2026-09-01",
+      "os_sdk_level": 36,
+      "buildtype": "Unofficial"
+    }
+  ]
 }
