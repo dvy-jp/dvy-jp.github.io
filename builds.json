@@ -55,6 +55,41 @@
               "version": "12.12",
               "android": "16",
               "variant": "Gapps",
+              "date": "2026-09-16",
+              "securityPatch": "2026-09-01",
+              "filename": "crDroidAndroid-16-eqe-GAPPS-kernel-5.15.205.zip",
+              "size": "1.8",
+              "md5": "09722145d27db53d38b794d5e0cd9d4d",
+              "downloads": [
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://drive.google.com/uc?export=download&id=1HhZDkY4UY8MEQKWOsLHw1AtvdZhz380Y",
+                  "primary": true
+                }
+              ],
+              "changelog": [
+                "September 2026 security patch",
+                "Kernel 5.15.205",
+                "Integrated Moto Cam",
+                "Automatic restart if the device remains locked for more than 8 hours.",
+                "Removed the moisture detection notification for the USB-C port (false positive).",
+                "If you install this version, you will no longer need to install updates manually; they will be performed automatically every month!"
+              ],
+              "notes": "",
+              "latest": true,
+              "recovery": {
+                "url": "https://gofile.io/d/TUk2tlEu",
+                "md5": "f94f38cd1be37a063ce936758312ead7"
+              }
+            },
+            {
+              "version": "12.12",
+              "android": "16",
+              "variant": "Gapps",
               "date": "2026-09-11",
               "securityPatch": "2026-09-01",
               "filename": "crDroidAndroid-16.0-20260911-eqe-v12.12.zip",
@@ -79,7 +114,6 @@
                 "https://crdroid.net/blog/2026-09-11-crDroid-12.12-is-now-ready"
               ],
               "notes": "",
-              "latest": true,
               "recovery": {
                 "url": "https://downloads.dvy-jp.workers.dev/crdroid/crDroidAndroid-16.0-20260911-eqe-v12.12-recovery.img"
               }
