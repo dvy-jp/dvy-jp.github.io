@@ -52,6 +52,41 @@
           },
           "builds": [
             {
+              "version": "13.0",
+              "android": "17",
+              "variant": "Gapps",
+              "date": "2026-09-30",
+              "securityPatch": "2026-09-01",
+              "filename": "crDroidAndroid-17.0-20260930-eqe-v13.0-BETA-kernel-5.15.221.zip",
+              "size": "2.0",
+              "md5": "",
+              "downloads": [
+                {
+                  "label": {
+                    "es": "Descargar",
+                    "en": "Download",
+                    "pt": "Baixar"
+                  },
+                  "url": "https://pub-bcd11709fb5742f1ae77b414bff73a7d.r2.dev/crdroid/17/crDroidAndroid-17.0-20260930-eqe-v13.0-BETA-kernel-5.15.221.zip",
+                  "primary": true
+                }
+              ],
+              "changelog": [
+                "First version of crDroid based on Android 17 for the Motorola Edge 50 Pro.",
+                "Update to crDroid 13.0 BETA.",
+                "September 2026 security patch.",
+                "Essential Android 17 GApps included.",
+                "Google Photos included for better integration with Moto Camera.",
+                "New OTA system for future Android 17 updates.",
+                "User build signed with production private keys."
+              ],
+              "notes": "Installation The upgrade from Android 16 to Android 17 must be performed manually via recovery/ADB sideload. Once this initial Android 17 build is installed, future updates can be received through the built-in updater.",
+              "latest": true,
+              "recovery": {
+                "url": "https://gofile.io/d/i44J4TXW"
+              }
+            },
+            {
               "version": "12.12",
               "android": "16",
               "variant": "Gapps",
@@ -80,7 +115,6 @@
                 "If you install this version, you will no longer need to install updates manually; they will be performed automatically every month!"
               ],
               "notes": "",
-              "latest": true,
               "recovery": {
                 "url": "https://gofile.io/d/TUk2tlEu",
                 "md5": "f94f38cd1be37a063ce936758312ead7"
